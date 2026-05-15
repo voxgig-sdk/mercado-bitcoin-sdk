@@ -1,0 +1,50 @@
+{
+  "existing": {
+    "ticker": {
+      "TICKER00": {
+        "ask": 80,
+        "bid": 81,
+        "high": 82,
+        "last": 83,
+        "low": 84,
+        "symbol": "s55",
+        "timestamp": "s56",
+        "volume": 87
+      },
+      "TICKER01": {
+        "ask": 160,
+        "bid": 161,
+        "high": 162,
+        "last": 163,
+        "low": 164,
+        "symbol": "sa5",
+        "timestamp": "sa6",
+        "volume": 167
+      },
+      "TICKER02": {
+        "ask": 240,
+        "bid": 241,
+        "high": 242,
+        "last": 243,
+        "low": 244,
+        "symbol": "sf5",
+        "timestamp": "sf6",
+        "volume": 247
+      }
+    }
+  },
+  "new": {
+    "ticker": {
+      "ticker_ref01": {
+        "ask": 320,
+        "bid": 321,
+        "high": 322,
+        "last": 323,
+        "low": 324,
+        "symbol": "s145",
+        "timestamp": "s146",
+        "volume": 327
+      }
+    }
+  }
+}

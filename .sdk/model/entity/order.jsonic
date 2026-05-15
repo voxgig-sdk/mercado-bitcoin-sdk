@@ -1,0 +1,222 @@
+# Entity: order
+
+main: kit: entity: order: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "amount"
+      op: {
+        create: {
+          req: true
+          type: "`$NUMBER`"
+        }
+      }
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "filled"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "price"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "side"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "symbol"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "type"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "order"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/orders"
+          parts: [
+            "orders"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "status"
+                orig: "status"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "symbol"
+                orig: "symbol"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/orders"
+          parts: [
+            "orders"
+          ]
+          select: {
+            exist: [
+              "status"
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "order_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/orders/{orderId}"
+          parts: [
+            "orders"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              orderId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    remove: {
+      name: "remove"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "order_id"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "DELETE"
+          orig: "/orders/{orderId}"
+          parts: [
+            "orders"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              orderId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

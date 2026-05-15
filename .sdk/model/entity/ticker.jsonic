@@ -1,0 +1,110 @@
+# Entity: ticker
+
+main: kit: entity: ticker: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ask"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "bid"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "high"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "last"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "low"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "symbol"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "volume"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "ticker"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/tickers"
+          parts: [
+            "tickers"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/tickers/{symbol}"
+          parts: [
+            "tickers"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              symbol: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

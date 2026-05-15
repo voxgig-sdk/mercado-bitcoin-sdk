@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Mercado Bitcoin API Support"
+        url: "https://api.mercadobitcoin.net/api/v4/docs"
+      }
+      description: "The Mercado Bitcoin API provides a comprehensive interface for accessing cryptocurrency market data, managing user accounts, and executing trades. It supports functionalities including retrieving market data such as order books, trades, and candles, as well as facilitating deposits and withdrawals for digital currencies and Brazilian Real. With robust security measures and user authorizations, it ensures safe and efficient operations in the cryptocurrency ecosystem."
+      servers: [
+        {
+          description: "Production Server"
+          url: "https://api.mercadobitcoin.net/api/v4"
+        }
+      ]
+      title: "Mercado Bitcoin API"
+      version: "4.0.0"
+    }
+  }
+}
+
+}

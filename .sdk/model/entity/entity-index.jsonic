@@ -1,0 +1,10 @@
+# Entity Models
+
+@"balance.jsonic"
+@"candle.jsonic"
+@"deposit_address.jsonic"
+@"order.jsonic"
+@"order_book.jsonic"
+@"ticker.jsonic"
+@"trade.jsonic"
+@"withdrawal.jsonic"

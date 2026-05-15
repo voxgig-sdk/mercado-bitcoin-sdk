@@ -1,0 +1,44 @@
+# BasicTickerFlow
+
+main: kit: flow: BasicTickerFlow:
+{
+  entity: "ticker",
+  kind: "basic",
+  name: "BasicTickerFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ticker_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "ticker_ref01",
+        srcdatavar: "ticker_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "ticker01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ticker_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTickerFlow"
+}

@@ -1,0 +1,104 @@
+# Entity: candle
+
+main: kit: entity: candle: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "close"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "high"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "low"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "open"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "volume"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "candle"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: "1h"
+                kind: "query"
+                name: "interval"
+                orig: "interval"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/candles/{symbol}"
+          parts: [
+            "candles"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              symbol: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "interval"
+              "limit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

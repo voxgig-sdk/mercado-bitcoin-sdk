@@ -1,0 +1,32 @@
+# BasicOrderBookFlow
+
+main: kit: flow: BasicOrderBookFlow:
+{
+  entity: "order_book",
+  kind: "basic",
+  name: "BasicOrderBookFlow",
+  step: [
+    {
+      input: {
+        ref: "order_book_ref01",
+        srcdatavar: "order_book_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "order_book01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-order_book_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicOrderBookFlow"
+}

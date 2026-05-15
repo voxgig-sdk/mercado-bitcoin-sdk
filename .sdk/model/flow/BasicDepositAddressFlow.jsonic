@@ -1,0 +1,28 @@
+# BasicDepositAddressFlow
+
+main: kit: flow: BasicDepositAddressFlow:
+{
+  entity: "deposit_address",
+  kind: "basic",
+  name: "BasicDepositAddressFlow",
+  step: [
+    {
+      input: {
+        ref: "deposit_address_ref01",
+        srcdatavar: "deposit_address_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-deposit_address_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDepositAddressFlow"
+}

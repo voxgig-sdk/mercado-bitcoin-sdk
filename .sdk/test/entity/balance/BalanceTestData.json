@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "balance": {
+      "BALANCE00": {
+        "available": 40,
+        "currency": "s29",
+        "locked": 42,
+        "total": 43
+      },
+      "BALANCE01": {
+        "available": 80,
+        "currency": "s51",
+        "locked": 82,
+        "total": 83
+      },
+      "BALANCE02": {
+        "available": 120,
+        "currency": "s79",
+        "locked": 122,
+        "total": 123
+      }
+    }
+  },
+  "new": {
+    "balance": {
+      "balance_ref01": {
+        "available": 160,
+        "currency": "sa1",
+        "locked": 162,
+        "total": 163
+      }
+    }
+  }
+}

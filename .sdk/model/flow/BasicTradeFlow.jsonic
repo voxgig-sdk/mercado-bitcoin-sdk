@@ -1,0 +1,32 @@
+# BasicTradeFlow
+
+main: kit: flow: BasicTradeFlow:
+{
+  entity: "trade",
+  kind: "basic",
+  name: "BasicTradeFlow",
+  step: [
+    {
+      input: {
+        ref: "trade_ref01",
+        srcdatavar: "trade_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "trade01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-trade_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTradeFlow"
+}

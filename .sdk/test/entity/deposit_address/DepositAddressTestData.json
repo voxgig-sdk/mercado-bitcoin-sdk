@@ -1,0 +1,34 @@
+{
+  "existing": {
+    "deposit_address": {
+      "DEPOSIT_ADDRESS00": {
+        "address": "s28",
+        "currency": "s29",
+        "qr_code": "s2a",
+        "tag": "s2b"
+      },
+      "DEPOSIT_ADDRESS01": {
+        "address": "s50",
+        "currency": "s51",
+        "qr_code": "s52",
+        "tag": "s53"
+      },
+      "DEPOSIT_ADDRESS02": {
+        "address": "s78",
+        "currency": "s79",
+        "qr_code": "s7a",
+        "tag": "s7b"
+      }
+    }
+  },
+  "new": {
+    "deposit_address": {
+      "deposit_address_ref01": {
+        "address": "sa0",
+        "currency": "sa1",
+        "qr_code": "sa2",
+        "tag": "sa3"
+      }
+    }
+  }
+}

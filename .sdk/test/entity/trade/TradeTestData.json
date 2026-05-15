@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "trade": {
+      "TRADE00": {
+        "amount": 50,
+        "id": "TRADE00",
+        "price": 52,
+        "side": "s35",
+        "timestamp": "s36"
+      },
+      "TRADE01": {
+        "amount": 100,
+        "id": "TRADE01",
+        "price": 102,
+        "side": "s67",
+        "timestamp": "s68"
+      },
+      "TRADE02": {
+        "amount": 150,
+        "id": "TRADE02",
+        "price": 152,
+        "side": "s99",
+        "timestamp": "s9a"
+      }
+    }
+  },
+  "new": {
+    "trade": {
+      "trade_ref01": {
+        "amount": 200,
+        "price": 202,
+        "side": "scb",
+        "timestamp": "scc"
+      }
+    }
+  }
+}

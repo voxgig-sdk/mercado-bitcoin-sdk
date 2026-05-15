@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "order_book": {
+      "ORDER_BOOK00": {
+        "ask": [],
+        "bid": [],
+        "timestamp": "s20",
+        "symbol": "SYMBOL01"
+      },
+      "ORDER_BOOK01": {
+        "ask": [],
+        "bid": [],
+        "timestamp": "s3e",
+        "symbol": "SYMBOL01"
+      },
+      "ORDER_BOOK02": {
+        "ask": [],
+        "bid": [],
+        "timestamp": "s5c",
+        "symbol": "SYMBOL01"
+      }
+    }
+  },
+  "new": {
+    "order_book": {
+      "order_book_ref01": {
+        "ask": [],
+        "bid": [],
+        "timestamp": "s7a"
+      }
+    }
+  }
+}

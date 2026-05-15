@@ -1,0 +1,32 @@
+# BasicCandleFlow
+
+main: kit: flow: BasicCandleFlow:
+{
+  entity: "candle",
+  kind: "basic",
+  name: "BasicCandleFlow",
+  step: [
+    {
+      input: {
+        ref: "candle_ref01",
+        srcdatavar: "candle_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "candle01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-candle_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCandleFlow"
+}

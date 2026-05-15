@@ -1,0 +1,53 @@
+{
+  "existing": {
+    "order": {
+      "ORDER00": {
+        "amount": 90,
+        "filled": 91,
+        "id": "ORDER00",
+        "price": 93,
+        "side": "s5e",
+        "status": "s5f",
+        "symbol": "s60",
+        "timestamp": "s61",
+        "type": "s62"
+      },
+      "ORDER01": {
+        "amount": 180,
+        "filled": 181,
+        "id": "ORDER01",
+        "price": 183,
+        "side": "sb8",
+        "status": "sb9",
+        "symbol": "sba",
+        "timestamp": "sbb",
+        "type": "sbc"
+      },
+      "ORDER02": {
+        "amount": 270,
+        "filled": 271,
+        "id": "ORDER02",
+        "price": 273,
+        "side": "s112",
+        "status": "s113",
+        "symbol": "s114",
+        "timestamp": "s115",
+        "type": "s116"
+      }
+    }
+  },
+  "new": {
+    "order": {
+      "order_ref01": {
+        "amount": 360,
+        "filled": 361,
+        "price": 363,
+        "side": "s16c",
+        "status": "s16d",
+        "symbol": "s16e",
+        "timestamp": "s16f",
+        "type": "s170"
+      }
+    }
+  }
+}

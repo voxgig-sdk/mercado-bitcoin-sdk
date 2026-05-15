@@ -1,0 +1,42 @@
+{
+  "existing": {
+    "candle": {
+      "CANDLE00": {
+        "close": 60,
+        "high": 61,
+        "low": 62,
+        "open": 63,
+        "timestamp": "s40",
+        "volume": 65
+      },
+      "CANDLE01": {
+        "close": 120,
+        "high": 121,
+        "low": 122,
+        "open": 123,
+        "timestamp": "s7c",
+        "volume": 125
+      },
+      "CANDLE02": {
+        "close": 180,
+        "high": 181,
+        "low": 182,
+        "open": 183,
+        "timestamp": "sb8",
+        "volume": 185
+      }
+    }
+  },
+  "new": {
+    "candle": {
+      "candle_ref01": {
+        "close": 240,
+        "high": 241,
+        "low": 242,
+        "open": 243,
+        "timestamp": "sf4",
+        "volume": 245
+      }
+    }
+  }
+}

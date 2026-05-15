@@ -1,0 +1,91 @@
+# Entity: withdrawal
+
+main: kit: entity: withdrawal: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "account_number"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "account_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "address"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "agency"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "amount"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "bank"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "currency"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "tag"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "withdrawal"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/withdrawals/brl"
+          parts: [
+            "withdrawals"
+            "brl"
+          ]
+          select: {
+            "$action": "brl"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/withdrawals/crypto"
+          parts: [
+            "withdrawals"
+            "crypto"
+          ]
+          select: {
+            "$action": "crypto"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

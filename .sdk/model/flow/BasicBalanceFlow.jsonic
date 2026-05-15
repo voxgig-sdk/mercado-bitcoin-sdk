@@ -1,0 +1,22 @@
+# BasicBalanceFlow
+
+main: kit: flow: BasicBalanceFlow:
+{
+  entity: "balance",
+  kind: "basic",
+  name: "BasicBalanceFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "balance_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBalanceFlow"
+}

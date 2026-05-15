@@ -1,0 +1,10 @@
+# Flows
+
+@"BasicBalanceFlow.jsonic"
+@"BasicCandleFlow.jsonic"
+@"BasicDepositAddressFlow.jsonic"
+@"BasicOrderBookFlow.jsonic"
+@"BasicOrderFlow.jsonic"
+@"BasicTickerFlow.jsonic"
+@"BasicTradeFlow.jsonic"
+@"BasicWithdrawalFlow.jsonic"

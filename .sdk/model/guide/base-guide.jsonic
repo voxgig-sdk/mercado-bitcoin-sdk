@@ -1,0 +1,73 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 8
+  metrics: count: path: 11
+  metrics: count: method: 13
+
+  entity: balance: {
+    path: "/accounts/balance": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: candle: {
+    path: "/candles/{symbol}": {
+      rename: param: "symbol": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: deposit_address: {
+    path: "/deposits/crypto": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: order: {
+    path: "/orders": {
+      op: create: method: *POST
+      op: list: method: *GET
+    }
+    path: "/orders/{orderId}": {
+      rename: param: "orderId": *"id"
+      op: load: method: *GET
+      op: remove: method: *DELETE
+    }
+  }
+
+  entity: order_book: {
+    path: "/orderbook/{symbol}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: ticker: {
+    path: "/tickers": {
+      op: list: method: *GET
+    }
+    path: "/tickers/{symbol}": {
+      rename: param: "symbol": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: trade: {
+    path: "/trades/{symbol}": {
+      rename: param: "symbol": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: withdrawal: {
+    path: "/withdrawals/brl": {
+      action: "brl": {}
+      op: create: method: *POST
+    }
+    path: "/withdrawals/crypto": {
+      action: "crypto": {}
+      op: create: method: *POST
+    }
+  }
+
+}

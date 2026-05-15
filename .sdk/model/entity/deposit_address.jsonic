@@ -1,0 +1,69 @@
+# Entity: deposit_address
+
+main: kit: entity: deposit_address: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "address"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "currency"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "qr_code"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "tag"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "deposit_address"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "currency"
+                orig: "currency"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/deposits/crypto"
+          parts: [
+            "deposits"
+            "crypto"
+          ]
+          select: {
+            exist: [
+              "currency"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

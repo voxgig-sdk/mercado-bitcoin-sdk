@@ -1,0 +1,995 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Mercado Bitcoin API",
+    "description": "The Mercado Bitcoin API provides a comprehensive interface for accessing cryptocurrency market data, managing user accounts, and executing trades. It supports functionalities including retrieving market data such as order books, trades, and candles, as well as facilitating deposits and withdrawals for digital currencies and Brazilian Real. With robust security measures and user authorizations, it ensures safe and efficient operations in the cryptocurrency ecosystem.",
+    "version": "4.0.0",
+    "contact": {
+      "name": "Mercado Bitcoin API Support",
+      "url": "https://api.mercadobitcoin.net/api/v4/docs"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.mercadobitcoin.net/api/v4",
+      "description": "Production Server"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/tickers": {
+      "get": {
+        "summary": "Get Market Tickers",
+        "description": "Retrieve current market ticker information for all cryptocurrency pairs",
+        "operationId": "getTickers",
+        "tags": [
+          "Market Data"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with ticker data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ticker"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/tickers/{symbol}": {
+      "get": {
+        "summary": "Get Ticker by Symbol",
+        "description": "Retrieve current market ticker information for a specific cryptocurrency pair",
+        "operationId": "getTickerBySymbol",
+        "tags": [
+          "Market Data"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "description": "Trading pair symbol (e.g., BTC-BRL, ETH-BRL)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with ticker data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ticker"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Symbol not found"
+          }
+        }
+      }
+    },
+    "/orderbook/{symbol}": {
+      "get": {
+        "summary": "Get Order Book",
+        "description": "Retrieve the current order book for a specific trading pair",
+        "operationId": "getOrderBook",
+        "tags": [
+          "Market Data"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "description": "Trading pair symbol (e.g., BTC-BRL, ETH-BRL)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of orders to return",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with order book data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderBook"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Symbol not found"
+          }
+        }
+      }
+    },
+    "/trades/{symbol}": {
+      "get": {
+        "summary": "Get Recent Trades",
+        "description": "Retrieve recent trades for a specific trading pair",
+        "operationId": "getTrades",
+        "tags": [
+          "Market Data"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "description": "Trading pair symbol (e.g., BTC-BRL, ETH-BRL)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of trades to return",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with trade data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Trade"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Symbol not found"
+          }
+        }
+      }
+    },
+    "/candles/{symbol}": {
+      "get": {
+        "summary": "Get Candle Data",
+        "description": "Retrieve historical candle/OHLC data for a specific trading pair",
+        "operationId": "getCandles",
+        "tags": [
+          "Market Data"
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "description": "Trading pair symbol (e.g., BTC-BRL, ETH-BRL)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "required": false,
+            "description": "Candle interval",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "1m",
+                "5m",
+                "15m",
+                "30m",
+                "1h",
+                "4h",
+                "1d"
+              ],
+              "default": "1h"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of candles to return",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with candle data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Candle"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Symbol not found"
+          }
+        }
+      }
+    },
+    "/accounts/balance": {
+      "get": {
+        "summary": "Get Account Balance",
+        "description": "Retrieve account balance for all currencies",
+        "operationId": "getBalance",
+        "tags": [
+          "Account"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with balance data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Balance"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/orders": {
+      "get": {
+        "summary": "Get Orders",
+        "description": "Retrieve list of orders for the authenticated user",
+        "operationId": "getOrders",
+        "tags": [
+          "Trading"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": false,
+            "description": "Filter by trading pair symbol",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Filter by order status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "open",
+                "closed",
+                "cancelled"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Order"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Order",
+        "description": "Place a new order",
+        "operationId": "createOrder",
+        "tags": [
+          "Trading"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Order created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/orders/{orderId}": {
+      "get": {
+        "summary": "Get Order by ID",
+        "description": "Retrieve details of a specific order",
+        "operationId": "getOrderById",
+        "tags": [
+          "Trading"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "description": "Order ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with order details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Cancel Order",
+        "description": "Cancel an existing order",
+        "operationId": "cancelOrder",
+        "tags": [
+          "Trading"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "description": "Order ID",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order cancelled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Order not found"
+          }
+        }
+      }
+    },
+    "/withdrawals/crypto": {
+      "post": {
+        "summary": "Create Crypto Withdrawal",
+        "description": "Create a cryptocurrency withdrawal request",
+        "operationId": "createCryptoWithdrawal",
+        "tags": [
+          "Withdrawals"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CryptoWithdrawalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Withdrawal request created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WithdrawalResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/withdrawals/brl": {
+      "post": {
+        "summary": "Create BRL Withdrawal",
+        "description": "Create a Brazilian Real withdrawal request",
+        "operationId": "createBRLWithdrawal",
+        "tags": [
+          "Withdrawals"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BRLWithdrawalRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Withdrawal request created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WithdrawalResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/deposits/crypto": {
+      "get": {
+        "summary": "Get Crypto Deposit Address",
+        "description": "Retrieve deposit address for a specific cryptocurrency",
+        "operationId": "getCryptoDepositAddress",
+        "tags": [
+          "Deposits"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "query",
+            "required": true,
+            "description": "Cryptocurrency code (e.g., BTC, ETH)",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with deposit address",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepositAddress"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY",
+        "description": "API key for authentication"
+      }
+    },
+    "schemas": {
+      "Ticker": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Trading pair symbol"
+          },
+          "last": {
+            "type": "number",
+            "description": "Last traded price"
+          },
+          "high": {
+            "type": "number",
+            "description": "24h high price"
+          },
+          "low": {
+            "type": "number",
+            "description": "24h low price"
+          },
+          "volume": {
+            "type": "number",
+            "description": "24h trading volume"
+          },
+          "bid": {
+            "type": "number",
+            "description": "Highest bid price"
+          },
+          "ask": {
+            "type": "number",
+            "description": "Lowest ask price"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Timestamp in milliseconds"
+          }
+        }
+      },
+      "OrderBook": {
+        "type": "object",
+        "properties": {
+          "asks": {
+            "type": "array",
+            "description": "List of ask orders",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          "bids": {
+            "type": "array",
+            "description": "List of bid orders",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            }
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Timestamp in milliseconds"
+          }
+        }
+      },
+      "Trade": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Trade ID"
+          },
+          "price": {
+            "type": "number",
+            "description": "Trade price"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Trade amount"
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "buy",
+              "sell"
+            ],
+            "description": "Trade side"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Timestamp in milliseconds"
+          }
+        }
+      },
+      "Candle": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "integer",
+            "description": "Candle timestamp in milliseconds"
+          },
+          "open": {
+            "type": "number",
+            "description": "Opening price"
+          },
+          "high": {
+            "type": "number",
+            "description": "Highest price"
+          },
+          "low": {
+            "type": "number",
+            "description": "Lowest price"
+          },
+          "close": {
+            "type": "number",
+            "description": "Closing price"
+          },
+          "volume": {
+            "type": "number",
+            "description": "Trading volume"
+          }
+        }
+      },
+      "Balance": {
+        "type": "object",
+        "properties": {
+          "balances": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "currency": {
+                  "type": "string",
+                  "description": "Currency code"
+                },
+                "available": {
+                  "type": "number",
+                  "description": "Available balance"
+                },
+                "locked": {
+                  "type": "number",
+                  "description": "Locked balance"
+                },
+                "total": {
+                  "type": "number",
+                  "description": "Total balance"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Order ID"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Trading pair symbol"
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "buy",
+              "sell"
+            ],
+            "description": "Order side"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "limit",
+              "market"
+            ],
+            "description": "Order type"
+          },
+          "price": {
+            "type": "number",
+            "description": "Order price"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Order amount"
+          },
+          "filled": {
+            "type": "number",
+            "description": "Filled amount"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "partial",
+              "filled",
+              "cancelled"
+            ],
+            "description": "Order status"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Order creation timestamp"
+          }
+        }
+      },
+      "CreateOrderRequest": {
+        "type": "object",
+        "required": [
+          "symbol",
+          "side",
+          "type",
+          "amount"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Trading pair symbol"
+          },
+          "side": {
+            "type": "string",
+            "enum": [
+              "buy",
+              "sell"
+            ],
+            "description": "Order side"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "limit",
+              "market"
+            ],
+            "description": "Order type"
+          },
+          "price": {
+            "type": "number",
+            "description": "Order price (required for limit orders)"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Order amount"
+          }
+        }
+      },
+      "CryptoWithdrawalRequest": {
+        "type": "object",
+        "required": [
+          "currency",
+          "amount",
+          "address"
+        ],
+        "properties": {
+          "currency": {
+            "type": "string",
+            "description": "Cryptocurrency code"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Withdrawal amount"
+          },
+          "address": {
+            "type": "string",
+            "description": "Destination address"
+          },
+          "tag": {
+            "type": "string",
+            "description": "Destination tag/memo (if applicable)"
+          }
+        }
+      },
+      "BRLWithdrawalRequest": {
+        "type": "object",
+        "required": [
+          "amount",
+          "accountNumber",
+          "agency",
+          "bank"
+        ],
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "Withdrawal amount in BRL"
+          },
+          "accountNumber": {
+            "type": "string",
+            "description": "Bank account number"
+          },
+          "agency": {
+            "type": "string",
+            "description": "Bank agency"
+          },
+          "bank": {
+            "type": "string",
+            "description": "Bank code"
+          },
+          "accountType": {
+            "type": "string",
+            "enum": [
+              "checking",
+              "savings"
+            ],
+            "description": "Account type"
+          }
+        }
+      },
+      "WithdrawalResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Withdrawal ID"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "processing",
+              "completed",
+              "failed"
+            ],
+            "description": "Withdrawal status"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency code"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Withdrawal amount"
+          },
+          "fee": {
+            "type": "number",
+            "description": "Withdrawal fee"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Creation timestamp"
+          }
+        }
+      },
+      "DepositAddress": {
+        "type": "object",
+        "properties": {
+          "currency": {
+            "type": "string",
+            "description": "Cryptocurrency code"
+          },
+          "address": {
+            "type": "string",
+            "description": "Deposit address"
+          },
+          "tag": {
+            "type": "string",
+            "description": "Deposit tag/memo (if applicable)"
+          },
+          "qrCode": {
+            "type": "string",
+            "description": "QR code for deposit address"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Market Data",
+      "description": "Public market data endpoints"
+    },
+    {
+      "name": "Account",
+      "description": "Account management endpoints"
+    },
+    {
+      "name": "Trading",
+      "description": "Trading operations endpoints"
+    },
+    {
+      "name": "Deposits",
+      "description": "Deposit management endpoints"
+    },
+    {
+      "name": "Withdrawals",
+      "description": "Withdrawal management endpoints"
+    }
+  ]
+}
