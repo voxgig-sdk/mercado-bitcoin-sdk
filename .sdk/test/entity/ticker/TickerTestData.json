@@ -9,7 +9,8 @@
         "low": 84,
         "symbol": "s55",
         "timestamp": "s56",
-        "volume": 87
+        "volume": 87,
+        "id": "TICKER00"
       },
       "TICKER01": {
         "ask": 160,
@@ -19,7 +20,8 @@
         "low": 164,
         "symbol": "sa5",
         "timestamp": "sa6",
-        "volume": 167
+        "volume": 167,
+        "id": "TICKER01"
       },
       "TICKER02": {
         "ask": 240,
@@ -29,7 +31,8 @@
         "low": 244,
         "symbol": "sf5",
         "timestamp": "sf6",
-        "volume": 247
+        "volume": 247,
+        "id": "TICKER02"
       }
     }
   },

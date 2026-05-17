@@ -5,19 +5,22 @@
         "ask": [],
         "bid": [],
         "timestamp": "s20",
-        "symbol": "SYMBOL01"
+        "symbol": "SYMBOL01",
+        "id": "ORDER_BOOK00"
       },
       "ORDER_BOOK01": {
         "ask": [],
         "bid": [],
         "timestamp": "s3e",
-        "symbol": "SYMBOL01"
+        "symbol": "SYMBOL01",
+        "id": "ORDER_BOOK01"
       },
       "ORDER_BOOK02": {
         "ask": [],
         "bid": [],
         "timestamp": "s5c",
-        "symbol": "SYMBOL01"
+        "symbol": "SYMBOL01",
+        "id": "ORDER_BOOK02"
       }
     }
   },

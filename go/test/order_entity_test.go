@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/mercado-bitcoin-sdk"
-	"github.com/voxgig-sdk/mercado-bitcoin-sdk/core"
+	sdk "github.com/voxgig-sdk/mercado-bitcoin-sdk/go"
+	"github.com/voxgig-sdk/mercado-bitcoin-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/mercado-bitcoin-sdk/go/utility/struct"
 )
 
 func TestOrderEntity(t *testing.T) {

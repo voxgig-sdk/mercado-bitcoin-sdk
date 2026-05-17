@@ -1,10 +1,10 @@
 package voxgigmercadobitcoinsdk
 
 import (
-	"github.com/voxgig-sdk/mercado-bitcoin-sdk/core"
-	"github.com/voxgig-sdk/mercado-bitcoin-sdk/entity"
-	"github.com/voxgig-sdk/mercado-bitcoin-sdk/feature"
-	_ "github.com/voxgig-sdk/mercado-bitcoin-sdk/utility"
+	"github.com/voxgig-sdk/mercado-bitcoin-sdk/go/core"
+	"github.com/voxgig-sdk/mercado-bitcoin-sdk/go/entity"
+	"github.com/voxgig-sdk/mercado-bitcoin-sdk/go/feature"
+	_ "github.com/voxgig-sdk/mercado-bitcoin-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

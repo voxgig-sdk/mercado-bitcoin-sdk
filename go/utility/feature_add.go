@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/mercado-bitcoin-sdk/core"
+import "github.com/voxgig-sdk/mercado-bitcoin-sdk/go/core"
 
 func featureAddUtil(ctx *core.Context, f core.Feature) {
 	client := ctx.Client

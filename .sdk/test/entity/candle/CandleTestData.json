@@ -7,7 +7,8 @@
         "low": 62,
         "open": 63,
         "timestamp": "s40",
-        "volume": 65
+        "volume": 65,
+        "id": "CANDLE00"
       },
       "CANDLE01": {
         "close": 120,
@@ -15,7 +16,8 @@
         "low": 122,
         "open": 123,
         "timestamp": "s7c",
-        "volume": 125
+        "volume": 125,
+        "id": "CANDLE01"
       },
       "CANDLE02": {
         "close": 180,
@@ -23,7 +25,8 @@
         "low": 182,
         "open": 183,
         "timestamp": "sb8",
-        "volume": 185
+        "volume": 185,
+        "id": "CANDLE02"
       }
     }
   },

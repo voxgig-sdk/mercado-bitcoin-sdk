@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/mercado-bitcoin-sdk/core"
+import "github.com/voxgig-sdk/mercado-bitcoin-sdk/go/core"
 
 func makeErrorUtil(ctx *core.Context, err error) (any, error) {
 	if ctx == nil {

@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/mercado-bitcoin-sdk/core"
+	"github.com/voxgig-sdk/mercado-bitcoin-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/mercado-bitcoin-sdk/go/utility/struct"
 )
 
 type WithdrawalEntity struct {

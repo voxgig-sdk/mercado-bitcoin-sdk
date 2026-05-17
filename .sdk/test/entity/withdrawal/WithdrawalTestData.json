@@ -9,7 +9,8 @@
         "amount": 84,
         "bank": "s55",
         "currency": "s56",
-        "tag": "s57"
+        "tag": "s57",
+        "id": "WITHDRAWAL00"
       },
       "WITHDRAWAL01": {
         "account_number": "sa0",
@@ -19,7 +20,8 @@
         "amount": 164,
         "bank": "sa5",
         "currency": "sa6",
-        "tag": "sa7"
+        "tag": "sa7",
+        "id": "WITHDRAWAL01"
       },
       "WITHDRAWAL02": {
         "account_number": "sf0",
@@ -29,7 +31,8 @@
         "amount": 244,
         "bank": "sf5",
         "currency": "sf6",
-        "tag": "sf7"
+        "tag": "sf7",
+        "id": "WITHDRAWAL02"
       }
     }
   },

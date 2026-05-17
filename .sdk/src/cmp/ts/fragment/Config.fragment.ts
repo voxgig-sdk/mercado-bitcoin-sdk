@@ -29,7 +29,7 @@ class Config {
 
 
   options = {
-    base: 'https://api.mercadobitcoin.net/api/v4',
+    base: '$$main.kit.info.servers.0.url$$',
 
     'AUTHBLOCK'headers: 'HEADERS',
 

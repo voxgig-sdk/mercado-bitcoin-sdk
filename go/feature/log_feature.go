@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/mercado-bitcoin-sdk/core"
+	"github.com/voxgig-sdk/mercado-bitcoin-sdk/go/core"
 )
 
 type LogFeature struct {

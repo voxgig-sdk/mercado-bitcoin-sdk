@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/mercado-bitcoin-sdk/core"
+	"github.com/voxgig-sdk/mercado-bitcoin-sdk/go/core"
 )
 
 type BaseFeature struct {

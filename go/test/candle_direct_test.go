@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/mercado-bitcoin-sdk"
-	"github.com/voxgig-sdk/mercado-bitcoin-sdk/core"
+	sdk "github.com/voxgig-sdk/mercado-bitcoin-sdk/go"
+	"github.com/voxgig-sdk/mercado-bitcoin-sdk/go/core"
 )
 
 func TestCandleDirect(t *testing.T) {

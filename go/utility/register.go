@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/mercado-bitcoin-sdk/core"
+import "github.com/voxgig-sdk/mercado-bitcoin-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll
