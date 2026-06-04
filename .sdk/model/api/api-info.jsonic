@@ -17,8 +17,29 @@ main: {
       ]
       title: "Mercado Bitcoin API"
       version: "4.0.0"
+      tagline: "Trade on Brazil's Mercado Bitcoin exchange: market data, orders, deposits, and withdrawals via a REST v4 API"
+      homepage: "https://www.mercadobitcoin.com.br/"
+      docs_url: "https://api.mercadobitcoin.net/api/v4/docs"
+      about_md: `[Mercado Bitcoin](https://www.mercadobitcoin.com.br/) is one of Brazil's largest cryptocurrency exchanges. Its v4 REST API exposes public market data alongside authenticated endpoints for account management and trading.
+
+What you get from the API:
+
+- Public market data: trading symbols, order books, recent trades, tickers, and OHLC candles.
+- Account operations: balances, deposit addresses, and withdrawals for cryptocurrencies and Brazilian Real (BRL).
+- Trading: place, query, and cancel orders.
+
+The API is served from \`https://api.mercadobitcoin.net/api/v4\`. CORS is disabled, so calls must come from a server-side client. Authentication and rate-limit specifics are documented on the official docs site.`
+      entity_desc: {
+        balance: "Account balance resource for the authenticated user's wallets across supported assets."
+        candle: "OHLC (open/high/low/close) candlestick market data for a trading symbol over a chosen interval."
+        deposit_address: "Deposit address resource used to fund an account with a given cryptocurrency."
+        order: "Trading order resource for placing, retrieving, and cancelling buy/sell orders on a market."
+        order_book: "Snapshot of current bids and asks for a trading symbol."
+        ticker: "Latest price summary (last, bid, ask, volume) for a trading symbol."
+        trade: "Recent public trades executed on a market."
+        withdrawal: "Withdrawal request resource for moving crypto or BRL out of an account."
+      }
+      auth: false
     }
   }
-}
-
 }

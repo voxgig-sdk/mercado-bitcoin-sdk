@@ -113,7 +113,6 @@ function basicSetup(extra?: any) {
     'MERCADO_BITCOIN_TEST_WITHDRAWAL_ENTID': idmap,
     'MERCADO_BITCOIN_TEST_LIVE': 'FALSE',
     'MERCADO_BITCOIN_TEST_EXPLAIN': 'FALSE',
-    'MERCADO_BITCOIN_APIKEY': 'NONE',
   })
 
   idmap = env['MERCADO_BITCOIN_TEST_WITHDRAWAL_ENTID']
@@ -123,7 +122,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new MercadoBitcoinSDK(merge([
       {
-        apikey: env.MERCADO_BITCOIN_APIKEY,
       },
       extra
     ]))

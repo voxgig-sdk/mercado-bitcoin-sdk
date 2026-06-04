@@ -98,7 +98,6 @@ function ticker_basic_setup(extra)
     ["MERCADOBITCOIN_TEST_TICKER_ENTID"] = idmap,
     ["MERCADOBITCOIN_TEST_LIVE"] = "FALSE",
     ["MERCADOBITCOIN_TEST_EXPLAIN"] = "FALSE",
-    ["MERCADOBITCOIN_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -110,7 +109,6 @@ function ticker_basic_setup(extra)
   if env["MERCADOBITCOIN_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["MERCADOBITCOIN_APIKEY"],
       },
       extra or {},
     })

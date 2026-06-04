@@ -69,14 +69,12 @@ def _candle_direct_setup(mockres):
     env = runner.env_override({
         "MERCADOBITCOIN_TEST_CANDLE_ENTID": {},
         "MERCADOBITCOIN_TEST_LIVE": "FALSE",
-        "MERCADOBITCOIN_APIKEY": "NONE",
     })
 
     live = env.get("MERCADOBITCOIN_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("MERCADOBITCOIN_APIKEY"),
         }
         client = MercadoBitcoinSDK(merged_opts)
         return {

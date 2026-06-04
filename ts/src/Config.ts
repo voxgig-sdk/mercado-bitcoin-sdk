@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://api.mercadobitcoin.net/api/v4',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
