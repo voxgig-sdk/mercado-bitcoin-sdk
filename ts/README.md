@@ -10,7 +10,7 @@ The TypeScript SDK for the MercadoBitcoin API — a type-safe, entity-oriented c
 
 ## Install
 ```bash
-npm install mercado-bitcoin
+npm install @voxgig-sdk/mercado-bitcoin
 ```
 ## Tutorial: your first API call
 

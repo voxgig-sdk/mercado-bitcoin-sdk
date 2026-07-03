@@ -8,12 +8,14 @@ source = {
   dir = "mercado-bitcoin-sdk/lua"
 }
 description = {
-  summary = "MercadoBitcoin SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Mercado Bitcoin public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/mercado-bitcoin-sdk",
+  issues_url = "https://github.com/voxgig-sdk/mercado-bitcoin-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "mercado-bitcoin" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/mercado-bitcoin",
-  "description": "MercadoBitcoin SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Mercado Bitcoin public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "mercado-bitcoin"],
+  "homepage": "https://github.com/voxgig-sdk/mercado-bitcoin-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/mercado-bitcoin-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/mercado-bitcoin-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

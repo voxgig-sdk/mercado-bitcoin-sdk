@@ -10,7 +10,7 @@ The Lua SDK for the MercadoBitcoin API — an entity-oriented client using Lua c
 
 ## Install
 ```bash
-luarocks install mercado-bitcoin-sdk
+luarocks install voxgig-sdk-mercado-bitcoin
 ```
 
 If the module is not yet published, add the source directory to

@@ -10,7 +10,7 @@ The Python SDK for the MercadoBitcoin API — an entity-oriented client followin
 
 ## Install
 ```bash
-pip install mercado-bitcoin-sdk
+pip install voxgig-sdk-mercado-bitcoin
 ```
 
 Or install from source:

@@ -10,13 +10,13 @@ The Ruby SDK for the MercadoBitcoin API — an entity-oriented client using idio
 
 ## Install
 ```bash
-gem install mercado-bitcoin-sdk
+gem install voxgig-sdk-mercado-bitcoin
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "mercado-bitcoin-sdk"
+gem "voxgig-sdk-mercado-bitcoin"
 ```
 
 Then run:

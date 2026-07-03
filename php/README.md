@@ -10,7 +10,7 @@ The PHP SDK for the MercadoBitcoin API — an entity-oriented client using PHP c
 
 ## Install
 ```bash
-composer require voxgig/mercado-bitcoin-sdk
+composer require voxgig-sdk/mercado-bitcoin
 ```
 
 
