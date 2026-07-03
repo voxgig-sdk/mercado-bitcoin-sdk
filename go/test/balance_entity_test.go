@@ -119,6 +119,7 @@ func balanceBasicSetup(extra map[string]any) *entityTestSetup {
 		"MERCADOBITCOIN_TEST_BALANCE_ENTID": idmap,
 		"MERCADOBITCOIN_TEST_LIVE":      "FALSE",
 		"MERCADOBITCOIN_TEST_EXPLAIN":   "FALSE",
+		"MERCADOBITCOIN_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["MERCADOBITCOIN_TEST_BALANCE_ENTID"])
@@ -129,6 +130,7 @@ func balanceBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["MERCADOBITCOIN_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["MERCADOBITCOIN_APIKEY"],
 			},
 			extra,
 		})

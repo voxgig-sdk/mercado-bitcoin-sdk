@@ -122,6 +122,7 @@ function order_basic_setup($extra)
         "MERCADOBITCOIN_TEST_ORDER_ENTID" => $idmap,
         "MERCADOBITCOIN_TEST_LIVE" => "FALSE",
         "MERCADOBITCOIN_TEST_EXPLAIN" => "FALSE",
+        "MERCADOBITCOIN_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -133,6 +134,7 @@ function order_basic_setup($extra)
     if ($env["MERCADOBITCOIN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["MERCADOBITCOIN_APIKEY"],
             ],
             $extra ?? [],
         ]);

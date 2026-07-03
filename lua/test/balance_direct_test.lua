@@ -63,12 +63,14 @@ function balance_direct_setup(mockres)
   local env = runner.env_override({
     ["MERCADOBITCOIN_TEST_BALANCE_ENTID"] = {},
     ["MERCADOBITCOIN_TEST_LIVE"] = "FALSE",
+    ["MERCADOBITCOIN_APIKEY"] = "NONE",
   })
 
   local live = env["MERCADOBITCOIN_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["MERCADOBITCOIN_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -67,12 +67,14 @@ function deposit_address_direct_setup($mockres)
     $env = Runner::env_override([
         "MERCADOBITCOIN_TEST_DEPOSIT_ADDRESS_ENTID" => [],
         "MERCADOBITCOIN_TEST_LIVE" => "FALSE",
+        "MERCADOBITCOIN_APIKEY" => "NONE",
     ]);
 
     $live = $env["MERCADOBITCOIN_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["MERCADOBITCOIN_APIKEY"],
         ];
         $client = new MercadoBitcoinSDK($merged_opts);
         return [

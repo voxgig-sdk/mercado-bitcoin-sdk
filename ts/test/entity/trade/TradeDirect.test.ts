@@ -80,12 +80,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'MERCADOBITCOIN_TEST_TRADE_ENTID': {},
     'MERCADOBITCOIN_TEST_LIVE': 'FALSE',
+    'MERCADOBITCOIN_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.MERCADOBITCOIN_TEST_LIVE
 
   if (live) {
     const client = new MercadoBitcoinSDK({
+      apikey: env.MERCADOBITCOIN_APIKEY,
     })
 
     let idmap: any = env['MERCADOBITCOIN_TEST_TRADE_ENTID']

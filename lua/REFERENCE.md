@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -131,7 +131,7 @@ local balance = client:Balance(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Balance(nil):list(nil, nil)
+local results, err = client:Balance():list()
 ```
 
 ### Common Methods
@@ -188,7 +188,7 @@ local candle = client:Candle(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Candle(nil):load({ id = "candle_id" }, nil)
+local result, err = client:Candle():load({ id = "candle_id" })
 ```
 
 ### Common Methods
@@ -243,7 +243,7 @@ local deposit_address = client:DepositAddress(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:DepositAddress(nil):load({ id = "deposit_address_id" }, nil)
+local result, err = client:DepositAddress():load({ id = "deposit_address_id" })
 ```
 
 ### Common Methods
@@ -317,8 +317,8 @@ local order = client:Order(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Order(nil):create({
-}, nil)
+local result, err = client:Order():create({
+})
 ```
 
 #### `list(reqmatch, ctrl) -> any, err`
@@ -326,7 +326,7 @@ local result, err = client:Order(nil):create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Order(nil):list(nil, nil)
+local results, err = client:Order():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -334,7 +334,7 @@ local results, err = client:Order(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Order(nil):load({ id = "order_id" }, nil)
+local result, err = client:Order():load({ id = "order_id" })
 ```
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -342,7 +342,7 @@ local result, err = client:Order(nil):load({ id = "order_id" }, nil)
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:Order(nil):remove({ id = "order_id" }, nil)
+local result, err = client:Order():remove({ id = "order_id" })
 ```
 
 ### Common Methods
@@ -396,7 +396,7 @@ local order_book = client:OrderBook(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:OrderBook(nil):load({ id = "order_book_id" }, nil)
+local result, err = client:OrderBook():load({ id = "order_book_id" })
 ```
 
 ### Common Methods
@@ -455,7 +455,7 @@ local ticker = client:Ticker(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Ticker(nil):list(nil, nil)
+local results, err = client:Ticker():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -463,7 +463,7 @@ local results, err = client:Ticker(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Ticker(nil):load({ id = "ticker_id" }, nil)
+local result, err = client:Ticker():load({ id = "ticker_id" })
 ```
 
 ### Common Methods
@@ -519,7 +519,7 @@ local trade = client:Trade(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Trade(nil):load({ id = "trade_id" }, nil)
+local result, err = client:Trade():load({ id = "trade_id" })
 ```
 
 ### Common Methods
@@ -578,14 +578,14 @@ local withdrawal = client:Withdrawal(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Withdrawal(nil):create({
+local result, err = client:Withdrawal():create({
   account_number = --[[ `$STRING` ]],
   address = --[[ `$STRING` ]],
   agency = --[[ `$STRING` ]],
   amount = --[[ `$NUMBER` ]],
   bank = --[[ `$STRING` ]],
   currency = --[[ `$STRING` ]],
-}, nil)
+})
 ```
 
 ### Common Methods

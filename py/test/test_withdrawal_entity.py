@@ -87,6 +87,7 @@ def _withdrawal_basic_setup(extra):
         "MERCADOBITCOIN_TEST_WITHDRAWAL_ENTID": idmap,
         "MERCADOBITCOIN_TEST_LIVE": "FALSE",
         "MERCADOBITCOIN_TEST_EXPLAIN": "FALSE",
+        "MERCADOBITCOIN_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -97,6 +98,7 @@ def _withdrawal_basic_setup(extra):
     if env.get("MERCADOBITCOIN_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("MERCADOBITCOIN_APIKEY"),
             },
             extra or {},
         ])

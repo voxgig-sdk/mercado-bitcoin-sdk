@@ -1,20 +1,8 @@
 # MercadoBitcoin SDK
 
-Trade on Brazil's Mercado Bitcoin exchange: market data, orders, deposits, and withdrawals via a REST v4 API
+Mercado Bitcoin API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Mercado Bitcoin API
-
-[Mercado Bitcoin](https://www.mercadobitcoin.com.br/) is one of Brazil's largest cryptocurrency exchanges. Its v4 REST API exposes public market data alongside authenticated endpoints for account management and trading.
-
-What you get from the API:
-
-- Public market data: trading symbols, order books, recent trades, tickers, and OHLC candles.
-- Account operations: balances, deposit addresses, and withdrawals for cryptocurrencies and Brazilian Real (BRL).
-- Trading: place, query, and cancel orders.
-
-The API is served from `https://api.mercadobitcoin.net/api/v4`. CORS is disabled, so calls must come from a server-side client. Authentication and rate-limit specifics are documented on the official docs site.
 
 ## Try it
 
@@ -48,29 +36,31 @@ gem install mercado-bitcoin-sdk
 luarocks install mercado-bitcoin-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { MercadoBitcoinSDK } from 'mercado-bitcoin'
 
-const client = new MercadoBitcoinSDK({})
+const client = new MercadoBitcoinSDK({
+  apikey: process.env.MERCADO-BITCOIN_APIKEY,
+})
 
 // List all balances
 const balances = await client.Balance().list()
+console.log(balances.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -100,14 +90,14 @@ The API exposes 8 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Balance** | Account balance resource for the authenticated user's wallets across supported assets. | `/accounts/balance` |
-| **Candle** | OHLC (open/high/low/close) candlestick market data for a trading symbol over a chosen interval. | `/candles/{symbol}` |
-| **DepositAddress** | Deposit address resource used to fund an account with a given cryptocurrency. | `/deposits/crypto` |
-| **Order** | Trading order resource for placing, retrieving, and cancelling buy/sell orders on a market. | `/orders` |
-| **OrderBook** | Snapshot of current bids and asks for a trading symbol. | `/orderbook/{symbol}` |
-| **Ticker** | Latest price summary (last, bid, ask, volume) for a trading symbol. | `/tickers` |
-| **Trade** | Recent public trades executed on a market. | `/trades/{symbol}` |
-| **Withdrawal** | Withdrawal request resource for moving crypto or BRL out of an account. | `/withdrawals/brl` |
+| **Balance** |  | `/accounts/balance` |
+| **Candle** |  | `/candles/{symbol}` |
+| **DepositAddress** |  | `/deposits/crypto` |
+| **Order** |  | `/orders` |
+| **OrderBook** |  | `/orderbook/{symbol}` |
+| **Ticker** |  | `/tickers` |
+| **Trade** |  | `/trades/{symbol}` |
+| **Withdrawal** |  | `/withdrawals/brl` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -117,12 +107,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from mercadobitcoin_sdk import MercadoBitcoinSDK
 
-client = MercadoBitcoinSDK({})
+client = MercadoBitcoinSDK({
+    "apikey": os.environ.get("MERCADO-BITCOIN_APIKEY"),
+})
 
 # List all balances
-balances, err = client.Balance(None).list(None, None)
+balances, err = client.Balance().list()
+print(balances)
 ```
 
 ### PHP
@@ -131,10 +125,13 @@ balances, err = client.Balance(None).list(None, None)
 <?php
 require_once 'mercadobitcoin_sdk.php';
 
-$client = new MercadoBitcoinSDK([]);
+$client = new MercadoBitcoinSDK([
+    "apikey" => getenv("MERCADO-BITCOIN_APIKEY"),
+]);
 
 // List all balances
-[$balances, $err] = $client->Balance(null)->list(null, null);
+[$balances, $err] = $client->Balance()->list();
+print_r($balances);
 ```
 
 ### Golang
@@ -142,10 +139,13 @@ $client = new MercadoBitcoinSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/mercado-bitcoin-sdk/go"
 
-client := sdk.NewMercadoBitcoinSDK(map[string]any{})
+client := sdk.NewMercadoBitcoinSDK(map[string]any{
+    "apikey": os.Getenv("MERCADO-BITCOIN_APIKEY"),
+})
 
 // List all balances
 balances, err := client.Balance(nil).List(nil, nil)
+fmt.Println(balances)
 ```
 
 ### Ruby
@@ -153,10 +153,13 @@ balances, err := client.Balance(nil).List(nil, nil)
 ```ruby
 require_relative "MercadoBitcoin_sdk"
 
-client = MercadoBitcoinSDK.new({})
+client = MercadoBitcoinSDK.new({
+  "apikey" => ENV["MERCADO-BITCOIN_APIKEY"],
+})
 
 # List all balances
-balances, err = client.Balance(nil).list(nil, nil)
+balances, err = client.Balance().list
+puts balances
 ```
 
 ### Lua
@@ -164,10 +167,13 @@ balances, err = client.Balance(nil).list(nil, nil)
 ```lua
 local sdk = require("mercado-bitcoin_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("MERCADO-BITCOIN_APIKEY"),
+})
 
 -- List all balances
-local balances, err = client:Balance(nil):list(nil, nil)
+local balances, err = client:Balance():list()
+print(balances)
 ```
 
 ## Unit testing in offline mode
@@ -186,25 +192,21 @@ const result = await client.Balance().load({ id: 'test01' })
 ### Python
 
 ```python
-client = MercadoBitcoinSDK.test(None, None)
-result, err = client.Balance(None).load(
-    {"id": "test01"}, None
-)
+client = MercadoBitcoinSDK.test()
+result, err = client.Balance().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = MercadoBitcoinSDK::test(null, null);
-[$result, $err] = $client->Balance(null)->load(
-    ["id" => "test01"], null
-);
+$client = MercadoBitcoinSDK::test();
+[$result, $err] = $client->Balance()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Balance(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -213,19 +215,15 @@ result, err := client.Balance(nil).Load(
 ### Ruby
 
 ```ruby
-client = MercadoBitcoinSDK.test(nil, nil)
-result, err = client.Balance(nil).load(
-  { "id" => "test01" }, nil
-)
+client = MercadoBitcoinSDK.test
+result, err = client.Balance().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Balance(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Balance():load({ id = "test01" })
 ```
 
 ## How it works
@@ -329,11 +327,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Mercado Bitcoin API
-
-- Upstream: [https://www.mercadobitcoin.com.br/](https://www.mercadobitcoin.com.br/)
-- API docs: [https://api.mercadobitcoin.net/api/v4/docs](https://api.mercadobitcoin.net/api/v4/docs)
 
 ---
 

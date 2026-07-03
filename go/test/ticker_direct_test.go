@@ -194,12 +194,14 @@ func tickerDirectSetup(mockres any) *tickerDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MERCADOBITCOIN_TEST_TICKER_ENTID": map[string]any{},
 		"MERCADOBITCOIN_TEST_LIVE":    "FALSE",
+		"MERCADOBITCOIN_APIKEY":       "NONE",
 	})
 
 	live := env["MERCADOBITCOIN_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["MERCADOBITCOIN_APIKEY"],
 		}
 		client := sdk.NewMercadoBitcoinSDK(mergedOpts)
 
