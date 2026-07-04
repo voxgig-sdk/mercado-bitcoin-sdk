@@ -233,10 +233,10 @@ class MercadoBitcoinSDK
 
     private $_balance = null;
 
-    // Idiomatic facade: $client->balance()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Balance() (PHP method
-    // names are case-insensitive).
-    public function balance($data = null)
+    // Canonical facade: $client->Balance()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->balance()
+    // resolves here too.
+    public function Balance($data = null)
     {
         require_once __DIR__ . '/entity/balance_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class MercadoBitcoinSDK
 
     private $_candle = null;
 
-    // Idiomatic facade: $client->candle()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Candle() (PHP method
-    // names are case-insensitive).
-    public function candle($data = null)
+    // Canonical facade: $client->Candle()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->candle()
+    // resolves here too.
+    public function Candle($data = null)
     {
         require_once __DIR__ . '/entity/candle_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class MercadoBitcoinSDK
 
     private $_deposit_address = null;
 
-    // Idiomatic facade: $client->deposit_address()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias DepositAddress() (PHP method
-    // names are case-insensitive).
-    public function deposit_address($data = null)
+    // Canonical facade: $client->DepositAddress()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->deposit_address()
+    // resolves here too.
+    public function DepositAddress($data = null)
     {
         require_once __DIR__ . '/entity/deposit_address_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class MercadoBitcoinSDK
 
     private $_order = null;
 
-    // Idiomatic facade: $client->order()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Order() (PHP method
-    // names are case-insensitive).
-    public function order($data = null)
+    // Canonical facade: $client->Order()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->order()
+    // resolves here too.
+    public function Order($data = null)
     {
         require_once __DIR__ . '/entity/order_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class MercadoBitcoinSDK
 
     private $_order_book = null;
 
-    // Idiomatic facade: $client->order_book()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias OrderBook() (PHP method
-    // names are case-insensitive).
-    public function order_book($data = null)
+    // Canonical facade: $client->OrderBook()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->order_book()
+    // resolves here too.
+    public function OrderBook($data = null)
     {
         require_once __DIR__ . '/entity/order_book_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class MercadoBitcoinSDK
 
     private $_ticker = null;
 
-    // Idiomatic facade: $client->ticker()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Ticker() (PHP method
-    // names are case-insensitive).
-    public function ticker($data = null)
+    // Canonical facade: $client->Ticker()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->ticker()
+    // resolves here too.
+    public function Ticker($data = null)
     {
         require_once __DIR__ . '/entity/ticker_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class MercadoBitcoinSDK
 
     private $_trade = null;
 
-    // Idiomatic facade: $client->trade()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Trade() (PHP method
-    // names are case-insensitive).
-    public function trade($data = null)
+    // Canonical facade: $client->Trade()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->trade()
+    // resolves here too.
+    public function Trade($data = null)
     {
         require_once __DIR__ . '/entity/trade_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class MercadoBitcoinSDK
 
     private $_withdrawal = null;
 
-    // Idiomatic facade: $client->withdrawal()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Withdrawal() (PHP method
-    // names are case-insensitive).
-    public function withdrawal($data = null)
+    // Canonical facade: $client->Withdrawal()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->withdrawal()
+    // resolves here too.
+    public function Withdrawal($data = null)
     {
         require_once __DIR__ . '/entity/withdrawal_entity.php';
         if ($data === null) {

@@ -208,104 +208,56 @@ class MercadoBitcoinSDK
   end
 
 
-  # Idiomatic facade: client.balance.list / client.balance.load({ "id" => ... })
-  def balance
-    require_relative 'entity/balance_entity'
-    @balance ||= BalanceEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.balance instead.
+  # Canonical facade: client.Balance.list / client.Balance.load({ "id" => ... })
   def Balance(data = nil)
     require_relative 'entity/balance_entity'
     BalanceEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.candle.list / client.candle.load({ "id" => ... })
-  def candle
-    require_relative 'entity/candle_entity'
-    @candle ||= CandleEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.candle instead.
+  # Canonical facade: client.Candle.list / client.Candle.load({ "id" => ... })
   def Candle(data = nil)
     require_relative 'entity/candle_entity'
     CandleEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.deposit_address.list / client.deposit_address.load({ "id" => ... })
-  def deposit_address
-    require_relative 'entity/deposit_address_entity'
-    @deposit_address ||= DepositAddressEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.deposit_address instead.
+  # Canonical facade: client.DepositAddress.list / client.DepositAddress.load({ "id" => ... })
   def DepositAddress(data = nil)
     require_relative 'entity/deposit_address_entity'
     DepositAddressEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.order.list / client.order.load({ "id" => ... })
-  def order
-    require_relative 'entity/order_entity'
-    @order ||= OrderEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.order instead.
+  # Canonical facade: client.Order.list / client.Order.load({ "id" => ... })
   def Order(data = nil)
     require_relative 'entity/order_entity'
     OrderEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.order_book.list / client.order_book.load({ "id" => ... })
-  def order_book
-    require_relative 'entity/order_book_entity'
-    @order_book ||= OrderBookEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.order_book instead.
+  # Canonical facade: client.OrderBook.list / client.OrderBook.load({ "id" => ... })
   def OrderBook(data = nil)
     require_relative 'entity/order_book_entity'
     OrderBookEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.ticker.list / client.ticker.load({ "id" => ... })
-  def ticker
-    require_relative 'entity/ticker_entity'
-    @ticker ||= TickerEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.ticker instead.
+  # Canonical facade: client.Ticker.list / client.Ticker.load({ "id" => ... })
   def Ticker(data = nil)
     require_relative 'entity/ticker_entity'
     TickerEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.trade.list / client.trade.load({ "id" => ... })
-  def trade
-    require_relative 'entity/trade_entity'
-    @trade ||= TradeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.trade instead.
+  # Canonical facade: client.Trade.list / client.Trade.load({ "id" => ... })
   def Trade(data = nil)
     require_relative 'entity/trade_entity'
     TradeEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.withdrawal.list / client.withdrawal.load({ "id" => ... })
-  def withdrawal
-    require_relative 'entity/withdrawal_entity'
-    @withdrawal ||= WithdrawalEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.withdrawal instead.
+  # Canonical facade: client.Withdrawal.list / client.Withdrawal.load({ "id" => ... })
   def Withdrawal(data = nil)
     require_relative 'entity/withdrawal_entity'
     WithdrawalEntity.new(self, data)

@@ -4,184 +4,171 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Balance:
-    available: Optional[float] = None
-    currency: Optional[str] = None
-    locked: Optional[float] = None
-    total: Optional[float] = None
+class Balance(TypedDict, total=False):
+    available: float
+    currency: str
+    locked: float
+    total: float
 
 
-@dataclass
-class BalanceListMatch:
-    available: Optional[float] = None
-    currency: Optional[str] = None
-    locked: Optional[float] = None
-    total: Optional[float] = None
+class BalanceListMatch(TypedDict, total=False):
+    available: float
+    currency: str
+    locked: float
+    total: float
 
 
-@dataclass
-class Candle:
-    close: Optional[float] = None
-    high: Optional[float] = None
-    low: Optional[float] = None
-    open: Optional[float] = None
-    timestamp: Optional[int] = None
-    volume: Optional[float] = None
+class Candle(TypedDict, total=False):
+    close: float
+    high: float
+    low: float
+    open: float
+    timestamp: int
+    volume: float
 
 
-@dataclass
-class CandleLoadMatch:
+class CandleLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class DepositAddress:
-    address: Optional[str] = None
-    currency: Optional[str] = None
-    qr_code: Optional[str] = None
-    tag: Optional[str] = None
+class DepositAddress(TypedDict, total=False):
+    address: str
+    currency: str
+    qr_code: str
+    tag: str
 
 
-@dataclass
-class DepositAddressLoadMatch:
-    address: Optional[str] = None
-    currency: Optional[str] = None
-    qr_code: Optional[str] = None
-    tag: Optional[str] = None
+class DepositAddressLoadMatch(TypedDict, total=False):
+    address: str
+    currency: str
+    qr_code: str
+    tag: str
 
 
-@dataclass
-class Order:
-    amount: Optional[float] = None
-    filled: Optional[float] = None
-    id: Optional[str] = None
-    price: Optional[float] = None
-    side: Optional[str] = None
-    status: Optional[str] = None
-    symbol: Optional[str] = None
-    timestamp: Optional[int] = None
-    type: Optional[str] = None
+class Order(TypedDict, total=False):
+    amount: float
+    filled: float
+    id: str
+    price: float
+    side: str
+    status: str
+    symbol: str
+    timestamp: int
+    type: str
 
 
-@dataclass
-class OrderLoadMatch:
+class OrderLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class OrderListMatch:
-    amount: Optional[float] = None
-    filled: Optional[float] = None
-    id: Optional[str] = None
-    price: Optional[float] = None
-    side: Optional[str] = None
-    status: Optional[str] = None
-    symbol: Optional[str] = None
-    timestamp: Optional[int] = None
-    type: Optional[str] = None
+class OrderListMatch(TypedDict, total=False):
+    amount: float
+    filled: float
+    id: str
+    price: float
+    side: str
+    status: str
+    symbol: str
+    timestamp: int
+    type: str
 
 
-@dataclass
-class OrderCreateData:
-    amount: Optional[float] = None
-    filled: Optional[float] = None
-    id: Optional[str] = None
-    price: Optional[float] = None
-    side: Optional[str] = None
-    status: Optional[str] = None
-    symbol: Optional[str] = None
-    timestamp: Optional[int] = None
-    type: Optional[str] = None
+class OrderCreateData(TypedDict, total=False):
+    amount: float
+    filled: float
+    id: str
+    price: float
+    side: str
+    status: str
+    symbol: str
+    timestamp: int
+    type: str
 
 
-@dataclass
-class OrderRemoveMatch:
+class OrderRemoveMatch(TypedDict):
     id: str
 
 
-@dataclass
-class OrderBook:
-    ask: Optional[list] = None
-    bid: Optional[list] = None
-    timestamp: Optional[int] = None
+class OrderBook(TypedDict, total=False):
+    ask: list
+    bid: list
+    timestamp: int
 
 
-@dataclass
-class OrderBookLoadMatch:
+class OrderBookLoadMatch(TypedDict):
     symbol: str
 
 
-@dataclass
-class Ticker:
-    ask: Optional[float] = None
-    bid: Optional[float] = None
-    high: Optional[float] = None
-    last: Optional[float] = None
-    low: Optional[float] = None
-    symbol: Optional[str] = None
-    timestamp: Optional[int] = None
-    volume: Optional[float] = None
+class Ticker(TypedDict, total=False):
+    ask: float
+    bid: float
+    high: float
+    last: float
+    low: float
+    symbol: str
+    timestamp: int
+    volume: float
 
 
-@dataclass
-class TickerLoadMatch:
+class TickerLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class TickerListMatch:
-    ask: Optional[float] = None
-    bid: Optional[float] = None
-    high: Optional[float] = None
-    last: Optional[float] = None
-    low: Optional[float] = None
-    symbol: Optional[str] = None
-    timestamp: Optional[int] = None
-    volume: Optional[float] = None
+class TickerListMatch(TypedDict, total=False):
+    ask: float
+    bid: float
+    high: float
+    last: float
+    low: float
+    symbol: str
+    timestamp: int
+    volume: float
 
 
-@dataclass
-class Trade:
-    amount: Optional[float] = None
-    id: Optional[str] = None
-    price: Optional[float] = None
-    side: Optional[str] = None
-    timestamp: Optional[int] = None
+class Trade(TypedDict, total=False):
+    amount: float
+    id: str
+    price: float
+    side: str
+    timestamp: int
 
 
-@dataclass
-class TradeLoadMatch:
+class TradeLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Withdrawal:
+class WithdrawalRequired(TypedDict):
     account_number: str
     address: str
     agency: str
     amount: float
     bank: str
     currency: str
-    account_type: Optional[str] = None
-    tag: Optional[str] = None
 
 
-@dataclass
-class WithdrawalCreateData:
-    account_number: Optional[str] = None
-    account_type: Optional[str] = None
-    address: Optional[str] = None
-    agency: Optional[str] = None
-    amount: Optional[float] = None
-    bank: Optional[str] = None
-    currency: Optional[str] = None
-    tag: Optional[str] = None
+class Withdrawal(WithdrawalRequired, total=False):
+    account_type: str
+    tag: str
 
+
+class WithdrawalCreateData(TypedDict, total=False):
+    account_number: str
+    account_type: str
+    address: str
+    agency: str
+    amount: float
+    bank: str
+    currency: str
+    tag: str

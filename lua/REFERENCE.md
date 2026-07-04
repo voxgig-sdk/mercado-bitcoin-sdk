@@ -112,7 +112,7 @@ same parameters as `direct()`.
 ## BalanceEntity
 
 ```lua
-local balance = client:balance(nil)
+local balance = client:Balance(nil)
 ```
 
 ### Fields
@@ -131,7 +131,7 @@ local balance = client:balance(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:balance():list()
+local results, err = client:Balance():list()
 ```
 
 ### Common Methods
@@ -167,7 +167,7 @@ Return the entity name.
 ## CandleEntity
 
 ```lua
-local candle = client:candle(nil)
+local candle = client:Candle(nil)
 ```
 
 ### Fields
@@ -188,7 +188,7 @@ local candle = client:candle(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:candle():load({ id = "candle_id" })
+local result, err = client:Candle():load({ id = "candle_id" })
 ```
 
 ### Common Methods
@@ -224,7 +224,7 @@ Return the entity name.
 ## DepositAddressEntity
 
 ```lua
-local deposit_address = client:deposit_address(nil)
+local deposit_address = client:DepositAddress(nil)
 ```
 
 ### Fields
@@ -243,7 +243,7 @@ local deposit_address = client:deposit_address(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:deposit_address():load({ id = "deposit_address_id" })
+local result, err = client:DepositAddress():load({ id = "deposit_address_id" })
 ```
 
 ### Common Methods
@@ -279,7 +279,7 @@ Return the entity name.
 ## OrderEntity
 
 ```lua
-local order = client:order(nil)
+local order = client:Order(nil)
 ```
 
 ### Fields
@@ -317,7 +317,7 @@ local order = client:order(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:order():create({
+local result, err = client:Order():create({
 })
 ```
 
@@ -326,7 +326,7 @@ local result, err = client:order():create({
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:order():list()
+local results, err = client:Order():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -334,7 +334,7 @@ local results, err = client:order():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:order():load({ id = "order_id" })
+local result, err = client:Order():load({ id = "order_id" })
 ```
 
 #### `remove(reqmatch, ctrl) -> any, err`
@@ -342,7 +342,7 @@ local result, err = client:order():load({ id = "order_id" })
 Remove the entity matching the given criteria.
 
 ```lua
-local result, err = client:order():remove({ id = "order_id" })
+local result, err = client:Order():remove({ id = "order_id" })
 ```
 
 ### Common Methods
@@ -378,7 +378,7 @@ Return the entity name.
 ## OrderBookEntity
 
 ```lua
-local order_book = client:order_book(nil)
+local order_book = client:OrderBook(nil)
 ```
 
 ### Fields
@@ -396,7 +396,7 @@ local order_book = client:order_book(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:order_book():load({ id = "order_book_id" })
+local result, err = client:OrderBook():load({ id = "order_book_id" })
 ```
 
 ### Common Methods
@@ -432,7 +432,7 @@ Return the entity name.
 ## TickerEntity
 
 ```lua
-local ticker = client:ticker(nil)
+local ticker = client:Ticker(nil)
 ```
 
 ### Fields
@@ -455,7 +455,7 @@ local ticker = client:ticker(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:ticker():list()
+local results, err = client:Ticker():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -463,7 +463,7 @@ local results, err = client:ticker():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ticker():load({ id = "ticker_id" })
+local result, err = client:Ticker():load({ id = "ticker_id" })
 ```
 
 ### Common Methods
@@ -499,7 +499,7 @@ Return the entity name.
 ## TradeEntity
 
 ```lua
-local trade = client:trade(nil)
+local trade = client:Trade(nil)
 ```
 
 ### Fields
@@ -519,7 +519,7 @@ local trade = client:trade(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:trade():load({ id = "trade_id" })
+local result, err = client:Trade():load({ id = "trade_id" })
 ```
 
 ### Common Methods
@@ -555,7 +555,7 @@ Return the entity name.
 ## WithdrawalEntity
 
 ```lua
-local withdrawal = client:withdrawal(nil)
+local withdrawal = client:Withdrawal(nil)
 ```
 
 ### Fields
@@ -578,7 +578,7 @@ local withdrawal = client:withdrawal(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:withdrawal():create({
+local result, err = client:Withdrawal():create({
   account_number = --[[ `$STRING` ]],
   address = --[[ `$STRING` ]],
   agency = --[[ `$STRING` ]],

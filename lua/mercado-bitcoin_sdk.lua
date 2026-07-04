@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:balance():list() / client:balance():load({ id = ... })
-function MercadoBitcoinSDK:balance(data)
+-- Idiomatic facade: client:Balance():list() / client:Balance():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MercadoBitcoinSDK:Balance(data)
   local EntityMod = require("entity.balance_entity")
   if data == nil then
     if self._balance == nil then
@@ -256,15 +257,10 @@ function MercadoBitcoinSDK:balance(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:balance() instead.
-function MercadoBitcoinSDK:Balance(data)
-  local EntityMod = require("entity.balance_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:candle():list() / client:candle():load({ id = ... })
-function MercadoBitcoinSDK:candle(data)
+-- Idiomatic facade: client:Candle():list() / client:Candle():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MercadoBitcoinSDK:Candle(data)
   local EntityMod = require("entity.candle_entity")
   if data == nil then
     if self._candle == nil then
@@ -275,15 +271,10 @@ function MercadoBitcoinSDK:candle(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:candle() instead.
-function MercadoBitcoinSDK:Candle(data)
-  local EntityMod = require("entity.candle_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:deposit_address():list() / client:deposit_address():load({ id = ... })
-function MercadoBitcoinSDK:deposit_address(data)
+-- Idiomatic facade: client:DepositAddress():list() / client:DepositAddress():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MercadoBitcoinSDK:DepositAddress(data)
   local EntityMod = require("entity.deposit_address_entity")
   if data == nil then
     if self._deposit_address == nil then
@@ -294,15 +285,10 @@ function MercadoBitcoinSDK:deposit_address(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:deposit_address() instead.
-function MercadoBitcoinSDK:DepositAddress(data)
-  local EntityMod = require("entity.deposit_address_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:order():list() / client:order():load({ id = ... })
-function MercadoBitcoinSDK:order(data)
+-- Idiomatic facade: client:Order():list() / client:Order():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MercadoBitcoinSDK:Order(data)
   local EntityMod = require("entity.order_entity")
   if data == nil then
     if self._order == nil then
@@ -313,15 +299,10 @@ function MercadoBitcoinSDK:order(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:order() instead.
-function MercadoBitcoinSDK:Order(data)
-  local EntityMod = require("entity.order_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:order_book():list() / client:order_book():load({ id = ... })
-function MercadoBitcoinSDK:order_book(data)
+-- Idiomatic facade: client:OrderBook():list() / client:OrderBook():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MercadoBitcoinSDK:OrderBook(data)
   local EntityMod = require("entity.order_book_entity")
   if data == nil then
     if self._order_book == nil then
@@ -332,15 +313,10 @@ function MercadoBitcoinSDK:order_book(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:order_book() instead.
-function MercadoBitcoinSDK:OrderBook(data)
-  local EntityMod = require("entity.order_book_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:ticker():list() / client:ticker():load({ id = ... })
-function MercadoBitcoinSDK:ticker(data)
+-- Idiomatic facade: client:Ticker():list() / client:Ticker():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MercadoBitcoinSDK:Ticker(data)
   local EntityMod = require("entity.ticker_entity")
   if data == nil then
     if self._ticker == nil then
@@ -351,15 +327,10 @@ function MercadoBitcoinSDK:ticker(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:ticker() instead.
-function MercadoBitcoinSDK:Ticker(data)
-  local EntityMod = require("entity.ticker_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:trade():list() / client:trade():load({ id = ... })
-function MercadoBitcoinSDK:trade(data)
+-- Idiomatic facade: client:Trade():list() / client:Trade():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MercadoBitcoinSDK:Trade(data)
   local EntityMod = require("entity.trade_entity")
   if data == nil then
     if self._trade == nil then
@@ -370,15 +341,10 @@ function MercadoBitcoinSDK:trade(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:trade() instead.
-function MercadoBitcoinSDK:Trade(data)
-  local EntityMod = require("entity.trade_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:withdrawal():list() / client:withdrawal():load({ id = ... })
-function MercadoBitcoinSDK:withdrawal(data)
+-- Idiomatic facade: client:Withdrawal():list() / client:Withdrawal():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function MercadoBitcoinSDK:Withdrawal(data)
   local EntityMod = require("entity.withdrawal_entity")
   if data == nil then
     if self._withdrawal == nil then
@@ -386,12 +352,6 @@ function MercadoBitcoinSDK:withdrawal(data)
     end
     return self._withdrawal
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:withdrawal() instead.
-function MercadoBitcoinSDK:Withdrawal(data)
-  local EntityMod = require("entity.withdrawal_entity")
   return EntityMod.new(self, data)
 end
 

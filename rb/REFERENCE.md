@@ -115,7 +115,7 @@ same parameters as `direct()`. Raises on error.
 ## BalanceEntity
 
 ```ruby
-balance = client.balance
+balance = client.Balance
 ```
 
 ### Fields
@@ -134,7 +134,7 @@ balance = client.balance
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.balance.list(nil)
+results = client.Balance.list(nil)
 ```
 
 ### Common Methods
@@ -170,7 +170,7 @@ Return the entity name.
 ## CandleEntity
 
 ```ruby
-candle = client.candle
+candle = client.Candle
 ```
 
 ### Fields
@@ -191,7 +191,7 @@ candle = client.candle
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.candle.load({ "id" => "candle_id" })
+result = client.Candle.load({ "id" => "candle_id" })
 ```
 
 ### Common Methods
@@ -227,7 +227,7 @@ Return the entity name.
 ## DepositAddressEntity
 
 ```ruby
-deposit_address = client.deposit_address
+deposit_address = client.DepositAddress
 ```
 
 ### Fields
@@ -246,7 +246,7 @@ deposit_address = client.deposit_address
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.deposit_address.load({ "id" => "deposit_address_id" })
+result = client.DepositAddress.load({ "id" => "deposit_address_id" })
 ```
 
 ### Common Methods
@@ -282,7 +282,7 @@ Return the entity name.
 ## OrderEntity
 
 ```ruby
-order = client.order
+order = client.Order
 ```
 
 ### Fields
@@ -320,7 +320,7 @@ order = client.order
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.order.create({
+result = client.Order.create({
 })
 ```
 
@@ -329,7 +329,7 @@ result = client.order.create({
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.order.list(nil)
+results = client.Order.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -337,7 +337,7 @@ results = client.order.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.order.load({ "id" => "order_id" })
+result = client.Order.load({ "id" => "order_id" })
 ```
 
 #### `remove(reqmatch, ctrl = nil) -> result`
@@ -345,7 +345,7 @@ result = client.order.load({ "id" => "order_id" })
 Remove the entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.order.remove({ "id" => "order_id" })
+result = client.Order.remove({ "id" => "order_id" })
 ```
 
 ### Common Methods
@@ -381,7 +381,7 @@ Return the entity name.
 ## OrderBookEntity
 
 ```ruby
-order_book = client.order_book
+order_book = client.OrderBook
 ```
 
 ### Fields
@@ -399,7 +399,7 @@ order_book = client.order_book
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.order_book.load({ "id" => "order_book_id" })
+result = client.OrderBook.load({ "id" => "order_book_id" })
 ```
 
 ### Common Methods
@@ -435,7 +435,7 @@ Return the entity name.
 ## TickerEntity
 
 ```ruby
-ticker = client.ticker
+ticker = client.Ticker
 ```
 
 ### Fields
@@ -458,7 +458,7 @@ ticker = client.ticker
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.ticker.list(nil)
+results = client.Ticker.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -466,7 +466,7 @@ results = client.ticker.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.ticker.load({ "id" => "ticker_id" })
+result = client.Ticker.load({ "id" => "ticker_id" })
 ```
 
 ### Common Methods
@@ -502,7 +502,7 @@ Return the entity name.
 ## TradeEntity
 
 ```ruby
-trade = client.trade
+trade = client.Trade
 ```
 
 ### Fields
@@ -522,7 +522,7 @@ trade = client.trade
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.trade.load({ "id" => "trade_id" })
+result = client.Trade.load({ "id" => "trade_id" })
 ```
 
 ### Common Methods
@@ -558,7 +558,7 @@ Return the entity name.
 ## WithdrawalEntity
 
 ```ruby
-withdrawal = client.withdrawal
+withdrawal = client.Withdrawal
 ```
 
 ### Fields
@@ -581,7 +581,7 @@ withdrawal = client.withdrawal
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.withdrawal.create({
+result = client.Withdrawal.create({
   "account_number" => # `$STRING`,
   "address" => # `$STRING`,
   "agency" => # `$STRING`,

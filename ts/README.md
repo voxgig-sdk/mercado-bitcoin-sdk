@@ -30,15 +30,15 @@ const client = new MercadoBitcoinSDK({
 })
 ```
 
-### 2. List balances
+### 2. List balance records
+
+`list()` resolves to an array of Balance objects — iterate it directly:
 
 ```ts
-const result = await client.balance.list()
+const balances = await client.Balance().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const balance of balances) {
+  console.log(balance)
 }
 ```
 
@@ -56,6 +56,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -84,9 +87,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MercadoBitcoinSDK.test()
 
-const result = await client.balance.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const balance = await client.Balance().load({ id: 'test01' })
+// balance is a bare entity populated with mock response data
+console.log(balance)
 ```
 
 You can also use the instance method:
@@ -101,7 +104,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.balance
+const entity = client.Balance()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -186,8 +189,8 @@ new MercadoBitcoinSDK(options?: {
 | `Balance(data?)` | `BalanceEntity` | Create a Balance entity instance. |
 | `Candle(data?)` | `CandleEntity` | Create a Candle entity instance. |
 | `DepositAddress(data?)` | `DepositAddressEntity` | Create a DepositAddress entity instance. |
-| `Order(data?)` | `OrderEntity` | Create a Order entity instance. |
-| `OrderBook(data?)` | `OrderBookEntity` | Create a OrderBook entity instance. |
+| `Order(data?)` | `OrderEntity` | Create an Order entity instance. |
+| `OrderBook(data?)` | `OrderBookEntity` | Create an OrderBook entity instance. |
 | `Ticker(data?)` | `TickerEntity` | Create a Ticker entity instance. |
 | `Trade(data?)` | `TradeEntity` | Create a Trade entity instance. |
 | `Withdrawal(data?)` | `WithdrawalEntity` | Create a Withdrawal entity instance. |
@@ -207,29 +210,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): MercadoBitcoinSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -387,7 +391,7 @@ API path: `/withdrawals/brl`
 
 ### Balance
 
-Create an instance: `const balance = client.balance`
+Create an instance: `const balance = client.Balance()`
 
 #### Operations
 
@@ -407,13 +411,13 @@ Create an instance: `const balance = client.balance`
 #### Example: List
 
 ```ts
-const balances = await client.balance.list()
+const balances = await client.Balance().list()
 ```
 
 
 ### Candle
 
-Create an instance: `const candle = client.candle`
+Create an instance: `const candle = client.Candle()`
 
 #### Operations
 
@@ -435,13 +439,13 @@ Create an instance: `const candle = client.candle`
 #### Example: Load
 
 ```ts
-const candle = await client.candle.load({ id: 'candle_id' })
+const candle = await client.Candle().load({ id: 'candle_id' })
 ```
 
 
 ### DepositAddress
 
-Create an instance: `const deposit_address = client.deposit_address`
+Create an instance: `const deposit_address = client.DepositAddress()`
 
 #### Operations
 
@@ -461,13 +465,13 @@ Create an instance: `const deposit_address = client.deposit_address`
 #### Example: Load
 
 ```ts
-const deposit_address = await client.deposit_address.load({ id: 'deposit_address_id' })
+const deposit_address = await client.DepositAddress().load({ id: 'deposit_address_id' })
 ```
 
 
 ### Order
 
-Create an instance: `const order = client.order`
+Create an instance: `const order = client.Order()`
 
 #### Operations
 
@@ -495,26 +499,26 @@ Create an instance: `const order = client.order`
 #### Example: Load
 
 ```ts
-const order = await client.order.load({ id: 'order_id' })
+const order = await client.Order().load({ id: 'order_id' })
 ```
 
 #### Example: List
 
 ```ts
-const orders = await client.order.list()
+const orders = await client.Order().list()
 ```
 
 #### Example: Create
 
 ```ts
-const order = await client.order.create({
+const order = await client.Order().create({
 })
 ```
 
 
 ### OrderBook
 
-Create an instance: `const order_book = client.order_book`
+Create an instance: `const order_book = client.OrderBook()`
 
 #### Operations
 
@@ -533,13 +537,13 @@ Create an instance: `const order_book = client.order_book`
 #### Example: Load
 
 ```ts
-const order_book = await client.order_book.load({ id: 'order_book_id' })
+const order_book = await client.OrderBook().load({ id: 'order_book_id' })
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.ticker`
+Create an instance: `const ticker = client.Ticker()`
 
 #### Operations
 
@@ -564,19 +568,19 @@ Create an instance: `const ticker = client.ticker`
 #### Example: Load
 
 ```ts
-const ticker = await client.ticker.load({ id: 'ticker_id' })
+const ticker = await client.Ticker().load({ id: 'ticker_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tickers = await client.ticker.list()
+const tickers = await client.Ticker().list()
 ```
 
 
 ### Trade
 
-Create an instance: `const trade = client.trade`
+Create an instance: `const trade = client.Trade()`
 
 #### Operations
 
@@ -597,13 +601,13 @@ Create an instance: `const trade = client.trade`
 #### Example: Load
 
 ```ts
-const trade = await client.trade.load({ id: 'trade_id' })
+const trade = await client.Trade().load({ id: 'trade_id' })
 ```
 
 
 ### Withdrawal
 
-Create an instance: `const withdrawal = client.withdrawal`
+Create an instance: `const withdrawal = client.Withdrawal()`
 
 #### Operations
 
@@ -627,7 +631,7 @@ Create an instance: `const withdrawal = client.withdrawal`
 #### Example: Create
 
 ```ts
-const withdrawal = await client.withdrawal.create({
+const withdrawal = await client.Withdrawal().create({
   account_number: /* `$STRING` */,
   address: /* `$STRING` */,
   agency: /* `$STRING` */,
@@ -705,7 +709,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const balance = client.balance
+const balance = client.Balance()
 await balance.load({ id: "example_id" })
 
 // balance.data() now returns the loaded balance data

@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/mercado-bitcoin-sdk/go=../mercado-bit
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,32 +43,23 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/mercado-bitcoin-sdk/go"
-    "github.com/voxgig-sdk/mercado-bitcoin-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewMercadoBitcoinSDK(map[string]any{
         "apikey": os.Getenv("MERCADO_BITCOIN_APIKEY"),
     })
-```
 
-### 2. List balances
-
-```go
-    result, err := client.Balance(nil).List(nil, nil)
+    // List balance records — the value is the array of records itself.
+    balances, err := client.Balance(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range balances.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -113,10 +109,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Balance(nil).Load(
+balance, err := client.Balance(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(balance) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -198,8 +197,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Balance` | `(data map[string]any) MercadoBitcoinEntity` | Create a Balance entity instance. |
 | `Candle` | `(data map[string]any) MercadoBitcoinEntity` | Create a Candle entity instance. |
 | `DepositAddress` | `(data map[string]any) MercadoBitcoinEntity` | Create a DepositAddress entity instance. |
-| `Order` | `(data map[string]any) MercadoBitcoinEntity` | Create a Order entity instance. |
-| `OrderBook` | `(data map[string]any) MercadoBitcoinEntity` | Create a OrderBook entity instance. |
+| `Order` | `(data map[string]any) MercadoBitcoinEntity` | Create an Order entity instance. |
+| `OrderBook` | `(data map[string]any) MercadoBitcoinEntity` | Create an OrderBook entity instance. |
 | `Ticker` | `(data map[string]any) MercadoBitcoinEntity` | Create a Ticker entity instance. |
 | `Trade` | `(data map[string]any) MercadoBitcoinEntity` | Create a Trade entity instance. |
 | `Withdrawal` | `(data map[string]any) MercadoBitcoinEntity` | Create a Withdrawal entity instance. |
@@ -222,17 +221,24 @@ All entities implement the `MercadoBitcoinEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    balance, err := client.Balance(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // balance is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -382,7 +388,11 @@ Create an instance: `balance := client.Balance(nil)`
 #### Example: List
 
 ```go
-results, err := client.Balance(nil).List(nil, nil)
+balances, err := client.Balance(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(balances) // the array of records
 ```
 
 
@@ -410,7 +420,11 @@ Create an instance: `candle := client.Candle(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Candle(nil).Load(map[string]any{"id": "candle_id"}, nil)
+candle, err := client.Candle(nil).Load(map[string]any{"id": "candle_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(candle) // the loaded record
 ```
 
 
@@ -436,7 +450,11 @@ Create an instance: `deposit_address := client.DepositAddress(nil)`
 #### Example: Load
 
 ```go
-result, err := client.DepositAddress(nil).Load(map[string]any{"id": "deposit_address_id"}, nil)
+deposit_address, err := client.DepositAddress(nil).Load(map[string]any{"id": "deposit_address_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(deposit_address) // the loaded record
 ```
 
 
@@ -470,13 +488,21 @@ Create an instance: `order := client.Order(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Order(nil).Load(map[string]any{"id": "order_id"}, nil)
+order, err := client.Order(nil).Load(map[string]any{"id": "order_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(order) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Order(nil).List(nil, nil)
+orders, err := client.Order(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(orders) // the array of records
 ```
 
 #### Example: Create
@@ -508,7 +534,11 @@ Create an instance: `order_book := client.OrderBook(nil)`
 #### Example: Load
 
 ```go
-result, err := client.OrderBook(nil).Load(map[string]any{"id": "order_book_id"}, nil)
+order_book, err := client.OrderBook(nil).Load(map[string]any{"id": "order_book_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(order_book) // the loaded record
 ```
 
 
@@ -539,13 +569,21 @@ Create an instance: `ticker := client.Ticker(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Ticker(nil).Load(map[string]any{"id": "ticker_id"}, nil)
+ticker, err := client.Ticker(nil).Load(map[string]any{"id": "ticker_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(ticker) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Ticker(nil).List(nil, nil)
+tickers, err := client.Ticker(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(tickers) // the array of records
 ```
 
 
@@ -572,7 +610,11 @@ Create an instance: `trade := client.Trade(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Trade(nil).Load(map[string]any{"id": "trade_id"}, nil)
+trade, err := client.Trade(nil).Load(map[string]any{"id": "trade_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(trade) // the loaded record
 ```
 
 

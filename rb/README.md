@@ -30,16 +30,14 @@ client = MercadoBitcoinSDK.new({
 })
 ```
 
-### 2. List balances
+### 2. List balance records
 
 ```ruby
 begin
-  result = client.balance.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Balance records — iterate directly.
+  balances = client.Balance.list
+  balances.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -87,13 +85,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = MercadoBitcoinSDK.test
+client = MercadoBitcoinSDK.test({
+  "entity" => { "balance" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.balance.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+balance = client.Balance.load({ "id" => "test01" })
+puts balance
 ```
 
 ### Use a custom fetch function
@@ -174,8 +176,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Balance` | `(data) -> BalanceEntity` | Create a Balance entity instance. |
 | `Candle` | `(data) -> CandleEntity` | Create a Candle entity instance. |
 | `DepositAddress` | `(data) -> DepositAddressEntity` | Create a DepositAddress entity instance. |
-| `Order` | `(data) -> OrderEntity` | Create a Order entity instance. |
-| `OrderBook` | `(data) -> OrderBookEntity` | Create a OrderBook entity instance. |
+| `Order` | `(data) -> OrderEntity` | Create an Order entity instance. |
+| `OrderBook` | `(data) -> OrderBookEntity` | Create an OrderBook entity instance. |
 | `Ticker` | `(data) -> TickerEntity` | Create a Ticker entity instance. |
 | `Trade` | `(data) -> TradeEntity` | Create a Trade entity instance. |
 | `Withdrawal` | `(data) -> WithdrawalEntity` | Create a Withdrawal entity instance. |
@@ -343,7 +345,7 @@ API path: `/withdrawals/brl`
 
 ### Balance
 
-Create an instance: `const balance = client.balance`
+Create an instance: `balance = client.Balance`
 
 #### Operations
 
@@ -362,14 +364,15 @@ Create an instance: `const balance = client.balance`
 
 #### Example: List
 
-```ts
-const balances = await client.balance.list()
+```ruby
+# list returns an Array of Balance records (raises on error).
+balances = client.Balance.list
 ```
 
 
 ### Candle
 
-Create an instance: `const candle = client.candle`
+Create an instance: `candle = client.Candle`
 
 #### Operations
 
@@ -390,14 +393,15 @@ Create an instance: `const candle = client.candle`
 
 #### Example: Load
 
-```ts
-const candle = await client.candle.load({ id: 'candle_id' })
+```ruby
+# load returns the bare Candle record (raises on error).
+candle = client.Candle.load({ "id" => "candle_id" })
 ```
 
 
 ### DepositAddress
 
-Create an instance: `const deposit_address = client.deposit_address`
+Create an instance: `deposit_address = client.DepositAddress`
 
 #### Operations
 
@@ -416,14 +420,15 @@ Create an instance: `const deposit_address = client.deposit_address`
 
 #### Example: Load
 
-```ts
-const deposit_address = await client.deposit_address.load({ id: 'deposit_address_id' })
+```ruby
+# load returns the bare DepositAddress record (raises on error).
+deposit_address = client.DepositAddress.load({ "id" => "deposit_address_id" })
 ```
 
 
 ### Order
 
-Create an instance: `const order = client.order`
+Create an instance: `order = client.Order`
 
 #### Operations
 
@@ -450,27 +455,29 @@ Create an instance: `const order = client.order`
 
 #### Example: Load
 
-```ts
-const order = await client.order.load({ id: 'order_id' })
+```ruby
+# load returns the bare Order record (raises on error).
+order = client.Order.load({ "id" => "order_id" })
 ```
 
 #### Example: List
 
-```ts
-const orders = await client.order.list()
+```ruby
+# list returns an Array of Order records (raises on error).
+orders = client.Order.list
 ```
 
 #### Example: Create
 
-```ts
-const order = await client.order.create({
+```ruby
+order = client.Order.create({
 })
 ```
 
 
 ### OrderBook
 
-Create an instance: `const order_book = client.order_book`
+Create an instance: `order_book = client.OrderBook`
 
 #### Operations
 
@@ -488,14 +495,15 @@ Create an instance: `const order_book = client.order_book`
 
 #### Example: Load
 
-```ts
-const order_book = await client.order_book.load({ id: 'order_book_id' })
+```ruby
+# load returns the bare OrderBook record (raises on error).
+order_book = client.OrderBook.load({ "id" => "order_book_id" })
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.ticker`
+Create an instance: `ticker = client.Ticker`
 
 #### Operations
 
@@ -519,20 +527,22 @@ Create an instance: `const ticker = client.ticker`
 
 #### Example: Load
 
-```ts
-const ticker = await client.ticker.load({ id: 'ticker_id' })
+```ruby
+# load returns the bare Ticker record (raises on error).
+ticker = client.Ticker.load({ "id" => "ticker_id" })
 ```
 
 #### Example: List
 
-```ts
-const tickers = await client.ticker.list()
+```ruby
+# list returns an Array of Ticker records (raises on error).
+tickers = client.Ticker.list
 ```
 
 
 ### Trade
 
-Create an instance: `const trade = client.trade`
+Create an instance: `trade = client.Trade`
 
 #### Operations
 
@@ -552,14 +562,15 @@ Create an instance: `const trade = client.trade`
 
 #### Example: Load
 
-```ts
-const trade = await client.trade.load({ id: 'trade_id' })
+```ruby
+# load returns the bare Trade record (raises on error).
+trade = client.Trade.load({ "id" => "trade_id" })
 ```
 
 
 ### Withdrawal
 
-Create an instance: `const withdrawal = client.withdrawal`
+Create an instance: `withdrawal = client.Withdrawal`
 
 #### Operations
 
@@ -582,14 +593,14 @@ Create an instance: `const withdrawal = client.withdrawal`
 
 #### Example: Create
 
-```ts
-const withdrawal = await client.withdrawal.create({
-  account_number: /* `$STRING` */,
-  address: /* `$STRING` */,
-  agency: /* `$STRING` */,
-  amount: /* `$NUMBER` */,
-  bank: /* `$STRING` */,
-  currency: /* `$STRING` */,
+```ruby
+withdrawal = client.Withdrawal.create({
+  "account_number" => nil, # `$STRING`
+  "address" => nil, # `$STRING`
+  "agency" => nil, # `$STRING`
+  "amount" => nil, # `$NUMBER`
+  "bank" => nil, # `$STRING`
+  "currency" => nil, # `$STRING`
 })
 ```
 
@@ -665,7 +676,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-balance = client.balance
+balance = client.Balance
 balance.load({ "id" => "example_id" })
 
 # balance.data_get now returns the loaded balance data

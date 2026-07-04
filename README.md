@@ -28,9 +28,11 @@ const client = new MercadoBitcoinSDK({
   apikey: process.env.MERCADO_BITCOIN_APIKEY,
 })
 
-// List all balances
-const balances = await client.balance.list()
-console.log(balances.data)
+// List all balances (returns Balance[])
+const balances = await client.Balance().list()
+for (const balance of balances) {
+  console.log(balance)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -95,9 +97,10 @@ client = MercadoBitcoinSDK({
     "apikey": os.environ.get("MERCADO_BITCOIN_APIKEY"),
 })
 
-# List all balances
-balances = client.balance.list()
-print(balances)
+# List all balances (returns a list, raises on error)
+balances = client.Balance().list({})
+for balance in balances:
+    print(balance)
 ```
 
 ### PHP
@@ -110,8 +113,8 @@ $client = new MercadoBitcoinSDK([
     "apikey" => getenv("MERCADO_BITCOIN_APIKEY"),
 ]);
 
-// List all balances (throws on error)
-$balances = $client->balance()->list();
+// List all balances (returns an array; throws on error)
+$balances = $client->Balance()->list();
 print_r($balances);
 ```
 
@@ -138,8 +141,8 @@ client = MercadoBitcoinSDK.new({
   "apikey" => ENV["MERCADO_BITCOIN_APIKEY"],
 })
 
-# List all balances
-balances = client.balance.list
+# List all balances (returns an Array; raises on error)
+balances = client.Balance.list
 puts balances
 ```
 
@@ -153,7 +156,7 @@ local client = sdk.new({
 })
 
 -- List all balances
-local balances, err = client:balance():list()
+local balances, err = client:Balance():list()
 print(balances)
 ```
 
@@ -166,22 +169,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = MercadoBitcoinSDK.test()
-const result = await client.balance.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const balance = await client.Balance().load({ id: 'test01' })
+// balance is a bare Balance populated with mock data
+console.log(balance)
 ```
 
 ### Python
 
 ```python
 client = MercadoBitcoinSDK.test()
-result = client.balance.load({"id": "test01"})
+balance = client.Balance().load({"id": "test01"})
+print(balance)
 ```
 
 ### PHP
 
 ```php
-$client = MercadoBitcoinSDK::test();
-$result = $client->balance()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = MercadoBitcoinSDK::test([
+    "entity" => ["balance" => ["test01" => ["id" => "test01"]]],
+]);
+$balance = $client->Balance()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -196,15 +204,18 @@ result, err := client.Balance(nil).Load(
 ### Ruby
 
 ```ruby
-client = MercadoBitcoinSDK.test
-result = client.balance.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = MercadoBitcoinSDK.test({
+  "entity" => { "balance" => { "test01" => { "id" => "test01" } } },
+})
+balance = client.Balance.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:balance():load({ id = "test01" })
+local result, err = client:Balance():load({ id = "test01" })
 ```
 
 ## How it works
@@ -252,6 +263,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

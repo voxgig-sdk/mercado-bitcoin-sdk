@@ -31,18 +31,16 @@ $client = new MercadoBitcoinSDK([
 ]);
 ```
 
-### 2. List balances
+### 2. List balance records
 
 ```php
 try {
-    $result = $client->balance()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Balance records — iterate directly.
+    $balances = $client->Balance()->list();
+    foreach ($balances as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -88,13 +86,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = MercadoBitcoinSDK::test();
+$client = MercadoBitcoinSDK::test([
+    "entity" => ["balance" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->balance()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$balance = $client->Balance()->load(["id" => "test01"]);
+print_r($balance);
 ```
 
 ### Use a custom fetch function
@@ -178,8 +180,8 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `Balance` | `($data): BalanceEntity` | Create a Balance entity instance. |
 | `Candle` | `($data): CandleEntity` | Create a Candle entity instance. |
 | `DepositAddress` | `($data): DepositAddressEntity` | Create a DepositAddress entity instance. |
-| `Order` | `($data): OrderEntity` | Create a Order entity instance. |
-| `OrderBook` | `($data): OrderBookEntity` | Create a OrderBook entity instance. |
+| `Order` | `($data): OrderEntity` | Create an Order entity instance. |
+| `OrderBook` | `($data): OrderBookEntity` | Create an OrderBook entity instance. |
 | `Ticker` | `($data): TickerEntity` | Create a Ticker entity instance. |
 | `Trade` | `($data): TradeEntity` | Create a Trade entity instance. |
 | `Withdrawal` | `($data): WithdrawalEntity` | Create a Withdrawal entity instance. |
@@ -348,7 +350,7 @@ API path: `/withdrawals/brl`
 
 ### Balance
 
-Create an instance: `const balance = client.balance`
+Create an instance: `$balance = $client->Balance();`
 
 #### Operations
 
@@ -367,14 +369,15 @@ Create an instance: `const balance = client.balance`
 
 #### Example: List
 
-```ts
-const balances = await client.balance.list()
+```php
+// list() returns an array of Balance records (throws on error).
+$balances = $client->Balance()->list();
 ```
 
 
 ### Candle
 
-Create an instance: `const candle = client.candle`
+Create an instance: `$candle = $client->Candle();`
 
 #### Operations
 
@@ -395,14 +398,15 @@ Create an instance: `const candle = client.candle`
 
 #### Example: Load
 
-```ts
-const candle = await client.candle.load({ id: 'candle_id' })
+```php
+// load() returns the bare Candle record (throws on error).
+$candle = $client->Candle()->load(["id" => "candle_id"]);
 ```
 
 
 ### DepositAddress
 
-Create an instance: `const deposit_address = client.deposit_address`
+Create an instance: `$deposit_address = $client->DepositAddress();`
 
 #### Operations
 
@@ -421,14 +425,15 @@ Create an instance: `const deposit_address = client.deposit_address`
 
 #### Example: Load
 
-```ts
-const deposit_address = await client.deposit_address.load({ id: 'deposit_address_id' })
+```php
+// load() returns the bare DepositAddress record (throws on error).
+$deposit_address = $client->DepositAddress()->load(["id" => "deposit_address_id"]);
 ```
 
 
 ### Order
 
-Create an instance: `const order = client.order`
+Create an instance: `$order = $client->Order();`
 
 #### Operations
 
@@ -455,27 +460,29 @@ Create an instance: `const order = client.order`
 
 #### Example: Load
 
-```ts
-const order = await client.order.load({ id: 'order_id' })
+```php
+// load() returns the bare Order record (throws on error).
+$order = $client->Order()->load(["id" => "order_id"]);
 ```
 
 #### Example: List
 
-```ts
-const orders = await client.order.list()
+```php
+// list() returns an array of Order records (throws on error).
+$orders = $client->Order()->list();
 ```
 
 #### Example: Create
 
-```ts
-const order = await client.order.create({
-})
+```php
+$order = $client->Order()->create([
+]);
 ```
 
 
 ### OrderBook
 
-Create an instance: `const order_book = client.order_book`
+Create an instance: `$order_book = $client->OrderBook();`
 
 #### Operations
 
@@ -493,14 +500,15 @@ Create an instance: `const order_book = client.order_book`
 
 #### Example: Load
 
-```ts
-const order_book = await client.order_book.load({ id: 'order_book_id' })
+```php
+// load() returns the bare OrderBook record (throws on error).
+$order_book = $client->OrderBook()->load(["id" => "order_book_id"]);
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.ticker`
+Create an instance: `$ticker = $client->Ticker();`
 
 #### Operations
 
@@ -524,20 +532,22 @@ Create an instance: `const ticker = client.ticker`
 
 #### Example: Load
 
-```ts
-const ticker = await client.ticker.load({ id: 'ticker_id' })
+```php
+// load() returns the bare Ticker record (throws on error).
+$ticker = $client->Ticker()->load(["id" => "ticker_id"]);
 ```
 
 #### Example: List
 
-```ts
-const tickers = await client.ticker.list()
+```php
+// list() returns an array of Ticker records (throws on error).
+$tickers = $client->Ticker()->list();
 ```
 
 
 ### Trade
 
-Create an instance: `const trade = client.trade`
+Create an instance: `$trade = $client->Trade();`
 
 #### Operations
 
@@ -557,14 +567,15 @@ Create an instance: `const trade = client.trade`
 
 #### Example: Load
 
-```ts
-const trade = await client.trade.load({ id: 'trade_id' })
+```php
+// load() returns the bare Trade record (throws on error).
+$trade = $client->Trade()->load(["id" => "trade_id"]);
 ```
 
 
 ### Withdrawal
 
-Create an instance: `const withdrawal = client.withdrawal`
+Create an instance: `$withdrawal = $client->Withdrawal();`
 
 #### Operations
 
@@ -587,15 +598,15 @@ Create an instance: `const withdrawal = client.withdrawal`
 
 #### Example: Create
 
-```ts
-const withdrawal = await client.withdrawal.create({
-  account_number: /* `$STRING` */,
-  address: /* `$STRING` */,
-  agency: /* `$STRING` */,
-  amount: /* `$NUMBER` */,
-  bank: /* `$STRING` */,
-  currency: /* `$STRING` */,
-})
+```php
+$withdrawal = $client->Withdrawal()->create([
+    "account_number" => null, // `$STRING`
+    "address" => null, // `$STRING`
+    "agency" => null, // `$STRING`
+    "amount" => null, // `$NUMBER`
+    "bank" => null, // `$STRING`
+    "currency" => null, // `$STRING`
+]);
 ```
 
 
@@ -670,7 +681,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$balance = $client->balance();
+$balance = $client->Balance();
 $balance->load(["id" => "example_id"]);
 
 // $balance->dataGet() now returns the loaded balance data

@@ -114,7 +114,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## BalanceEntity
 
 ```php
-$balance = $client->balance();
+$balance = $client->Balance();
 ```
 
 ### Fields
@@ -133,7 +133,7 @@ $balance = $client->balance();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->balance()->list([]);
+$results = $client->Balance()->list([]);
 ```
 
 ### Common Methods
@@ -169,7 +169,7 @@ Return the entity name.
 ## CandleEntity
 
 ```php
-$candle = $client->candle();
+$candle = $client->Candle();
 ```
 
 ### Fields
@@ -190,7 +190,7 @@ $candle = $client->candle();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->candle()->load(["id" => "candle_id"]);
+$result = $client->Candle()->load(["id" => "candle_id"]);
 ```
 
 ### Common Methods
@@ -226,7 +226,7 @@ Return the entity name.
 ## DepositAddressEntity
 
 ```php
-$deposit_address = $client->deposit_address();
+$deposit_address = $client->DepositAddress();
 ```
 
 ### Fields
@@ -245,7 +245,7 @@ $deposit_address = $client->deposit_address();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->deposit_address()->load(["id" => "deposit_address_id"]);
+$result = $client->DepositAddress()->load(["id" => "deposit_address_id"]);
 ```
 
 ### Common Methods
@@ -281,7 +281,7 @@ Return the entity name.
 ## OrderEntity
 
 ```php
-$order = $client->order();
+$order = $client->Order();
 ```
 
 ### Fields
@@ -319,7 +319,7 @@ $order = $client->order();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->order()->create([
+$result = $client->Order()->create([
 ]);
 ```
 
@@ -328,7 +328,7 @@ $result = $client->order()->create([
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->order()->list([]);
+$results = $client->Order()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -336,7 +336,7 @@ $results = $client->order()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->order()->load(["id" => "order_id"]);
+$result = $client->Order()->load(["id" => "order_id"]);
 ```
 
 #### `remove(array $reqmatch, ?array $ctrl = null): mixed`
@@ -344,7 +344,7 @@ $result = $client->order()->load(["id" => "order_id"]);
 Remove the entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->order()->remove(["id" => "order_id"]);
+$result = $client->Order()->remove(["id" => "order_id"]);
 ```
 
 ### Common Methods
@@ -380,7 +380,7 @@ Return the entity name.
 ## OrderBookEntity
 
 ```php
-$order_book = $client->order_book();
+$order_book = $client->OrderBook();
 ```
 
 ### Fields
@@ -398,7 +398,7 @@ $order_book = $client->order_book();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->order_book()->load(["id" => "order_book_id"]);
+$result = $client->OrderBook()->load(["id" => "order_book_id"]);
 ```
 
 ### Common Methods
@@ -434,7 +434,7 @@ Return the entity name.
 ## TickerEntity
 
 ```php
-$ticker = $client->ticker();
+$ticker = $client->Ticker();
 ```
 
 ### Fields
@@ -457,7 +457,7 @@ $ticker = $client->ticker();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->ticker()->list([]);
+$results = $client->Ticker()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -465,7 +465,7 @@ $results = $client->ticker()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->ticker()->load(["id" => "ticker_id"]);
+$result = $client->Ticker()->load(["id" => "ticker_id"]);
 ```
 
 ### Common Methods
@@ -501,7 +501,7 @@ Return the entity name.
 ## TradeEntity
 
 ```php
-$trade = $client->trade();
+$trade = $client->Trade();
 ```
 
 ### Fields
@@ -521,7 +521,7 @@ $trade = $client->trade();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->trade()->load(["id" => "trade_id"]);
+$result = $client->Trade()->load(["id" => "trade_id"]);
 ```
 
 ### Common Methods
@@ -557,7 +557,7 @@ Return the entity name.
 ## WithdrawalEntity
 
 ```php
-$withdrawal = $client->withdrawal();
+$withdrawal = $client->Withdrawal();
 ```
 
 ### Fields
@@ -580,7 +580,7 @@ $withdrawal = $client->withdrawal();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->withdrawal()->create([
+$result = $client->Withdrawal()->create([
   "account_number" => /* `$STRING` */,
   "address" => /* `$STRING` */,
   "agency" => /* `$STRING` */,

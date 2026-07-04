@@ -194,7 +194,7 @@ Alias for `MercadoBitcoinSDK.test()`.
 ## BalanceEntity
 
 ```ts
-const balance = client.balance
+const balance = client.Balance()
 ```
 
 ### Fields
@@ -213,7 +213,7 @@ const balance = client.balance
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.balance.list()
+const results = await client.Balance().list()
 ```
 
 ### Common Methods
@@ -247,7 +247,7 @@ Return a copy of the entity options.
 ## CandleEntity
 
 ```ts
-const candle = client.candle
+const candle = client.Candle()
 ```
 
 ### Fields
@@ -268,7 +268,7 @@ const candle = client.candle
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.candle.load({ id: 'candle_id' })
+const result = await client.Candle().load({ id: 'candle_id' })
 ```
 
 ### Common Methods
@@ -302,7 +302,7 @@ Return a copy of the entity options.
 ## DepositAddressEntity
 
 ```ts
-const deposit_address = client.deposit_address
+const deposit_address = client.DepositAddress()
 ```
 
 ### Fields
@@ -321,7 +321,7 @@ const deposit_address = client.deposit_address
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.deposit_address.load({ id: 'deposit_address_id' })
+const result = await client.DepositAddress().load({ id: 'deposit_address_id' })
 ```
 
 ### Common Methods
@@ -355,7 +355,7 @@ Return a copy of the entity options.
 ## OrderEntity
 
 ```ts
-const order = client.order
+const order = client.Order()
 ```
 
 ### Fields
@@ -393,7 +393,7 @@ const order = client.order
 Create a new entity with the given data.
 
 ```ts
-const result = await client.order.create({
+const result = await client.Order().create({
 })
 ```
 
@@ -402,7 +402,7 @@ const result = await client.order.create({
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.order.list()
+const results = await client.Order().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -410,7 +410,7 @@ const results = await client.order.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.order.load({ id: 'order_id' })
+const result = await client.Order().load({ id: 'order_id' })
 ```
 
 #### `remove(match: object, ctrl?: object)`
@@ -418,7 +418,7 @@ const result = await client.order.load({ id: 'order_id' })
 Remove the entity matching the given criteria.
 
 ```ts
-const result = await client.order.remove({ id: 'order_id' })
+const result = await client.Order().remove({ id: 'order_id' })
 ```
 
 ### Common Methods
@@ -452,7 +452,7 @@ Return a copy of the entity options.
 ## OrderBookEntity
 
 ```ts
-const order_book = client.order_book
+const order_book = client.OrderBook()
 ```
 
 ### Fields
@@ -470,7 +470,7 @@ const order_book = client.order_book
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.order_book.load({ id: 'order_book_id' })
+const result = await client.OrderBook().load({ id: 'order_book_id' })
 ```
 
 ### Common Methods
@@ -504,7 +504,7 @@ Return a copy of the entity options.
 ## TickerEntity
 
 ```ts
-const ticker = client.ticker
+const ticker = client.Ticker()
 ```
 
 ### Fields
@@ -527,7 +527,7 @@ const ticker = client.ticker
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.ticker.list()
+const results = await client.Ticker().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -535,7 +535,7 @@ const results = await client.ticker.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ticker.load({ id: 'ticker_id' })
+const result = await client.Ticker().load({ id: 'ticker_id' })
 ```
 
 ### Common Methods
@@ -569,7 +569,7 @@ Return a copy of the entity options.
 ## TradeEntity
 
 ```ts
-const trade = client.trade
+const trade = client.Trade()
 ```
 
 ### Fields
@@ -589,7 +589,7 @@ const trade = client.trade
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.trade.load({ id: 'trade_id' })
+const result = await client.Trade().load({ id: 'trade_id' })
 ```
 
 ### Common Methods
@@ -623,7 +623,7 @@ Return a copy of the entity options.
 ## WithdrawalEntity
 
 ```ts
-const withdrawal = client.withdrawal
+const withdrawal = client.Withdrawal()
 ```
 
 ### Fields
@@ -646,7 +646,7 @@ const withdrawal = client.withdrawal
 Create a new entity with the given data.
 
 ```ts
-const result = await client.withdrawal.create({
+const result = await client.Withdrawal().create({
   account_number: /* `$STRING` */,
   address: /* `$STRING` */,
   agency: /* `$STRING` */,
