@@ -45,6 +45,7 @@ class DepositAddressEntity
     end
   end
 
+  # @return [DepositAddress, Hash] the current DepositAddress data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class DepositAddressEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of DepositAddress fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single DepositAddress.
+  #
+  # @param reqmatch [DepositAddressLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [DepositAddress, Hash] the loaded DepositAddress; raises MercadoBitcoinError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

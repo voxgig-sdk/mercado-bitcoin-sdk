@@ -44,9 +44,7 @@ class TestWithdrawalEntity:
         withdrawal_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.withdrawal"), "withdrawal_ref01"))
 
-        withdrawal_ref01_data_result, err = withdrawal_ref01_ent.create(withdrawal_ref01_data, None)
-        assert err is None
-        withdrawal_ref01_data = helpers.to_map(withdrawal_ref01_data_result)
+        withdrawal_ref01_data = helpers.to_map(withdrawal_ref01_ent.create(withdrawal_ref01_data, None))
         assert withdrawal_ref01_data is not None
 
 

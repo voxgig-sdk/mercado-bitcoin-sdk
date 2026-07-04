@@ -51,8 +51,7 @@ class TestTradeEntity:
         trade_ref01_match_dt0 = {
             "id": trade_ref01_data["id"],
         }
-        trade_ref01_data_dt0_loaded, err = trade_ref01_ent.load(trade_ref01_match_dt0, None)
-        assert err is None
+        trade_ref01_data_dt0_loaded = trade_ref01_ent.load(trade_ref01_match_dt0, None)
         trade_ref01_data_dt0_load_result = helpers.to_map(trade_ref01_data_dt0_loaded)
         assert trade_ref01_data_dt0_load_result is not None
         assert trade_ref01_data_dt0_load_result["id"] == trade_ref01_data["id"]

@@ -49,8 +49,7 @@ class OrderBookEntityTest extends TestCase
         // LOAD
         $order_book_ref01_ent = $client->OrderBook(null);
         $order_book_ref01_match_dt0 = [];
-        [$order_book_ref01_data_dt0_loaded, $err] = $order_book_ref01_ent->load($order_book_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $order_book_ref01_data_dt0_loaded = $order_book_ref01_ent->load($order_book_ref01_match_dt0, null);
         $this->assertNotNull($order_book_ref01_data_dt0_loaded);
 
     }

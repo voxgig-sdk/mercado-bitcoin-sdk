@@ -45,6 +45,7 @@ class BalanceEntity
     end
   end
 
+  # @return [Balance, Hash] the current Balance data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class BalanceEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Balance fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class BalanceEntity
   
 
   
+  # List Balance items matching the given filter.
+  #
+  # @param reqmatch [BalanceListMatch, Hash, nil] match filter (any subset of Balance fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Balance>, Array] the matching Balance items; raises MercadoBitcoinError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

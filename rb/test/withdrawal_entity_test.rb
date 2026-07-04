@@ -36,8 +36,7 @@ class WithdrawalEntityTest < Minitest::Test
     withdrawal_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.withdrawal"), "withdrawal_ref01"))
 
-    withdrawal_ref01_data_result, err = withdrawal_ref01_ent.create(withdrawal_ref01_data, nil)
-    assert_nil err
+    withdrawal_ref01_data_result = withdrawal_ref01_ent.create(withdrawal_ref01_data, nil)
     withdrawal_ref01_data = Helpers.to_map(withdrawal_ref01_data_result)
     assert !withdrawal_ref01_data.nil?
 

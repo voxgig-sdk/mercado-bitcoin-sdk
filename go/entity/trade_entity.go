@@ -85,6 +85,27 @@ func (e *TradeEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Trade; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *TradeEntity) DataTyped(data ...Trade) Trade {
+	if len(data) > 0 {
+		return typedFrom[Trade](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Trade](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Trade (all fields
+// optional at the wire level).
+func (e *TradeEntity) MatchTyped(match ...Trade) Trade {
+	if len(match) > 0 {
+		return typedFrom[Trade](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Trade](e.Match())
+}
+
 
 func (e *TradeEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *TradeEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, e
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// TradeLoadMatch and returns an Trade. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *TradeEntity) LoadTyped(reqmatch TradeLoadMatch, ctrl map[string]any) (Trade, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Trade{}, err
+	}
+	return typedFrom[Trade](res), nil
 }
 
 

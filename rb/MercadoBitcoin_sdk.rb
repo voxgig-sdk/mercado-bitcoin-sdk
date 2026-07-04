@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'MercadoBitcoin_types'
+
 
 class MercadoBitcoinSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class MercadoBitcoinSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class MercadoBitcoinSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue MercadoBitcoinError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = MercadoBitcoinHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class MercadoBitcoinSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,58 +198,114 @@ class MercadoBitcoinSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.balance.list / client.balance.load({ "id" => ... })
+  def balance
+    require_relative 'entity/balance_entity'
+    @balance ||= BalanceEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.balance instead.
   def Balance(data = nil)
     require_relative 'entity/balance_entity'
     BalanceEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.candle.list / client.candle.load({ "id" => ... })
+  def candle
+    require_relative 'entity/candle_entity'
+    @candle ||= CandleEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.candle instead.
   def Candle(data = nil)
     require_relative 'entity/candle_entity'
     CandleEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.deposit_address.list / client.deposit_address.load({ "id" => ... })
+  def deposit_address
+    require_relative 'entity/deposit_address_entity'
+    @deposit_address ||= DepositAddressEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.deposit_address instead.
   def DepositAddress(data = nil)
     require_relative 'entity/deposit_address_entity'
     DepositAddressEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.order.list / client.order.load({ "id" => ... })
+  def order
+    require_relative 'entity/order_entity'
+    @order ||= OrderEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.order instead.
   def Order(data = nil)
     require_relative 'entity/order_entity'
     OrderEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.order_book.list / client.order_book.load({ "id" => ... })
+  def order_book
+    require_relative 'entity/order_book_entity'
+    @order_book ||= OrderBookEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.order_book instead.
   def OrderBook(data = nil)
     require_relative 'entity/order_book_entity'
     OrderBookEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.ticker.list / client.ticker.load({ "id" => ... })
+  def ticker
+    require_relative 'entity/ticker_entity'
+    @ticker ||= TickerEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.ticker instead.
   def Ticker(data = nil)
     require_relative 'entity/ticker_entity'
     TickerEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.trade.list / client.trade.load({ "id" => ... })
+  def trade
+    require_relative 'entity/trade_entity'
+    @trade ||= TradeEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.trade instead.
   def Trade(data = nil)
     require_relative 'entity/trade_entity'
     TradeEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.withdrawal.list / client.withdrawal.load({ "id" => ... })
+  def withdrawal
+    require_relative 'entity/withdrawal_entity'
+    @withdrawal ||= WithdrawalEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.withdrawal instead.
   def Withdrawal(data = nil)
     require_relative 'entity/withdrawal_entity'
     WithdrawalEntity.new(self, data)

@@ -50,8 +50,7 @@ class BalanceEntityTest extends TestCase
         $balance_ref01_ent = $client->Balance(null);
         $balance_ref01_match = [];
 
-        [$balance_ref01_list_result, $err] = $balance_ref01_ent->list($balance_ref01_match, null);
-        $this->assertNull($err);
+        $balance_ref01_list_result = $balance_ref01_ent->list($balance_ref01_match, null);
         $this->assertIsArray($balance_ref01_list_result);
 
     }

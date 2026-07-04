@@ -50,14 +50,12 @@ class TickerEntityTest extends TestCase
         $ticker_ref01_ent = $client->Ticker(null);
         $ticker_ref01_match = [];
 
-        [$ticker_ref01_list_result, $err] = $ticker_ref01_ent->list($ticker_ref01_match, null);
-        $this->assertNull($err);
+        $ticker_ref01_list_result = $ticker_ref01_ent->list($ticker_ref01_match, null);
         $this->assertIsArray($ticker_ref01_list_result);
 
         // LOAD
         $ticker_ref01_match_dt0 = [];
-        [$ticker_ref01_data_dt0_loaded, $err] = $ticker_ref01_ent->load($ticker_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $ticker_ref01_data_dt0_loaded = $ticker_ref01_ent->load($ticker_ref01_match_dt0, null);
         $this->assertNotNull($ticker_ref01_data_dt0_loaded);
 
     }

@@ -85,6 +85,27 @@ func (e *CandleEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Candle; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *CandleEntity) DataTyped(data ...Candle) Candle {
+	if len(data) > 0 {
+		return typedFrom[Candle](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Candle](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Candle (all fields
+// optional at the wire level).
+func (e *CandleEntity) MatchTyped(match ...Candle) Candle {
+	if len(match) > 0 {
+		return typedFrom[Candle](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Candle](e.Match())
+}
+
 
 func (e *CandleEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *CandleEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, 
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// CandleLoadMatch and returns an Candle. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *CandleEntity) LoadTyped(reqmatch CandleLoadMatch, ctrl map[string]any) (Candle, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Candle{}, err
+	}
+	return typedFrom[Candle](res), nil
 }
 
 

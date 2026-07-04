@@ -43,8 +43,7 @@ class OrderEntityTest extends TestCase
         $order_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.order"), "order_ref01"));
 
-        [$order_ref01_data_result, $err] = $order_ref01_ent->create($order_ref01_data, null);
-        $this->assertNull($err);
+        $order_ref01_data_result = $order_ref01_ent->create($order_ref01_data, null);
         $order_ref01_data = Helpers::to_map($order_ref01_data_result);
         $this->assertNotNull($order_ref01_data);
         $this->assertNotNull($order_ref01_data["id"]);
@@ -52,8 +51,7 @@ class OrderEntityTest extends TestCase
         // LIST
         $order_ref01_match = [];
 
-        [$order_ref01_list_result, $err] = $order_ref01_ent->list($order_ref01_match, null);
-        $this->assertNull($err);
+        $order_ref01_list_result = $order_ref01_ent->list($order_ref01_match, null);
         $this->assertIsArray($order_ref01_list_result);
 
         $found_item = sdk_select(
@@ -65,8 +63,7 @@ class OrderEntityTest extends TestCase
         $order_ref01_match_dt0 = [
             "id" => $order_ref01_data["id"],
         ];
-        [$order_ref01_data_dt0_loaded, $err] = $order_ref01_ent->load($order_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $order_ref01_data_dt0_loaded = $order_ref01_ent->load($order_ref01_match_dt0, null);
         $order_ref01_data_dt0_load_result = Helpers::to_map($order_ref01_data_dt0_loaded);
         $this->assertNotNull($order_ref01_data_dt0_load_result);
         $this->assertEquals($order_ref01_data_dt0_load_result["id"], $order_ref01_data["id"]);
@@ -75,14 +72,12 @@ class OrderEntityTest extends TestCase
         $order_ref01_match_rm0 = [
             "id" => $order_ref01_data["id"],
         ];
-        [$_, $err] = $order_ref01_ent->remove($order_ref01_match_rm0, null);
-        $this->assertNull($err);
+        $order_ref01_ent->remove($order_ref01_match_rm0, null);
 
         // LIST
         $order_ref01_match_rt0 = [];
 
-        [$order_ref01_list_rt0_result, $err] = $order_ref01_ent->list($order_ref01_match_rt0, null);
-        $this->assertNull($err);
+        $order_ref01_list_rt0_result = $order_ref01_ent->list($order_ref01_match_rt0, null);
         $this->assertIsArray($order_ref01_list_rt0_result);
 
         $not_found_item = sdk_select(

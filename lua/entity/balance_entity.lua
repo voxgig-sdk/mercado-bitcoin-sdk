@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch BalanceListMatch
+---@param ctrl? table
+---@return Balance[]
+---@return string? err
 function BalanceEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -49,8 +49,7 @@ class TestDepositAddressEntity:
         # LOAD
         deposit_address_ref01_ent = client.DepositAddress(None)
         deposit_address_ref01_match_dt0 = {}
-        deposit_address_ref01_data_dt0_loaded, err = deposit_address_ref01_ent.load(deposit_address_ref01_match_dt0, None)
-        assert err is None
+        deposit_address_ref01_data_dt0_loaded = deposit_address_ref01_ent.load(deposit_address_ref01_match_dt0, None)
         assert deposit_address_ref01_data_dt0_loaded is not None
 
 

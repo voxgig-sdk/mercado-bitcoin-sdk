@@ -49,8 +49,7 @@ class TestOrderBookEntity:
         # LOAD
         order_book_ref01_ent = client.OrderBook(None)
         order_book_ref01_match_dt0 = {}
-        order_book_ref01_data_dt0_loaded, err = order_book_ref01_ent.load(order_book_ref01_match_dt0, None)
-        assert err is None
+        order_book_ref01_data_dt0_loaded = order_book_ref01_ent.load(order_book_ref01_match_dt0, None)
         assert order_book_ref01_data_dt0_loaded is not None
 
 

@@ -244,48 +244,152 @@ end
 
 
 
+-- Idiomatic facade: client:balance():list() / client:balance():load({ id = ... })
+function MercadoBitcoinSDK:balance(data)
+  local EntityMod = require("entity.balance_entity")
+  if data == nil then
+    if self._balance == nil then
+      self._balance = EntityMod.new(self, nil)
+    end
+    return self._balance
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:balance() instead.
 function MercadoBitcoinSDK:Balance(data)
   local EntityMod = require("entity.balance_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:candle():list() / client:candle():load({ id = ... })
+function MercadoBitcoinSDK:candle(data)
+  local EntityMod = require("entity.candle_entity")
+  if data == nil then
+    if self._candle == nil then
+      self._candle = EntityMod.new(self, nil)
+    end
+    return self._candle
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:candle() instead.
 function MercadoBitcoinSDK:Candle(data)
   local EntityMod = require("entity.candle_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:deposit_address():list() / client:deposit_address():load({ id = ... })
+function MercadoBitcoinSDK:deposit_address(data)
+  local EntityMod = require("entity.deposit_address_entity")
+  if data == nil then
+    if self._deposit_address == nil then
+      self._deposit_address = EntityMod.new(self, nil)
+    end
+    return self._deposit_address
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:deposit_address() instead.
 function MercadoBitcoinSDK:DepositAddress(data)
   local EntityMod = require("entity.deposit_address_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:order():list() / client:order():load({ id = ... })
+function MercadoBitcoinSDK:order(data)
+  local EntityMod = require("entity.order_entity")
+  if data == nil then
+    if self._order == nil then
+      self._order = EntityMod.new(self, nil)
+    end
+    return self._order
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:order() instead.
 function MercadoBitcoinSDK:Order(data)
   local EntityMod = require("entity.order_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:order_book():list() / client:order_book():load({ id = ... })
+function MercadoBitcoinSDK:order_book(data)
+  local EntityMod = require("entity.order_book_entity")
+  if data == nil then
+    if self._order_book == nil then
+      self._order_book = EntityMod.new(self, nil)
+    end
+    return self._order_book
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:order_book() instead.
 function MercadoBitcoinSDK:OrderBook(data)
   local EntityMod = require("entity.order_book_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:ticker():list() / client:ticker():load({ id = ... })
+function MercadoBitcoinSDK:ticker(data)
+  local EntityMod = require("entity.ticker_entity")
+  if data == nil then
+    if self._ticker == nil then
+      self._ticker = EntityMod.new(self, nil)
+    end
+    return self._ticker
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:ticker() instead.
 function MercadoBitcoinSDK:Ticker(data)
   local EntityMod = require("entity.ticker_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:trade():list() / client:trade():load({ id = ... })
+function MercadoBitcoinSDK:trade(data)
+  local EntityMod = require("entity.trade_entity")
+  if data == nil then
+    if self._trade == nil then
+      self._trade = EntityMod.new(self, nil)
+    end
+    return self._trade
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:trade() instead.
 function MercadoBitcoinSDK:Trade(data)
   local EntityMod = require("entity.trade_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:withdrawal():list() / client:withdrawal():load({ id = ... })
+function MercadoBitcoinSDK:withdrawal(data)
+  local EntityMod = require("entity.withdrawal_entity")
+  if data == nil then
+    if self._withdrawal == nil then
+      self._withdrawal = EntityMod.new(self, nil)
+    end
+    return self._withdrawal
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:withdrawal() instead.
 function MercadoBitcoinSDK:Withdrawal(data)
   local EntityMod = require("entity.withdrawal_entity")
   return EntityMod.new(self, data)

@@ -161,6 +161,7 @@ class MercadoBitcoinConfig
                         'orig' => 'symbol',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -467,6 +468,7 @@ class MercadoBitcoinConfig
                         'orig' => 'order_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -510,6 +512,7 @@ class MercadoBitcoinConfig
                         'orig' => 'order_id',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -584,6 +587,7 @@ class MercadoBitcoinConfig
                         'orig' => 'symbol',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [
@@ -726,6 +730,7 @@ class MercadoBitcoinConfig
                         'orig' => 'symbol',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],
@@ -814,6 +819,7 @@ class MercadoBitcoinConfig
                         'orig' => 'symbol',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [

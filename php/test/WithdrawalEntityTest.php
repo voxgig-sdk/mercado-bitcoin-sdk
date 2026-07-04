@@ -43,8 +43,7 @@ class WithdrawalEntityTest extends TestCase
         $withdrawal_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.withdrawal"), "withdrawal_ref01"));
 
-        [$withdrawal_ref01_data_result, $err] = $withdrawal_ref01_ent->create($withdrawal_ref01_data, null);
-        $this->assertNull($err);
+        $withdrawal_ref01_data_result = $withdrawal_ref01_ent->create($withdrawal_ref01_data, null);
         $withdrawal_ref01_data = Helpers::to_map($withdrawal_ref01_data_result);
         $this->assertNotNull($withdrawal_ref01_data);
 

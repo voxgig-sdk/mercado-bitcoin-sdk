@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Withdrawal,
+  WithdrawalCreateData,
+} from '../MercadoBitcoinTypes'
 
 // TODO: needs Entity superclass
-class WithdrawalEntity extends MercadoBitcoinEntityBase {
+class WithdrawalEntity extends MercadoBitcoinEntityBase<Withdrawal> {
 
   constructor(client: MercadoBitcoinSDK, entopts: any) {
     super(client, entopts)
@@ -34,7 +38,7 @@ class WithdrawalEntity extends MercadoBitcoinEntityBase {
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: WithdrawalCreateData, ctrl?: Control): Promise<Withdrawal> {
 
     const utility = this._utility
     const {
@@ -133,7 +137,9 @@ class WithdrawalEntity extends MercadoBitcoinEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Withdrawal> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

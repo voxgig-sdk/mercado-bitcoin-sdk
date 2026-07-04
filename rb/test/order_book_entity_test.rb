@@ -42,8 +42,7 @@ class OrderBookEntityTest < Minitest::Test
     # LOAD
     order_book_ref01_ent = client.OrderBook(nil)
     order_book_ref01_match_dt0 = {}
-    order_book_ref01_data_dt0_loaded, err = order_book_ref01_ent.load(order_book_ref01_match_dt0, nil)
-    assert_nil err
+    order_book_ref01_data_dt0_loaded = order_book_ref01_ent.load(order_book_ref01_match_dt0, nil)
     assert !order_book_ref01_data_dt0_loaded.nil?
 
   end

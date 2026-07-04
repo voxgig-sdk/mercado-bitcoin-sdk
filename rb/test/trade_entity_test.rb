@@ -44,8 +44,7 @@ class TradeEntityTest < Minitest::Test
     trade_ref01_match_dt0 = {
       "id" => trade_ref01_data["id"],
     }
-    trade_ref01_data_dt0_loaded, err = trade_ref01_ent.load(trade_ref01_match_dt0, nil)
-    assert_nil err
+    trade_ref01_data_dt0_loaded = trade_ref01_ent.load(trade_ref01_match_dt0, nil)
     trade_ref01_data_dt0_load_result = Helpers.to_map(trade_ref01_data_dt0_loaded)
     assert !trade_ref01_data_dt0_load_result.nil?
     assert_equal trade_ref01_data_dt0_load_result["id"], trade_ref01_data["id"]

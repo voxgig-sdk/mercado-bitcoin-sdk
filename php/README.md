@@ -9,9 +9,10 @@ The PHP SDK for the MercadoBitcoin API — an entity-oriented client using PHP c
 
 
 ## Install
-```bash
-composer require voxgig-sdk/mercado-bitcoin
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/mercado-bitcoin-sdk/releases](https://github.com/voxgig-sdk/mercado-bitcoin-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -26,21 +27,23 @@ loading a specific record.
 require_once 'mercadobitcoin_sdk.php';
 
 $client = new MercadoBitcoinSDK([
-    "apikey" => getenv("MERCADO-BITCOIN_APIKEY"),
+    "apikey" => getenv("MERCADO_BITCOIN_APIKEY"),
 ]);
 ```
 
 ### 2. List balances
 
 ```php
-[$result, $err] = $client->Balance()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->balance()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
@@ -52,28 +55,31 @@ if (is_array($result)) {
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -87,7 +93,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = MercadoBitcoinSDK::test();
 
-[$result, $err] = $client->MercadoBitcoin()->load(["id" => "test01"]);
+$result = $client->balance()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -121,8 +127,8 @@ $client = new MercadoBitcoinSDK([
 Create a `.env.local` file at the project root:
 
 ```
-MERCADO-BITCOIN_TEST_LIVE=TRUE
-MERCADO-BITCOIN_APIKEY=<your-key>
+MERCADO_BITCOIN_TEST_LIVE=TRUE
+MERCADO_BITCOIN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -198,8 +204,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -338,7 +348,7 @@ API path: `/withdrawals/brl`
 
 ### Balance
 
-Create an instance: `const balance = client.Balance()`
+Create an instance: `const balance = client.balance`
 
 #### Operations
 
@@ -358,13 +368,13 @@ Create an instance: `const balance = client.Balance()`
 #### Example: List
 
 ```ts
-const balances = await client.Balance().list()
+const balances = await client.balance.list()
 ```
 
 
 ### Candle
 
-Create an instance: `const candle = client.Candle()`
+Create an instance: `const candle = client.candle`
 
 #### Operations
 
@@ -386,13 +396,13 @@ Create an instance: `const candle = client.Candle()`
 #### Example: Load
 
 ```ts
-const candle = await client.Candle().load({ id: 'candle_id' })
+const candle = await client.candle.load({ id: 'candle_id' })
 ```
 
 
 ### DepositAddress
 
-Create an instance: `const deposit_address = client.DepositAddress()`
+Create an instance: `const deposit_address = client.deposit_address`
 
 #### Operations
 
@@ -412,13 +422,13 @@ Create an instance: `const deposit_address = client.DepositAddress()`
 #### Example: Load
 
 ```ts
-const deposit_address = await client.DepositAddress().load({ id: 'deposit_address_id' })
+const deposit_address = await client.deposit_address.load({ id: 'deposit_address_id' })
 ```
 
 
 ### Order
 
-Create an instance: `const order = client.Order()`
+Create an instance: `const order = client.order`
 
 #### Operations
 
@@ -446,26 +456,26 @@ Create an instance: `const order = client.Order()`
 #### Example: Load
 
 ```ts
-const order = await client.Order().load({ id: 'order_id' })
+const order = await client.order.load({ id: 'order_id' })
 ```
 
 #### Example: List
 
 ```ts
-const orders = await client.Order().list()
+const orders = await client.order.list()
 ```
 
 #### Example: Create
 
 ```ts
-const order = await client.Order().create({
+const order = await client.order.create({
 })
 ```
 
 
 ### OrderBook
 
-Create an instance: `const order_book = client.OrderBook()`
+Create an instance: `const order_book = client.order_book`
 
 #### Operations
 
@@ -484,13 +494,13 @@ Create an instance: `const order_book = client.OrderBook()`
 #### Example: Load
 
 ```ts
-const order_book = await client.OrderBook().load({ id: 'order_book_id' })
+const order_book = await client.order_book.load({ id: 'order_book_id' })
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.Ticker()`
+Create an instance: `const ticker = client.ticker`
 
 #### Operations
 
@@ -515,19 +525,19 @@ Create an instance: `const ticker = client.Ticker()`
 #### Example: Load
 
 ```ts
-const ticker = await client.Ticker().load({ id: 'ticker_id' })
+const ticker = await client.ticker.load({ id: 'ticker_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tickers = await client.Ticker().list()
+const tickers = await client.ticker.list()
 ```
 
 
 ### Trade
 
-Create an instance: `const trade = client.Trade()`
+Create an instance: `const trade = client.trade`
 
 #### Operations
 
@@ -548,13 +558,13 @@ Create an instance: `const trade = client.Trade()`
 #### Example: Load
 
 ```ts
-const trade = await client.Trade().load({ id: 'trade_id' })
+const trade = await client.trade.load({ id: 'trade_id' })
 ```
 
 
 ### Withdrawal
 
-Create an instance: `const withdrawal = client.Withdrawal()`
+Create an instance: `const withdrawal = client.withdrawal`
 
 #### Operations
 
@@ -578,7 +588,7 @@ Create an instance: `const withdrawal = client.Withdrawal()`
 #### Example: Create
 
 ```ts
-const withdrawal = await client.Withdrawal().create({
+const withdrawal = await client.withdrawal.create({
   account_number: /* `$STRING` */,
   address: /* `$STRING` */,
   agency: /* `$STRING` */,
@@ -660,11 +670,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$balance = $client->balance();
+$balance->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $balance->dataGet() now returns the loaded balance data
+// $balance->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

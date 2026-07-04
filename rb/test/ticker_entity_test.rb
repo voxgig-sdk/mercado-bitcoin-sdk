@@ -43,14 +43,12 @@ class TickerEntityTest < Minitest::Test
     ticker_ref01_ent = client.Ticker(nil)
     ticker_ref01_match = {}
 
-    ticker_ref01_list_result, err = ticker_ref01_ent.list(ticker_ref01_match, nil)
-    assert_nil err
+    ticker_ref01_list_result = ticker_ref01_ent.list(ticker_ref01_match, nil)
     assert ticker_ref01_list_result.is_a?(Array)
 
     # LOAD
     ticker_ref01_match_dt0 = {}
-    ticker_ref01_data_dt0_loaded, err = ticker_ref01_ent.load(ticker_ref01_match_dt0, nil)
-    assert_nil err
+    ticker_ref01_data_dt0_loaded = ticker_ref01_ent.load(ticker_ref01_match_dt0, nil)
     assert !ticker_ref01_data_dt0_loaded.nil?
 
   end

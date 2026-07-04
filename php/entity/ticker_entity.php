@@ -55,6 +55,9 @@ class TickerEntity
         return new TickerEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Ticker|array $args Ticker data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class TickerEntity
         }
     }
 
+    /**
+     * @return Ticker|array The current Ticker data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Ticker fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class TickerEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Ticker fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class TickerEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Ticker.
+     *
+     * @param TickerLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed TickerLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Ticker|array The loaded Ticker as an assoc-array at the
+     *   SDK boundary; throws MercadoBitcoinError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class TickerEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Ticker items matching the given filter.
+     *
+     * @param TickerListMatch|array|null $reqmatch Match filter (any subset
+     *   of Ticker fields) as an assoc-array; TickerListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Ticker[]|array A list of Ticker items as assoc-arrays at
+     *   the SDK boundary; throws MercadoBitcoinError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class TickerEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

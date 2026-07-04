@@ -50,8 +50,7 @@ class TestBalanceEntity:
         balance_ref01_ent = client.Balance(None)
         balance_ref01_match = {}
 
-        balance_ref01_list_result, err = balance_ref01_ent.list(balance_ref01_match, None)
-        assert err is None
+        balance_ref01_list_result = balance_ref01_ent.list(balance_ref01_match, None)
         assert isinstance(balance_ref01_list_result, list)
 
 

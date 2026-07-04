@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CandleLoadMatch
+---@param ctrl? table
+---@return Candle
+---@return string? err
 function CandleEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

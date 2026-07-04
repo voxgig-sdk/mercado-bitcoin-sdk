@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  DepositAddress,
+  DepositAddressLoadMatch,
+} from '../MercadoBitcoinTypes'
 
 // TODO: needs Entity superclass
-class DepositAddressEntity extends MercadoBitcoinEntityBase {
+class DepositAddressEntity extends MercadoBitcoinEntityBase<DepositAddress> {
 
   constructor(client: MercadoBitcoinSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class DepositAddressEntity extends MercadoBitcoinEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: DepositAddressLoadMatch, ctrl?: Control): Promise<DepositAddress> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class DepositAddressEntity extends MercadoBitcoinEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<DepositAddress> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

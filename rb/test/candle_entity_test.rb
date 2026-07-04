@@ -42,8 +42,7 @@ class CandleEntityTest < Minitest::Test
     # LOAD
     candle_ref01_ent = client.Candle(nil)
     candle_ref01_match_dt0 = {}
-    candle_ref01_data_dt0_loaded, err = candle_ref01_ent.load(candle_ref01_match_dt0, nil)
-    assert_nil err
+    candle_ref01_data_dt0_loaded = candle_ref01_ent.load(candle_ref01_match_dt0, nil)
     assert !candle_ref01_data_dt0_loaded.nil?
 
   end

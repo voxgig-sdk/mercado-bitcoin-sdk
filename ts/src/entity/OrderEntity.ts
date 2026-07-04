@@ -14,9 +14,16 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Order,
+  OrderLoadMatch,
+  OrderListMatch,
+  OrderCreateData,
+  OrderRemoveMatch,
+} from '../MercadoBitcoinTypes'
 
 // TODO: needs Entity superclass
-class OrderEntity extends MercadoBitcoinEntityBase {
+class OrderEntity extends MercadoBitcoinEntityBase<Order> {
 
   constructor(client: MercadoBitcoinSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +39,7 @@ class OrderEntity extends MercadoBitcoinEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: OrderLoadMatch, ctrl?: Control): Promise<Order> {
 
     const utility = this._utility
 
@@ -136,14 +143,16 @@ class OrderEntity extends MercadoBitcoinEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Order> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: OrderListMatch, ctrl?: Control): Promise<Order[]> {
 
     const utility = this._utility
 
@@ -243,14 +252,16 @@ class OrderEntity extends MercadoBitcoinEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Order[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async create(this: any, reqdata?: any, ctrl?: Control) {
+  async create(this: any, reqdata?: OrderCreateData, ctrl?: Control): Promise<Order> {
 
     const utility = this._utility
     const {
@@ -349,7 +360,9 @@ class OrderEntity extends MercadoBitcoinEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Order> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
@@ -357,7 +370,7 @@ class OrderEntity extends MercadoBitcoinEntityBase {
 
 
 
-  async remove(this: any, reqmatch?: any, ctrl?: Control) {
+  async remove(this: any, reqmatch?: OrderRemoveMatch, ctrl?: Control): Promise<Order> {
 
     const utility = this._utility
 
@@ -462,7 +475,9 @@ class OrderEntity extends MercadoBitcoinEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Order> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

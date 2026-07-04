@@ -9,7 +9,7 @@ require_once __DIR__ . '/../core/Error.php';
 
 class MercadoBitcoinMakeError
 {
-    public static function call(?MercadoBitcoinContext $ctx, mixed $err): array
+    public static function call(?MercadoBitcoinContext $ctx, mixed $err): mixed
     {
         if ($ctx === null) {
             require_once __DIR__ . '/../core/Context.php';
@@ -52,8 +52,8 @@ class MercadoBitcoinMakeError
         $ctx->ctrl->err = $sdk_err;
 
         if ($ctx->ctrl->throw_err === false) {
-            return [$result->resdata, null];
+            return $result->resdata;
         }
-        return [null, $sdk_err];
+        throw $sdk_err;
     }
 }

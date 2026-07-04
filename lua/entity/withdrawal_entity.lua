@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata WithdrawalCreateData
+---@param ctrl? table
+---@return Withdrawal
+---@return string? err
 function WithdrawalEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -44,17 +44,14 @@ class TestOrderEntity:
         order_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.order"), "order_ref01"))
 
-        order_ref01_data_result, err = order_ref01_ent.create(order_ref01_data, None)
-        assert err is None
-        order_ref01_data = helpers.to_map(order_ref01_data_result)
+        order_ref01_data = helpers.to_map(order_ref01_ent.create(order_ref01_data, None))
         assert order_ref01_data is not None
         assert order_ref01_data["id"] is not None
 
         # LIST
         order_ref01_match = {}
 
-        order_ref01_list_result, err = order_ref01_ent.list(order_ref01_match, None)
-        assert err is None
+        order_ref01_list_result = order_ref01_ent.list(order_ref01_match, None)
         assert isinstance(order_ref01_list_result, list)
 
         found_item = vs.select(
@@ -66,8 +63,7 @@ class TestOrderEntity:
         order_ref01_match_dt0 = {
             "id": order_ref01_data["id"],
         }
-        order_ref01_data_dt0_loaded, err = order_ref01_ent.load(order_ref01_match_dt0, None)
-        assert err is None
+        order_ref01_data_dt0_loaded = order_ref01_ent.load(order_ref01_match_dt0, None)
         order_ref01_data_dt0_load_result = helpers.to_map(order_ref01_data_dt0_loaded)
         assert order_ref01_data_dt0_load_result is not None
         assert order_ref01_data_dt0_load_result["id"] == order_ref01_data["id"]
@@ -76,14 +72,12 @@ class TestOrderEntity:
         order_ref01_match_rm0 = {
             "id": order_ref01_data["id"],
         }
-        _, err = order_ref01_ent.remove(order_ref01_match_rm0, None)
-        assert err is None
+        order_ref01_ent.remove(order_ref01_match_rm0, None)
 
         # LIST
         order_ref01_match_rt0 = {}
 
-        order_ref01_list_rt0_result, err = order_ref01_ent.list(order_ref01_match_rt0, None)
-        assert err is None
+        order_ref01_list_rt0_result = order_ref01_ent.list(order_ref01_match_rt0, None)
         assert isinstance(order_ref01_list_rt0_result, list)
 
         not_found_item = vs.select(

@@ -45,6 +45,7 @@ class WithdrawalEntity
     end
   end
 
+  # @return [Withdrawal, Hash] the current Withdrawal data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class WithdrawalEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Withdrawal fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class WithdrawalEntity
   
 
   
+  # Create a new Withdrawal.
+  #
+  # @param reqdata [WithdrawalCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Withdrawal, Hash] the created Withdrawal; raises MercadoBitcoinError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

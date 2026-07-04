@@ -199,7 +199,8 @@ class Config {
                     "name": "id",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -505,7 +506,8 @@ class Config {
                     "name": "id",
                     "orig": "order_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -548,7 +550,8 @@ class Config {
                     "name": "id",
                     "orig": "order_id",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -622,7 +625,8 @@ class Config {
                     "name": "symbol",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [
@@ -764,7 +768,8 @@ class Config {
                     "name": "id",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -852,7 +857,8 @@ class Config {
                     "name": "id",
                     "orig": "symbol",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

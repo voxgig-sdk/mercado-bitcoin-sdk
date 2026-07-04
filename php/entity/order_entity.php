@@ -55,6 +55,9 @@ class OrderEntity
         return new OrderEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Order|array $args Order data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class OrderEntity
         }
     }
 
+    /**
+     * @return Order|array The current Order data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Order fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class OrderEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Order fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class OrderEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Order.
+     *
+     * @param OrderLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed OrderLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Order|array The loaded Order as an assoc-array at the
+     *   SDK boundary; throws MercadoBitcoinError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class OrderEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Order items matching the given filter.
+     *
+     * @param OrderListMatch|array|null $reqmatch Match filter (any subset
+     *   of Order fields) as an assoc-array; OrderListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Order[]|array A list of Order items as assoc-arrays at
+     *   the SDK boundary; throws MercadoBitcoinError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -133,7 +163,16 @@ class OrderEntity
 
 
     
-    public function create($reqdata, $ctrl = null): array
+    /**
+     * Create a new Order.
+     *
+     * @param OrderCreateData|array|null $reqdata Body data as an assoc-array;
+     *   a typed OrderCreateData names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Order|array The created Order as an assoc-array at the
+     *   SDK boundary; throws MercadoBitcoinError on failure (item-5 convention).
+     */
+    public function create(?array $reqdata = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -158,7 +197,16 @@ class OrderEntity
     
 
     
-    public function remove($reqmatch, $ctrl = null): array
+    /**
+     * Remove an Order matching the given criteria.
+     *
+     * @param OrderRemoveMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; OrderRemoveMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Order|array The removed Order as an assoc-array at the
+     *   SDK boundary; throws MercadoBitcoinError on failure (item-5 convention).
+     */
+    public function remove(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -183,7 +231,7 @@ class OrderEntity
 
 
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

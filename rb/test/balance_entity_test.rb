@@ -43,8 +43,7 @@ class BalanceEntityTest < Minitest::Test
     balance_ref01_ent = client.Balance(nil)
     balance_ref01_match = {}
 
-    balance_ref01_list_result, err = balance_ref01_ent.list(balance_ref01_match, nil)
-    assert_nil err
+    balance_ref01_list_result = balance_ref01_ent.list(balance_ref01_match, nil)
     assert balance_ref01_list_result.is_a?(Array)
 
   end

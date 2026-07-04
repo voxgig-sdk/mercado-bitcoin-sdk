@@ -36,8 +36,7 @@ class OrderEntityTest < Minitest::Test
     order_ref01_data = Helpers.to_map(Vs.getprop(
       Vs.getpath(setup[:data], "new.order"), "order_ref01"))
 
-    order_ref01_data_result, err = order_ref01_ent.create(order_ref01_data, nil)
-    assert_nil err
+    order_ref01_data_result = order_ref01_ent.create(order_ref01_data, nil)
     order_ref01_data = Helpers.to_map(order_ref01_data_result)
     assert !order_ref01_data.nil?
     assert !order_ref01_data["id"].nil?
@@ -45,8 +44,7 @@ class OrderEntityTest < Minitest::Test
     # LIST
     order_ref01_match = {}
 
-    order_ref01_list_result, err = order_ref01_ent.list(order_ref01_match, nil)
-    assert_nil err
+    order_ref01_list_result = order_ref01_ent.list(order_ref01_match, nil)
     assert order_ref01_list_result.is_a?(Array)
 
     found_item = Vs.select(
@@ -58,8 +56,7 @@ class OrderEntityTest < Minitest::Test
     order_ref01_match_dt0 = {
       "id" => order_ref01_data["id"],
     }
-    order_ref01_data_dt0_loaded, err = order_ref01_ent.load(order_ref01_match_dt0, nil)
-    assert_nil err
+    order_ref01_data_dt0_loaded = order_ref01_ent.load(order_ref01_match_dt0, nil)
     order_ref01_data_dt0_load_result = Helpers.to_map(order_ref01_data_dt0_loaded)
     assert !order_ref01_data_dt0_load_result.nil?
     assert_equal order_ref01_data_dt0_load_result["id"], order_ref01_data["id"]
@@ -68,14 +65,12 @@ class OrderEntityTest < Minitest::Test
     order_ref01_match_rm0 = {
       "id" => order_ref01_data["id"],
     }
-    _, err = order_ref01_ent.remove(order_ref01_match_rm0, nil)
-    assert_nil err
+    order_ref01_ent.remove(order_ref01_match_rm0, nil)
 
     # LIST
     order_ref01_match_rt0 = {}
 
-    order_ref01_list_rt0_result, err = order_ref01_ent.list(order_ref01_match_rt0, nil)
-    assert_nil err
+    order_ref01_list_rt0_result = order_ref01_ent.list(order_ref01_match_rt0, nil)
     assert order_ref01_list_rt0_result.is_a?(Array)
 
     not_found_item = Vs.select(

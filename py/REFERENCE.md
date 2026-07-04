@@ -82,9 +82,9 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs=None) -> tuple`
+#### `direct(fetchargs=None) -> dict`
 
-Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
+Make a direct HTTP request to any API endpoint. Returns a result `dict` with `ok`, `status`, `headers`, and `data` (or `err` on failure). This escape hatch never raises — branch on `result["ok"]`.
 
 **Parameters:**
 
@@ -97,11 +97,11 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 | `fetchargs["headers"]` | `dict` | Request headers (merged with defaults). |
 | `fetchargs["body"]` | `any` | Request body (dicts are JSON-serialized). |
 
-**Returns:** `(result_dict, err)`
+**Returns:** `result_dict`
 
-#### `prepare(fetchargs=None) -> tuple`
+#### `prepare(fetchargs=None) -> dict`
 
-Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
+Prepare a fetch definition without sending. Returns the `fetchdef` and raises on error.
 
 
 ---
@@ -109,7 +109,7 @@ Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
 ## BalanceEntity
 
 ```python
-balance = client.Balance()
+balance = client.balance
 ```
 
 ### Fields
@@ -123,12 +123,12 @@ balance = client.Balance()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Balance().list({})
+results = client.balance.list({})
 ```
 
 ### Common Methods
@@ -163,7 +163,7 @@ Return the entity name.
 ## CandleEntity
 
 ```python
-candle = client.Candle()
+candle = client.candle
 ```
 
 ### Fields
@@ -179,12 +179,12 @@ candle = client.Candle()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Candle().load({"id": "candle_id"})
+result = client.candle.load({"id": "candle_id"})
 ```
 
 ### Common Methods
@@ -219,7 +219,7 @@ Return the entity name.
 ## DepositAddressEntity
 
 ```python
-deposit_address = client.DepositAddress()
+deposit_address = client.deposit_address
 ```
 
 ### Fields
@@ -233,12 +233,12 @@ deposit_address = client.DepositAddress()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.DepositAddress().load({"id": "deposit_address_id"})
+result = client.deposit_address.load({"id": "deposit_address_id"})
 ```
 
 ### Common Methods
@@ -273,7 +273,7 @@ Return the entity name.
 ## OrderEntity
 
 ```python
-order = client.Order()
+order = client.order
 ```
 
 ### Fields
@@ -306,37 +306,37 @@ order = client.Order()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> tuple`
+#### `create(reqdata, ctrl=None) -> dict`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result, err = client.Order().create({
+result = client.order.create({
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Order().list({})
+results = client.order.list({})
 ```
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Order().load({"id": "order_id"})
+result = client.order.load({"id": "order_id"})
 ```
 
-#### `remove(reqmatch, ctrl=None) -> tuple`
+#### `remove(reqmatch, ctrl=None) -> dict`
 
-Remove the entity matching the given criteria.
+Remove the entity matching the given criteria. Raises on error.
 
 ```python
-result, err = client.Order().remove({"id": "order_id"})
+result = client.order.remove({"id": "order_id"})
 ```
 
 ### Common Methods
@@ -371,7 +371,7 @@ Return the entity name.
 ## OrderBookEntity
 
 ```python
-order_book = client.OrderBook()
+order_book = client.order_book
 ```
 
 ### Fields
@@ -384,12 +384,12 @@ order_book = client.OrderBook()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.OrderBook().load({"id": "order_book_id"})
+result = client.order_book.load({"id": "order_book_id"})
 ```
 
 ### Common Methods
@@ -424,7 +424,7 @@ Return the entity name.
 ## TickerEntity
 
 ```python
-ticker = client.Ticker()
+ticker = client.ticker
 ```
 
 ### Fields
@@ -442,20 +442,20 @@ ticker = client.Ticker()
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> tuple`
+#### `list(reqmatch, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results, err = client.Ticker().list({})
+results = client.ticker.list({})
 ```
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Ticker().load({"id": "ticker_id"})
+result = client.ticker.load({"id": "ticker_id"})
 ```
 
 ### Common Methods
@@ -490,7 +490,7 @@ Return the entity name.
 ## TradeEntity
 
 ```python
-trade = client.Trade()
+trade = client.trade
 ```
 
 ### Fields
@@ -505,12 +505,12 @@ trade = client.Trade()
 
 ### Operations
 
-#### `load(reqmatch, ctrl=None) -> tuple`
+#### `load(reqmatch, ctrl=None) -> dict`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result, err = client.Trade().load({"id": "trade_id"})
+result = client.trade.load({"id": "trade_id"})
 ```
 
 ### Common Methods
@@ -545,7 +545,7 @@ Return the entity name.
 ## WithdrawalEntity
 
 ```python
-withdrawal = client.Withdrawal()
+withdrawal = client.withdrawal
 ```
 
 ### Fields
@@ -563,12 +563,12 @@ withdrawal = client.Withdrawal()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> tuple`
+#### `create(reqdata, ctrl=None) -> dict`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result, err = client.Withdrawal().create({
+result = client.withdrawal.create({
     "account_number": # `$STRING`,
     "address": # `$STRING`,
     "agency": # `$STRING`,

@@ -50,14 +50,12 @@ class TestTickerEntity:
         ticker_ref01_ent = client.Ticker(None)
         ticker_ref01_match = {}
 
-        ticker_ref01_list_result, err = ticker_ref01_ent.list(ticker_ref01_match, None)
-        assert err is None
+        ticker_ref01_list_result = ticker_ref01_ent.list(ticker_ref01_match, None)
         assert isinstance(ticker_ref01_list_result, list)
 
         # LOAD
         ticker_ref01_match_dt0 = {}
-        ticker_ref01_data_dt0_loaded, err = ticker_ref01_ent.load(ticker_ref01_match_dt0, None)
-        assert err is None
+        ticker_ref01_data_dt0_loaded = ticker_ref01_ent.load(ticker_ref01_match_dt0, None)
         assert ticker_ref01_data_dt0_loaded is not None
 
 

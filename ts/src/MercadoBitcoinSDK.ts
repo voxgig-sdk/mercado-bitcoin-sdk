@@ -9,6 +9,8 @@ import { TickerEntity } from './entity/TickerEntity'
 import { TradeEntity } from './entity/TradeEntity'
 import { WithdrawalEntity } from './entity/WithdrawalEntity'
 
+export type * from './MercadoBitcoinTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -209,48 +211,112 @@ class MercadoBitcoinSDK {
 
 
 
+  _balance?: BalanceEntity
+
+  // Idiomatic facade: `client.balance.list()` / `client.balance.load({ id })`.
+  get balance(): BalanceEntity {
+    return (this._balance ??= new BalanceEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.balance` instead. */
   Balance(data?: any) {
     const self = this
     return new BalanceEntity(self,data)
   }
 
 
+  _candle?: CandleEntity
+
+  // Idiomatic facade: `client.candle.list()` / `client.candle.load({ id })`.
+  get candle(): CandleEntity {
+    return (this._candle ??= new CandleEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.candle` instead. */
   Candle(data?: any) {
     const self = this
     return new CandleEntity(self,data)
   }
 
 
+  _deposit_address?: DepositAddressEntity
+
+  // Idiomatic facade: `client.deposit_address.list()` / `client.deposit_address.load({ id })`.
+  get deposit_address(): DepositAddressEntity {
+    return (this._deposit_address ??= new DepositAddressEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.deposit_address` instead. */
   DepositAddress(data?: any) {
     const self = this
     return new DepositAddressEntity(self,data)
   }
 
 
+  _order?: OrderEntity
+
+  // Idiomatic facade: `client.order.list()` / `client.order.load({ id })`.
+  get order(): OrderEntity {
+    return (this._order ??= new OrderEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.order` instead. */
   Order(data?: any) {
     const self = this
     return new OrderEntity(self,data)
   }
 
 
+  _order_book?: OrderBookEntity
+
+  // Idiomatic facade: `client.order_book.list()` / `client.order_book.load({ id })`.
+  get order_book(): OrderBookEntity {
+    return (this._order_book ??= new OrderBookEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.order_book` instead. */
   OrderBook(data?: any) {
     const self = this
     return new OrderBookEntity(self,data)
   }
 
 
+  _ticker?: TickerEntity
+
+  // Idiomatic facade: `client.ticker.list()` / `client.ticker.load({ id })`.
+  get ticker(): TickerEntity {
+    return (this._ticker ??= new TickerEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.ticker` instead. */
   Ticker(data?: any) {
     const self = this
     return new TickerEntity(self,data)
   }
 
 
+  _trade?: TradeEntity
+
+  // Idiomatic facade: `client.trade.list()` / `client.trade.load({ id })`.
+  get trade(): TradeEntity {
+    return (this._trade ??= new TradeEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.trade` instead. */
   Trade(data?: any) {
     const self = this
     return new TradeEntity(self,data)
   }
 
 
+  _withdrawal?: WithdrawalEntity
+
+  // Idiomatic facade: `client.withdrawal.list()` / `client.withdrawal.load({ id })`.
+  get withdrawal(): WithdrawalEntity {
+    return (this._withdrawal ??= new WithdrawalEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.withdrawal` instead. */
   Withdrawal(data?: any) {
     const self = this
     return new WithdrawalEntity(self,data)

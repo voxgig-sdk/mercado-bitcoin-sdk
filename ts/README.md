@@ -9,9 +9,12 @@ The TypeScript SDK for the MercadoBitcoin API — a type-safe, entity-oriented c
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/mercado-bitcoin
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/mercado-bitcoin-sdk/releases](https://github.com/voxgig-sdk/mercado-bitcoin-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MercadoBitcoinSDK } from 'mercado-bitcoin'
+import { MercadoBitcoinSDK } from '@voxgig-sdk/mercado-bitcoin'
 
 const client = new MercadoBitcoinSDK({
-  apikey: process.env.MERCADO-BITCOIN_APIKEY,
+  apikey: process.env.MERCADO_BITCOIN_APIKEY,
 })
 ```
 
 ### 2. List balances
 
 ```ts
-const result = await client.Balance().list()
+const result = await client.balance.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MercadoBitcoinSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.balance.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -98,7 +101,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.balance
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -135,8 +138,8 @@ const client = new MercadoBitcoinSDK({
 Create a `.env.local` file at the project root:
 
 ```
-MERCADO-BITCOIN_TEST_LIVE=TRUE
-MERCADO-BITCOIN_APIKEY=<your-key>
+MERCADO_BITCOIN_TEST_LIVE=TRUE
+MERCADO_BITCOIN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -384,7 +387,7 @@ API path: `/withdrawals/brl`
 
 ### Balance
 
-Create an instance: `const balance = client.Balance()`
+Create an instance: `const balance = client.balance`
 
 #### Operations
 
@@ -404,13 +407,13 @@ Create an instance: `const balance = client.Balance()`
 #### Example: List
 
 ```ts
-const balances = await client.Balance().list()
+const balances = await client.balance.list()
 ```
 
 
 ### Candle
 
-Create an instance: `const candle = client.Candle()`
+Create an instance: `const candle = client.candle`
 
 #### Operations
 
@@ -432,13 +435,13 @@ Create an instance: `const candle = client.Candle()`
 #### Example: Load
 
 ```ts
-const candle = await client.Candle().load({ id: 'candle_id' })
+const candle = await client.candle.load({ id: 'candle_id' })
 ```
 
 
 ### DepositAddress
 
-Create an instance: `const deposit_address = client.DepositAddress()`
+Create an instance: `const deposit_address = client.deposit_address`
 
 #### Operations
 
@@ -458,13 +461,13 @@ Create an instance: `const deposit_address = client.DepositAddress()`
 #### Example: Load
 
 ```ts
-const deposit_address = await client.DepositAddress().load({ id: 'deposit_address_id' })
+const deposit_address = await client.deposit_address.load({ id: 'deposit_address_id' })
 ```
 
 
 ### Order
 
-Create an instance: `const order = client.Order()`
+Create an instance: `const order = client.order`
 
 #### Operations
 
@@ -492,26 +495,26 @@ Create an instance: `const order = client.Order()`
 #### Example: Load
 
 ```ts
-const order = await client.Order().load({ id: 'order_id' })
+const order = await client.order.load({ id: 'order_id' })
 ```
 
 #### Example: List
 
 ```ts
-const orders = await client.Order().list()
+const orders = await client.order.list()
 ```
 
 #### Example: Create
 
 ```ts
-const order = await client.Order().create({
+const order = await client.order.create({
 })
 ```
 
 
 ### OrderBook
 
-Create an instance: `const order_book = client.OrderBook()`
+Create an instance: `const order_book = client.order_book`
 
 #### Operations
 
@@ -530,13 +533,13 @@ Create an instance: `const order_book = client.OrderBook()`
 #### Example: Load
 
 ```ts
-const order_book = await client.OrderBook().load({ id: 'order_book_id' })
+const order_book = await client.order_book.load({ id: 'order_book_id' })
 ```
 
 
 ### Ticker
 
-Create an instance: `const ticker = client.Ticker()`
+Create an instance: `const ticker = client.ticker`
 
 #### Operations
 
@@ -561,19 +564,19 @@ Create an instance: `const ticker = client.Ticker()`
 #### Example: Load
 
 ```ts
-const ticker = await client.Ticker().load({ id: 'ticker_id' })
+const ticker = await client.ticker.load({ id: 'ticker_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tickers = await client.Ticker().list()
+const tickers = await client.ticker.list()
 ```
 
 
 ### Trade
 
-Create an instance: `const trade = client.Trade()`
+Create an instance: `const trade = client.trade`
 
 #### Operations
 
@@ -594,13 +597,13 @@ Create an instance: `const trade = client.Trade()`
 #### Example: Load
 
 ```ts
-const trade = await client.Trade().load({ id: 'trade_id' })
+const trade = await client.trade.load({ id: 'trade_id' })
 ```
 
 
 ### Withdrawal
 
-Create an instance: `const withdrawal = client.Withdrawal()`
+Create an instance: `const withdrawal = client.withdrawal`
 
 #### Operations
 
@@ -624,7 +627,7 @@ Create an instance: `const withdrawal = client.Withdrawal()`
 #### Example: Create
 
 ```ts
-const withdrawal = await client.Withdrawal().create({
+const withdrawal = await client.withdrawal.create({
   account_number: /* `$STRING` */,
   address: /* `$STRING` */,
   agency: /* `$STRING` */,
@@ -692,7 +695,7 @@ mercado-bitcoin/
 Import the SDK from the package root:
 
 ```ts
-import { MercadoBitcoinSDK } from 'mercado-bitcoin'
+import { MercadoBitcoinSDK } from '@voxgig-sdk/mercado-bitcoin'
 ```
 
 ### Entity state
@@ -702,11 +705,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const balance = client.balance
+await balance.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// balance.data() now returns the loaded balance data
+// balance.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

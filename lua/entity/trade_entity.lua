@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TradeLoadMatch
+---@param ctrl? table
+---@return Trade
+---@return string? err
 function TradeEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

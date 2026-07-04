@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch OrderBookLoadMatch
+---@param ctrl? table
+---@return OrderBook
+---@return string? err
 function OrderBookEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

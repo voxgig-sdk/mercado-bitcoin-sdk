@@ -144,16 +144,23 @@ class MercadoBitcoinSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class MercadoBitcoinSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,50 +212,138 @@ class MercadoBitcoinSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def balance(self):
+        """Idiomatic facade: client.balance.list() / client.balance.load({"id": ...})."""
+        from entity.balance_entity import BalanceEntity
+        cached = getattr(self, "_balance", None)
+        if cached is None:
+            cached = BalanceEntity(self, None)
+            self._balance = cached
+        return cached
 
     def Balance(self, data=None):
+        # Deprecated: use client.balance instead.
         from entity.balance_entity import BalanceEntity
         return BalanceEntity(self, data)
 
 
+    @property
+    def candle(self):
+        """Idiomatic facade: client.candle.list() / client.candle.load({"id": ...})."""
+        from entity.candle_entity import CandleEntity
+        cached = getattr(self, "_candle", None)
+        if cached is None:
+            cached = CandleEntity(self, None)
+            self._candle = cached
+        return cached
+
     def Candle(self, data=None):
+        # Deprecated: use client.candle instead.
         from entity.candle_entity import CandleEntity
         return CandleEntity(self, data)
 
 
+    @property
+    def deposit_address(self):
+        """Idiomatic facade: client.deposit_address.list() / client.deposit_address.load({"id": ...})."""
+        from entity.deposit_address_entity import DepositAddressEntity
+        cached = getattr(self, "_deposit_address", None)
+        if cached is None:
+            cached = DepositAddressEntity(self, None)
+            self._deposit_address = cached
+        return cached
+
     def DepositAddress(self, data=None):
+        # Deprecated: use client.deposit_address instead.
         from entity.deposit_address_entity import DepositAddressEntity
         return DepositAddressEntity(self, data)
 
 
+    @property
+    def order(self):
+        """Idiomatic facade: client.order.list() / client.order.load({"id": ...})."""
+        from entity.order_entity import OrderEntity
+        cached = getattr(self, "_order", None)
+        if cached is None:
+            cached = OrderEntity(self, None)
+            self._order = cached
+        return cached
+
     def Order(self, data=None):
+        # Deprecated: use client.order instead.
         from entity.order_entity import OrderEntity
         return OrderEntity(self, data)
 
 
+    @property
+    def order_book(self):
+        """Idiomatic facade: client.order_book.list() / client.order_book.load({"id": ...})."""
+        from entity.order_book_entity import OrderBookEntity
+        cached = getattr(self, "_order_book", None)
+        if cached is None:
+            cached = OrderBookEntity(self, None)
+            self._order_book = cached
+        return cached
+
     def OrderBook(self, data=None):
+        # Deprecated: use client.order_book instead.
         from entity.order_book_entity import OrderBookEntity
         return OrderBookEntity(self, data)
 
 
+    @property
+    def ticker(self):
+        """Idiomatic facade: client.ticker.list() / client.ticker.load({"id": ...})."""
+        from entity.ticker_entity import TickerEntity
+        cached = getattr(self, "_ticker", None)
+        if cached is None:
+            cached = TickerEntity(self, None)
+            self._ticker = cached
+        return cached
+
     def Ticker(self, data=None):
+        # Deprecated: use client.ticker instead.
         from entity.ticker_entity import TickerEntity
         return TickerEntity(self, data)
 
 
+    @property
+    def trade(self):
+        """Idiomatic facade: client.trade.list() / client.trade.load({"id": ...})."""
+        from entity.trade_entity import TradeEntity
+        cached = getattr(self, "_trade", None)
+        if cached is None:
+            cached = TradeEntity(self, None)
+            self._trade = cached
+        return cached
+
     def Trade(self, data=None):
+        # Deprecated: use client.trade instead.
         from entity.trade_entity import TradeEntity
         return TradeEntity(self, data)
 
 
+    @property
+    def withdrawal(self):
+        """Idiomatic facade: client.withdrawal.list() / client.withdrawal.load({"id": ...})."""
+        from entity.withdrawal_entity import WithdrawalEntity
+        cached = getattr(self, "_withdrawal", None)
+        if cached is None:
+            cached = WithdrawalEntity(self, None)
+            self._withdrawal = cached
+        return cached
+
     def Withdrawal(self, data=None):
+        # Deprecated: use client.withdrawal instead.
         from entity.withdrawal_entity import WithdrawalEntity
         return WithdrawalEntity(self, data)
 

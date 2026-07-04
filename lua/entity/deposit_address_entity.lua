@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch DepositAddressLoadMatch
+---@param ctrl? table
+---@return DepositAddress
+---@return string? err
 function DepositAddressEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

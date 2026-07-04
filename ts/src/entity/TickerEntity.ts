@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Ticker,
+  TickerLoadMatch,
+  TickerListMatch,
+} from '../MercadoBitcoinTypes'
 
 // TODO: needs Entity superclass
-class TickerEntity extends MercadoBitcoinEntityBase {
+class TickerEntity extends MercadoBitcoinEntityBase<Ticker> {
 
   constructor(client: MercadoBitcoinSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class TickerEntity extends MercadoBitcoinEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: TickerLoadMatch, ctrl?: Control): Promise<Ticker> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class TickerEntity extends MercadoBitcoinEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Ticker> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: TickerListMatch, ctrl?: Control): Promise<Ticker[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class TickerEntity extends MercadoBitcoinEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Ticker[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -42,8 +42,7 @@ class DepositAddressEntityTest < Minitest::Test
     # LOAD
     deposit_address_ref01_ent = client.DepositAddress(nil)
     deposit_address_ref01_match_dt0 = {}
-    deposit_address_ref01_data_dt0_loaded, err = deposit_address_ref01_ent.load(deposit_address_ref01_match_dt0, nil)
-    assert_nil err
+    deposit_address_ref01_data_dt0_loaded = deposit_address_ref01_ent.load(deposit_address_ref01_match_dt0, nil)
     assert !deposit_address_ref01_data_dt0_loaded.nil?
 
   end

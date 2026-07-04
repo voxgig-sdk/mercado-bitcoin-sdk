@@ -245,41 +245,65 @@ func (sdk *MercadoBitcoinSDK) Direct(fetchargs map[string]any) (map[string]any, 
 }
 
 
+// Balance returns a Balance entity bound to this client.
+// Idiomatic usage: client.Balance(nil).List(nil, nil) or
+// client.Balance(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MercadoBitcoinSDK) Balance(data map[string]any) MercadoBitcoinEntity {
 	return NewBalanceEntityFunc(sdk, data)
 }
 
 
+// Candle returns a Candle entity bound to this client.
+// Idiomatic usage: client.Candle(nil).List(nil, nil) or
+// client.Candle(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MercadoBitcoinSDK) Candle(data map[string]any) MercadoBitcoinEntity {
 	return NewCandleEntityFunc(sdk, data)
 }
 
 
+// DepositAddress returns a DepositAddress entity bound to this client.
+// Idiomatic usage: client.DepositAddress(nil).List(nil, nil) or
+// client.DepositAddress(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MercadoBitcoinSDK) DepositAddress(data map[string]any) MercadoBitcoinEntity {
 	return NewDepositAddressEntityFunc(sdk, data)
 }
 
 
+// Order returns a Order entity bound to this client.
+// Idiomatic usage: client.Order(nil).List(nil, nil) or
+// client.Order(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MercadoBitcoinSDK) Order(data map[string]any) MercadoBitcoinEntity {
 	return NewOrderEntityFunc(sdk, data)
 }
 
 
+// OrderBook returns a OrderBook entity bound to this client.
+// Idiomatic usage: client.OrderBook(nil).List(nil, nil) or
+// client.OrderBook(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MercadoBitcoinSDK) OrderBook(data map[string]any) MercadoBitcoinEntity {
 	return NewOrderBookEntityFunc(sdk, data)
 }
 
 
+// Ticker returns a Ticker entity bound to this client.
+// Idiomatic usage: client.Ticker(nil).List(nil, nil) or
+// client.Ticker(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MercadoBitcoinSDK) Ticker(data map[string]any) MercadoBitcoinEntity {
 	return NewTickerEntityFunc(sdk, data)
 }
 
 
+// Trade returns a Trade entity bound to this client.
+// Idiomatic usage: client.Trade(nil).List(nil, nil) or
+// client.Trade(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MercadoBitcoinSDK) Trade(data map[string]any) MercadoBitcoinEntity {
 	return NewTradeEntityFunc(sdk, data)
 }
 
 
+// Withdrawal returns a Withdrawal entity bound to this client.
+// Idiomatic usage: client.Withdrawal(nil).List(nil, nil) or
+// client.Withdrawal(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MercadoBitcoinSDK) Withdrawal(data map[string]any) MercadoBitcoinEntity {
 	return NewWithdrawalEntityFunc(sdk, data)
 }

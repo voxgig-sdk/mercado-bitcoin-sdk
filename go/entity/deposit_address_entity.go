@@ -85,6 +85,27 @@ func (e *DepositAddressEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an DepositAddress; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *DepositAddressEntity) DataTyped(data ...DepositAddress) DepositAddress {
+	if len(data) > 0 {
+		return typedFrom[DepositAddress](e.Data(asMap(data[0])))
+	}
+	return typedFrom[DepositAddress](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through DepositAddress (all fields
+// optional at the wire level).
+func (e *DepositAddressEntity) MatchTyped(match ...DepositAddress) DepositAddress {
+	if len(match) > 0 {
+		return typedFrom[DepositAddress](e.Match(asMap(match[0])))
+	}
+	return typedFrom[DepositAddress](e.Match())
+}
+
 
 func (e *DepositAddressEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -109,6 +130,17 @@ func (e *DepositAddressEntity) Load(reqmatch map[string]any, ctrl map[string]any
 			}
 		}
 	})
+}
+
+// LoadTyped is the statically-typed variant of Load: it takes an
+// DepositAddressLoadMatch and returns an DepositAddress. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *DepositAddressEntity) LoadTyped(reqmatch DepositAddressLoadMatch, ctrl map[string]any) (DepositAddress, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return DepositAddress{}, err
+	}
+	return typedFrom[DepositAddress](res), nil
 }
 
 

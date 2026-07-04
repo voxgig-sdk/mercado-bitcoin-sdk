@@ -49,8 +49,7 @@ class CandleEntityTest extends TestCase
         // LOAD
         $candle_ref01_ent = $client->Candle(null);
         $candle_ref01_match_dt0 = [];
-        [$candle_ref01_data_dt0_loaded, $err] = $candle_ref01_ent->load($candle_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $candle_ref01_data_dt0_loaded = $candle_ref01_ent->load($candle_ref01_match_dt0, null);
         $this->assertNotNull($candle_ref01_data_dt0_loaded);
 
     }
