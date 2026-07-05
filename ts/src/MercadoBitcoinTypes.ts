@@ -12,7 +12,12 @@ export interface Balance {
   total?: number
 }
 
-export type BalanceListMatch = Partial<Balance>
+export interface BalanceListMatch {
+  available?: number
+  currency?: string
+  locked?: number
+  total?: number
+}
 
 export interface Candle {
   close?: number
@@ -34,7 +39,12 @@ export interface DepositAddress {
   tag?: string
 }
 
-export type DepositAddressLoadMatch = Partial<DepositAddress>
+export interface DepositAddressLoadMatch {
+  address?: string
+  currency?: string
+  qr_code?: string
+  tag?: string
+}
 
 export interface Order {
   amount?: number
@@ -52,9 +62,29 @@ export interface OrderLoadMatch {
   id: string
 }
 
-export type OrderListMatch = Partial<Order>
+export interface OrderListMatch {
+  amount?: number
+  filled?: number
+  id?: string
+  price?: number
+  side?: string
+  status?: string
+  symbol?: string
+  timestamp?: number
+  type?: string
+}
 
-export type OrderCreateData = Partial<Order>
+export interface OrderCreateData {
+  amount?: number
+  filled?: number
+  id?: string
+  price?: number
+  side?: string
+  status?: string
+  symbol?: string
+  timestamp?: number
+  type?: string
+}
 
 export interface OrderRemoveMatch {
   id: string
@@ -85,7 +115,16 @@ export interface TickerLoadMatch {
   id: string
 }
 
-export type TickerListMatch = Partial<Ticker>
+export interface TickerListMatch {
+  ask?: number
+  bid?: number
+  high?: number
+  last?: number
+  low?: number
+  symbol?: string
+  timestamp?: number
+  volume?: number
+}
 
 export interface Trade {
   amount?: number
@@ -110,5 +149,14 @@ export interface Withdrawal {
   tag?: string
 }
 
-export type WithdrawalCreateData = Partial<Withdrawal>
+export interface WithdrawalCreateData {
+  account_number: string
+  account_type?: string
+  address: string
+  agency: string
+  amount: number
+  bank: string
+  currency: string
+  tag?: string
+}
 

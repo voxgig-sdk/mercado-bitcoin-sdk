@@ -221,49 +221,49 @@ class MercadoBitcoinSDK:
 
 
     def Balance(self, data=None) -> "BalanceEntity":
-        """Entity factory: client.Balance().list({}) / client.Balance().load({"id": ...})."""
+        """Entity factory: client.Balance().list() / client.Balance().load({"id": ...})."""
         from entity.balance_entity import BalanceEntity
         return BalanceEntity(self, data)
 
 
     def Candle(self, data=None) -> "CandleEntity":
-        """Entity factory: client.Candle().list({}) / client.Candle().load({"id": ...})."""
+        """Entity factory: client.Candle().list() / client.Candle().load({"id": ...})."""
         from entity.candle_entity import CandleEntity
         return CandleEntity(self, data)
 
 
     def DepositAddress(self, data=None) -> "DepositAddressEntity":
-        """Entity factory: client.DepositAddress().list({}) / client.DepositAddress().load({"id": ...})."""
+        """Entity factory: client.DepositAddress().list() / client.DepositAddress().load({"id": ...})."""
         from entity.deposit_address_entity import DepositAddressEntity
         return DepositAddressEntity(self, data)
 
 
     def Order(self, data=None) -> "OrderEntity":
-        """Entity factory: client.Order().list({}) / client.Order().load({"id": ...})."""
+        """Entity factory: client.Order().list() / client.Order().load({"id": ...})."""
         from entity.order_entity import OrderEntity
         return OrderEntity(self, data)
 
 
     def OrderBook(self, data=None) -> "OrderBookEntity":
-        """Entity factory: client.OrderBook().list({}) / client.OrderBook().load({"id": ...})."""
+        """Entity factory: client.OrderBook().list() / client.OrderBook().load({"id": ...})."""
         from entity.order_book_entity import OrderBookEntity
         return OrderBookEntity(self, data)
 
 
     def Ticker(self, data=None) -> "TickerEntity":
-        """Entity factory: client.Ticker().list({}) / client.Ticker().load({"id": ...})."""
+        """Entity factory: client.Ticker().list() / client.Ticker().load({"id": ...})."""
         from entity.ticker_entity import TickerEntity
         return TickerEntity(self, data)
 
 
     def Trade(self, data=None) -> "TradeEntity":
-        """Entity factory: client.Trade().list({}) / client.Trade().load({"id": ...})."""
+        """Entity factory: client.Trade().list() / client.Trade().load({"id": ...})."""
         from entity.trade_entity import TradeEntity
         return TradeEntity(self, data)
 
 
     def Withdrawal(self, data=None) -> "WithdrawalEntity":
-        """Entity factory: client.Withdrawal().list({}) / client.Withdrawal().load({"id": ...})."""
+        """Entity factory: client.Withdrawal().list() / client.Withdrawal().load({"id": ...})."""
         from entity.withdrawal_entity import WithdrawalEntity
         return WithdrawalEntity(self, data)
 

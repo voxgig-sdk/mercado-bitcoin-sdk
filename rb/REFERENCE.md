@@ -8,7 +8,7 @@ Complete API reference for the MercadoBitcoin Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'mercado-bitcoin_sdk'
+require_relative 'MercadoBitcoin_sdk'
 
 client = MercadoBitcoinSDK.new(options)
 ```
@@ -122,19 +122,19 @@ balance = client.Balance
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `available` | ``$NUMBER`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `locked` | ``$NUMBER`` | No |  |
-| `total` | ``$NUMBER`` | No |  |
+| `available` | `Float` | No |  |
+| `currency` | `String` | No |  |
+| `locked` | `Float` | No |  |
+| `total` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Balance.list(nil)
+results = client.Balance.list
 ```
 
 ### Common Methods
@@ -177,12 +177,12 @@ candle = client.Candle
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `close` | ``$NUMBER`` | No |  |
-| `high` | ``$NUMBER`` | No |  |
-| `low` | ``$NUMBER`` | No |  |
-| `open` | ``$NUMBER`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `volume` | ``$NUMBER`` | No |  |
+| `close` | `Float` | No |  |
+| `high` | `Float` | No |  |
+| `low` | `Float` | No |  |
+| `open` | `Float` | No |  |
+| `timestamp` | `Integer` | No |  |
+| `volume` | `Float` | No |  |
 
 ### Operations
 
@@ -234,10 +234,10 @@ deposit_address = client.DepositAddress
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `qr_code` | ``$STRING`` | No |  |
-| `tag` | ``$STRING`` | No |  |
+| `address` | `String` | No |  |
+| `currency` | `String` | No |  |
+| `qr_code` | `String` | No |  |
+| `tag` | `String` | No |  |
 
 ### Operations
 
@@ -246,7 +246,7 @@ deposit_address = client.DepositAddress
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.DepositAddress.load({ "id" => "deposit_address_id" })
+result = client.DepositAddress.load()
 ```
 
 ### Common Methods
@@ -289,29 +289,29 @@ order = client.Order
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `filled` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `side` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `amount` | `Float` | No |  |
+| `filled` | `Float` | No |  |
+| `id` | `String` | No |  |
+| `price` | `Float` | No |  |
+| `side` | `String` | No |  |
+| `status` | `String` | No |  |
+| `symbol` | `String` | No |  |
+| `timestamp` | `Integer` | No |  |
+| `type` | `String` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `amount` | - | - | Yes | - | - |
-| `filled` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `price` | - | - | - | - | - |
-| `side` | - | - | Yes | - | - |
-| `status` | - | - | - | - | - |
-| `symbol` | - | - | Yes | - | - |
-| `timestamp` | - | - | - | - | - |
-| `type` | - | - | Yes | - | - |
+| Field | load | list | create | remove |
+| --- | --- | --- | --- | --- |
+| `amount` | - | - | Yes | - |
+| `filled` | - | - | - | - |
+| `id` | - | - | - | - |
+| `price` | - | - | - | - |
+| `side` | - | - | Yes | - |
+| `status` | - | - | - | - |
+| `symbol` | - | - | Yes | - |
+| `timestamp` | - | - | - | - |
+| `type` | - | - | Yes | - |
 
 ### Operations
 
@@ -324,12 +324,12 @@ result = client.Order.create({
 })
 ```
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Order.list(nil)
+results = client.Order.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -388,9 +388,9 @@ order_book = client.OrderBook
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | ``$ARRAY`` | No |  |
-| `bid` | ``$ARRAY`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
+| `ask` | `Array` | No |  |
+| `bid` | `Array` | No |  |
+| `timestamp` | `Integer` | No |  |
 
 ### Operations
 
@@ -399,7 +399,7 @@ order_book = client.OrderBook
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.OrderBook.load({ "id" => "order_book_id" })
+result = client.OrderBook.load()
 ```
 
 ### Common Methods
@@ -442,23 +442,23 @@ ticker = client.Ticker
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | ``$NUMBER`` | No |  |
-| `bid` | ``$NUMBER`` | No |  |
-| `high` | ``$NUMBER`` | No |  |
-| `last` | ``$NUMBER`` | No |  |
-| `low` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `volume` | ``$NUMBER`` | No |  |
+| `ask` | `Float` | No |  |
+| `bid` | `Float` | No |  |
+| `high` | `Float` | No |  |
+| `last` | `Float` | No |  |
+| `low` | `Float` | No |  |
+| `symbol` | `String` | No |  |
+| `timestamp` | `Integer` | No |  |
+| `volume` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Ticker.list(nil)
+results = client.Ticker.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -509,11 +509,11 @@ trade = client.Trade
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `side` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
+| `amount` | `Float` | No |  |
+| `id` | `String` | No |  |
+| `price` | `Float` | No |  |
+| `side` | `String` | No |  |
+| `timestamp` | `Integer` | No |  |
 
 ### Operations
 
@@ -565,14 +565,14 @@ withdrawal = client.Withdrawal
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_number` | ``$STRING`` | Yes |  |
-| `account_type` | ``$STRING`` | No |  |
-| `address` | ``$STRING`` | Yes |  |
-| `agency` | ``$STRING`` | Yes |  |
-| `amount` | ``$NUMBER`` | Yes |  |
-| `bank` | ``$STRING`` | Yes |  |
-| `currency` | ``$STRING`` | Yes |  |
-| `tag` | ``$STRING`` | No |  |
+| `account_number` | `String` | Yes |  |
+| `account_type` | `String` | No |  |
+| `address` | `String` | Yes |  |
+| `agency` | `String` | Yes |  |
+| `amount` | `Float` | Yes |  |
+| `bank` | `String` | Yes |  |
+| `currency` | `String` | Yes |  |
+| `tag` | `String` | No |  |
 
 ### Operations
 
@@ -582,12 +582,12 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Withdrawal.create({
-  "account_number" => # `$STRING`,
-  "address" => # `$STRING`,
-  "agency" => # `$STRING`,
-  "amount" => # `$NUMBER`,
-  "bank" => # `$STRING`,
-  "currency" => # `$STRING`,
+  "account_number" => "example", # String
+  "address" => "example", # String
+  "agency" => "example", # String
+  "amount" => 1, # Float
+  "bank" => "example", # String
+  "currency" => "example", # String
 })
 ```
 

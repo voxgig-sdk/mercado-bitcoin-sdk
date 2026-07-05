@@ -4,6 +4,8 @@
 
 The Ruby SDK for the MercadoBitcoin API — an entity-oriented client using idiomatic Ruby conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Balance` — with named operations (`list`/`load`/`create`/`remove`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -37,11 +39,38 @@ begin
   # list returns an Array of Balance records — iterate directly.
   balances = client.Balance.list
   balances.each do |item|
-    puts "#{item["id"]} #{item["name"]}"
+    puts "#{item["available"]}"
   end
 rescue => err
   warn "list failed: #{err}"
 end
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so rescue them:
+
+```ruby
+begin
+  balances = client.Balance.list()
+rescue => err
+  warn "list failed: #{err}"
+end
+```
+
+`direct` does **not** raise — it returns the result hash. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```ruby
+result = client.direct({
+  "path" => "/api/resource/{id}",
+  "method" => "GET",
+  "params" => { "id" => "example_id" },
+})
+
+warn "request failed: #{result["err"] || "HTTP #{result["status"]}"}" unless result["ok"]
 ```
 
 
@@ -62,7 +91,9 @@ if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
 else
-  warn result["err"]
+  # On an HTTP error status there is no err (only a transport failure sets
+  # it), so fall back to the status code.
+  warn(result["err"] || "HTTP #{result["status"]}")
 end
 ```
 
@@ -85,16 +116,13 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = MercadoBitcoinSDK.test({
-  "entity" => { "balance" => { "test01" => { "id" => "test01" } } },
-})
+client = MercadoBitcoinSDK.test
 
-# load returns the bare mock record (raises on error).
-balance = client.Balance.load({ "id" => "test01" })
+# Entity ops return the bare mock record (raises on error).
+balance = client.Balance.list()
 puts balance
 ```
 
@@ -189,9 +217,8 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
 | `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
 | `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
@@ -357,10 +384,10 @@ Create an instance: `balance = client.Balance`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `available` | ``$NUMBER`` |  |
-| `currency` | ``$STRING`` |  |
-| `locked` | ``$NUMBER`` |  |
-| `total` | ``$NUMBER`` |  |
+| `available` | `Float` |  |
+| `currency` | `String` |  |
+| `locked` | `Float` |  |
+| `total` | `Float` |  |
 
 #### Example: List
 
@@ -384,12 +411,12 @@ Create an instance: `candle = client.Candle`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `close` | ``$NUMBER`` |  |
-| `high` | ``$NUMBER`` |  |
-| `low` | ``$NUMBER`` |  |
-| `open` | ``$NUMBER`` |  |
-| `timestamp` | ``$INTEGER`` |  |
-| `volume` | ``$NUMBER`` |  |
+| `close` | `Float` |  |
+| `high` | `Float` |  |
+| `low` | `Float` |  |
+| `open` | `Float` |  |
+| `timestamp` | `Integer` |  |
+| `volume` | `Float` |  |
 
 #### Example: Load
 
@@ -413,16 +440,16 @@ Create an instance: `deposit_address = client.DepositAddress`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `qr_code` | ``$STRING`` |  |
-| `tag` | ``$STRING`` |  |
+| `address` | `String` |  |
+| `currency` | `String` |  |
+| `qr_code` | `String` |  |
+| `tag` | `String` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare DepositAddress record (raises on error).
-deposit_address = client.DepositAddress.load({ "id" => "deposit_address_id" })
+deposit_address = client.DepositAddress.load()
 ```
 
 
@@ -443,15 +470,15 @@ Create an instance: `order = client.Order`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | ``$NUMBER`` |  |
-| `filled` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `price` | ``$NUMBER`` |  |
-| `side` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `symbol` | ``$STRING`` |  |
-| `timestamp` | ``$INTEGER`` |  |
-| `type` | ``$STRING`` |  |
+| `amount` | `Float` |  |
+| `filled` | `Float` |  |
+| `id` | `String` |  |
+| `price` | `Float` |  |
+| `side` | `String` |  |
+| `status` | `String` |  |
+| `symbol` | `String` |  |
+| `timestamp` | `Integer` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
@@ -489,15 +516,15 @@ Create an instance: `order_book = client.OrderBook`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | ``$ARRAY`` |  |
-| `bid` | ``$ARRAY`` |  |
-| `timestamp` | ``$INTEGER`` |  |
+| `ask` | `Array` |  |
+| `bid` | `Array` |  |
+| `timestamp` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
 # load returns the bare OrderBook record (raises on error).
-order_book = client.OrderBook.load({ "id" => "order_book_id" })
+order_book = client.OrderBook.load()
 ```
 
 
@@ -516,14 +543,14 @@ Create an instance: `ticker = client.Ticker`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | ``$NUMBER`` |  |
-| `bid` | ``$NUMBER`` |  |
-| `high` | ``$NUMBER`` |  |
-| `last` | ``$NUMBER`` |  |
-| `low` | ``$NUMBER`` |  |
-| `symbol` | ``$STRING`` |  |
-| `timestamp` | ``$INTEGER`` |  |
-| `volume` | ``$NUMBER`` |  |
+| `ask` | `Float` |  |
+| `bid` | `Float` |  |
+| `high` | `Float` |  |
+| `last` | `Float` |  |
+| `low` | `Float` |  |
+| `symbol` | `String` |  |
+| `timestamp` | `Integer` |  |
+| `volume` | `Float` |  |
 
 #### Example: Load
 
@@ -554,11 +581,11 @@ Create an instance: `trade = client.Trade`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `price` | ``$NUMBER`` |  |
-| `side` | ``$STRING`` |  |
-| `timestamp` | ``$INTEGER`` |  |
+| `amount` | `Float` |  |
+| `id` | `String` |  |
+| `price` | `Float` |  |
+| `side` | `String` |  |
+| `timestamp` | `Integer` |  |
 
 #### Example: Load
 
@@ -582,35 +609,39 @@ Create an instance: `withdrawal = client.Withdrawal`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_number` | ``$STRING`` |  |
-| `account_type` | ``$STRING`` |  |
-| `address` | ``$STRING`` |  |
-| `agency` | ``$STRING`` |  |
-| `amount` | ``$NUMBER`` |  |
-| `bank` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `tag` | ``$STRING`` |  |
+| `account_number` | `String` |  |
+| `account_type` | `String` |  |
+| `address` | `String` |  |
+| `agency` | `String` |  |
+| `amount` | `Float` |  |
+| `bank` | `String` |  |
+| `currency` | `String` |  |
+| `tag` | `String` |  |
 
 #### Example: Create
 
 ```ruby
 withdrawal = client.Withdrawal.create({
-  "account_number" => nil, # `$STRING`
-  "address" => nil, # `$STRING`
-  "agency" => nil, # `$STRING`
-  "amount" => nil, # `$NUMBER`
-  "bank" => nil, # `$STRING`
-  "currency" => nil, # `$STRING`
+  "account_number" => "example", # String
+  "address" => "example", # String
+  "agency" => "example", # String
+  "amount" => 1, # Float
+  "bank" => "example", # String
+  "currency" => "example", # String
 })
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -627,8 +658,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as a second return value.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -672,14 +704,14 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
 balance = client.Balance
-balance.load({ "id" => "example_id" })
+balance.list()
 
-# balance.data_get now returns the loaded balance data
+# balance.data_get now returns the balance data from the last list
 # balance.match_get returns the last match criteria
 ```
 

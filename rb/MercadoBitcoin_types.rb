@@ -29,7 +29,7 @@ Balance = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Balance#list (any subset of Balance fields).
+# Request payload for Balance#list.
 #
 # @!attribute [rw] available
 #   @return [Float, nil]
@@ -109,7 +109,7 @@ DepositAddress = Struct.new(
   keyword_init: true
 )
 
-# Match filter for DepositAddress#load (any subset of DepositAddress fields).
+# Request payload for DepositAddress#load.
 #
 # @!attribute [rw] address
 #   @return [String, nil]
@@ -180,7 +180,7 @@ OrderLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Order#list (any subset of Order fields).
+# Request payload for Order#list.
 #
 # @!attribute [rw] amount
 #   @return [Float, nil]
@@ -221,7 +221,7 @@ OrderListMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Order#create (any subset of Order fields).
+# Request payload for Order#create.
 #
 # @!attribute [rw] amount
 #   @return [Float, nil]
@@ -343,7 +343,7 @@ TickerLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Ticker#list (any subset of Ticker fields).
+# Request payload for Ticker#list.
 #
 # @!attribute [rw] ask
 #   @return [Float, nil]
@@ -451,28 +451,28 @@ Withdrawal = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Withdrawal#create (any subset of Withdrawal fields).
+# Request payload for Withdrawal#create.
 #
 # @!attribute [rw] account_number
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] account_type
 #   @return [String, nil]
 #
 # @!attribute [rw] address
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] agency
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] amount
-#   @return [Float, nil]
+#   @return [Float]
 #
 # @!attribute [rw] bank
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] currency
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] tag
 #   @return [String, nil]

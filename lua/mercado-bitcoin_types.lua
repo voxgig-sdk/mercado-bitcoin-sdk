@@ -13,6 +13,10 @@
 ---@field total? number
 
 ---@class BalanceListMatch
+---@field available? number
+---@field currency? string
+---@field locked? number
+---@field total? number
 
 ---@class Candle
 ---@field close? number
@@ -32,6 +36,10 @@
 ---@field tag? string
 
 ---@class DepositAddressLoadMatch
+---@field address? string
+---@field currency? string
+---@field qr_code? string
+---@field tag? string
 
 ---@class Order
 ---@field amount? number
@@ -48,8 +56,26 @@
 ---@field id string
 
 ---@class OrderListMatch
+---@field amount? number
+---@field filled? number
+---@field id? string
+---@field price? number
+---@field side? string
+---@field status? string
+---@field symbol? string
+---@field timestamp? number
+---@field type? string
 
 ---@class OrderCreateData
+---@field amount? number
+---@field filled? number
+---@field id? string
+---@field price? number
+---@field side? string
+---@field status? string
+---@field symbol? string
+---@field timestamp? number
+---@field type? string
 
 ---@class OrderRemoveMatch
 ---@field id string
@@ -76,6 +102,14 @@
 ---@field id string
 
 ---@class TickerListMatch
+---@field ask? number
+---@field bid? number
+---@field high? number
+---@field last? number
+---@field low? number
+---@field symbol? string
+---@field timestamp? number
+---@field volume? number
 
 ---@class Trade
 ---@field amount? number
@@ -98,6 +132,14 @@
 ---@field tag? string
 
 ---@class WithdrawalCreateData
+---@field account_number string
+---@field account_type? string
+---@field address string
+---@field agency string
+---@field amount number
+---@field bank string
+---@field currency string
+---@field tag? string
 
 local M = {}
 

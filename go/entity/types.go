@@ -16,8 +16,7 @@ type Balance struct {
 	Total *float64 `json:"total,omitempty"`
 }
 
-// BalanceListMatch mirrors the balance fields as an all-optional match
-// filter (Go analog of Partial<Balance>).
+// BalanceListMatch is the typed request payload for Balance.ListTyped.
 type BalanceListMatch struct {
 	Available *float64 `json:"available,omitempty"`
 	Currency *string `json:"currency,omitempty"`
@@ -48,8 +47,7 @@ type DepositAddress struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-// DepositAddressLoadMatch mirrors the deposit_address fields as an all-optional match
-// filter (Go analog of Partial<DepositAddress>).
+// DepositAddressLoadMatch is the typed request payload for DepositAddress.LoadTyped.
 type DepositAddressLoadMatch struct {
 	Address *string `json:"address,omitempty"`
 	Currency *string `json:"currency,omitempty"`
@@ -75,8 +73,7 @@ type OrderLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// OrderListMatch mirrors the order fields as an all-optional match
-// filter (Go analog of Partial<Order>).
+// OrderListMatch is the typed request payload for Order.ListTyped.
 type OrderListMatch struct {
 	Amount *float64 `json:"amount,omitempty"`
 	Filled *float64 `json:"filled,omitempty"`
@@ -89,8 +86,7 @@ type OrderListMatch struct {
 	Type *string `json:"type,omitempty"`
 }
 
-// OrderCreateData mirrors the order fields as an all-optional match
-// filter (Go analog of Partial<Order>).
+// OrderCreateData is the typed request payload for Order.CreateTyped.
 type OrderCreateData struct {
 	Amount *float64 `json:"amount,omitempty"`
 	Filled *float64 `json:"filled,omitempty"`
@@ -137,8 +133,7 @@ type TickerLoadMatch struct {
 	Id string `json:"id"`
 }
 
-// TickerListMatch mirrors the ticker fields as an all-optional match
-// filter (Go analog of Partial<Ticker>).
+// TickerListMatch is the typed request payload for Ticker.ListTyped.
 type TickerListMatch struct {
 	Ask *float64 `json:"ask,omitempty"`
 	Bid *float64 `json:"bid,omitempty"`
@@ -176,16 +171,15 @@ type Withdrawal struct {
 	Tag *string `json:"tag,omitempty"`
 }
 
-// WithdrawalCreateData mirrors the withdrawal fields as an all-optional match
-// filter (Go analog of Partial<Withdrawal>).
+// WithdrawalCreateData is the typed request payload for Withdrawal.CreateTyped.
 type WithdrawalCreateData struct {
-	AccountNumber *string `json:"account_number,omitempty"`
+	AccountNumber string `json:"account_number"`
 	AccountType *string `json:"account_type,omitempty"`
-	Address *string `json:"address,omitempty"`
-	Agency *string `json:"agency,omitempty"`
-	Amount *float64 `json:"amount,omitempty"`
-	Bank *string `json:"bank,omitempty"`
-	Currency *string `json:"currency,omitempty"`
+	Address string `json:"address"`
+	Agency string `json:"agency"`
+	Amount float64 `json:"amount"`
+	Bank string `json:"bank"`
+	Currency string `json:"currency"`
 	Tag *string `json:"tag,omitempty"`
 }
 

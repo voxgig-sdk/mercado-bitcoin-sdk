@@ -8,7 +8,7 @@ Complete API reference for the MercadoBitcoin Python SDK.
 ### Constructor
 
 ```python
-from mercado-bitcoin_sdk import MercadoBitcoinSDK
+from mercadobitcoin_sdk import MercadoBitcoinSDK
 
 client = MercadoBitcoinSDK(options)
 ```
@@ -116,19 +116,19 @@ balance = client.Balance()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `available` | ``$NUMBER`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `locked` | ``$NUMBER`` | No |  |
-| `total` | ``$NUMBER`` | No |  |
+| `available` | `float` | No |  |
+| `currency` | `str` | No |  |
+| `locked` | `float` | No |  |
+| `total` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Balance().list({})
+results = client.Balance().list()
 for balance in results:
     print(balance)
 ```
@@ -172,12 +172,12 @@ candle = client.Candle()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `close` | ``$NUMBER`` | No |  |
-| `high` | ``$NUMBER`` | No |  |
-| `low` | ``$NUMBER`` | No |  |
-| `open` | ``$NUMBER`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `volume` | ``$NUMBER`` | No |  |
+| `close` | `float` | No |  |
+| `high` | `float` | No |  |
+| `low` | `float` | No |  |
+| `open` | `float` | No |  |
+| `timestamp` | `int` | No |  |
+| `volume` | `float` | No |  |
 
 ### Operations
 
@@ -228,10 +228,10 @@ deposit_address = client.DepositAddress()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `qr_code` | ``$STRING`` | No |  |
-| `tag` | ``$STRING`` | No |  |
+| `address` | `str` | No |  |
+| `currency` | `str` | No |  |
+| `qr_code` | `str` | No |  |
+| `tag` | `str` | No |  |
 
 ### Operations
 
@@ -240,7 +240,7 @@ deposit_address = client.DepositAddress()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.DepositAddress().load({"id": "deposit_address_id"})
+result = client.DepositAddress().load()
 ```
 
 ### Common Methods
@@ -282,29 +282,29 @@ order = client.Order()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `filled` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `side` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `amount` | `float` | No |  |
+| `filled` | `float` | No |  |
+| `id` | `str` | No |  |
+| `price` | `float` | No |  |
+| `side` | `str` | No |  |
+| `status` | `str` | No |  |
+| `symbol` | `str` | No |  |
+| `timestamp` | `int` | No |  |
+| `type` | `str` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `amount` | - | - | Yes | - | - |
-| `filled` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `price` | - | - | - | - | - |
-| `side` | - | - | Yes | - | - |
-| `status` | - | - | - | - | - |
-| `symbol` | - | - | Yes | - | - |
-| `timestamp` | - | - | - | - | - |
-| `type` | - | - | Yes | - | - |
+| Field | load | list | create | remove |
+| --- | --- | --- | --- | --- |
+| `amount` | - | - | Yes | - |
+| `filled` | - | - | - | - |
+| `id` | - | - | - | - |
+| `price` | - | - | - | - |
+| `side` | - | - | Yes | - |
+| `status` | - | - | - | - |
+| `symbol` | - | - | Yes | - |
+| `timestamp` | - | - | - | - |
+| `type` | - | - | Yes | - |
 
 ### Operations
 
@@ -317,12 +317,12 @@ result = client.Order().create({
 })
 ```
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Order().list({})
+results = client.Order().list()
 for order in results:
     print(order)
 ```
@@ -382,9 +382,9 @@ order_book = client.OrderBook()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | ``$ARRAY`` | No |  |
-| `bid` | ``$ARRAY`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
+| `ask` | `list` | No |  |
+| `bid` | `list` | No |  |
+| `timestamp` | `int` | No |  |
 
 ### Operations
 
@@ -393,7 +393,7 @@ order_book = client.OrderBook()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.OrderBook().load({"id": "order_book_id"})
+result = client.OrderBook().load()
 ```
 
 ### Common Methods
@@ -435,23 +435,23 @@ ticker = client.Ticker()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | ``$NUMBER`` | No |  |
-| `bid` | ``$NUMBER`` | No |  |
-| `high` | ``$NUMBER`` | No |  |
-| `last` | ``$NUMBER`` | No |  |
-| `low` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `volume` | ``$NUMBER`` | No |  |
+| `ask` | `float` | No |  |
+| `bid` | `float` | No |  |
+| `high` | `float` | No |  |
+| `last` | `float` | No |  |
+| `low` | `float` | No |  |
+| `symbol` | `str` | No |  |
+| `timestamp` | `int` | No |  |
+| `volume` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Ticker().list({})
+results = client.Ticker().list()
 for ticker in results:
     print(ticker)
 ```
@@ -503,11 +503,11 @@ trade = client.Trade()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `side` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
+| `amount` | `float` | No |  |
+| `id` | `str` | No |  |
+| `price` | `float` | No |  |
+| `side` | `str` | No |  |
+| `timestamp` | `int` | No |  |
 
 ### Operations
 
@@ -558,14 +558,14 @@ withdrawal = client.Withdrawal()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_number` | ``$STRING`` | Yes |  |
-| `account_type` | ``$STRING`` | No |  |
-| `address` | ``$STRING`` | Yes |  |
-| `agency` | ``$STRING`` | Yes |  |
-| `amount` | ``$NUMBER`` | Yes |  |
-| `bank` | ``$STRING`` | Yes |  |
-| `currency` | ``$STRING`` | Yes |  |
-| `tag` | ``$STRING`` | No |  |
+| `account_number` | `str` | Yes |  |
+| `account_type` | `str` | No |  |
+| `address` | `str` | Yes |  |
+| `agency` | `str` | Yes |  |
+| `amount` | `float` | Yes |  |
+| `bank` | `str` | Yes |  |
+| `currency` | `str` | Yes |  |
+| `tag` | `str` | No |  |
 
 ### Operations
 
@@ -575,12 +575,12 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Withdrawal().create({
-    "account_number": ...,  # `$STRING`
-    "address": ...,  # `$STRING`
-    "agency": ...,  # `$STRING`
-    "amount": ...,  # `$NUMBER`
-    "bank": ...,  # `$STRING`
-    "currency": ...,  # `$STRING`
+    "account_number": "example",  # str
+    "address": "example",  # str
+    "agency": "example",  # str
+    "amount": 1,  # float
+    "bank": "example",  # str
+    "currency": "example",  # str
 })
 ```
 

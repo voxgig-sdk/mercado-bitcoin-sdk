@@ -4,6 +4,8 @@
 
 The Golang SDK for the MercadoBitcoin API — an entity-oriented client using standard Go conventions. No generics required; data flows as `map[string]any`.
 
+It exposes the API as capitalised, semantic **Entities** — e.g. `client.Balance(nil)` — each with the same small set of operations (`List`, `Load`, `Create`, `Remove`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -63,6 +65,35 @@ func main() {
 ```
 
 
+## Error handling
+
+Every entity operation returns `(value, error)`. Check `err` before
+using the value — there is no exception to catch:
+
+```go
+balances, err := client.Balance(nil).List(nil, nil)
+if err != nil {
+    // handle err
+    return
+}
+_ = balances
+```
+
+`Direct` follows the same `(value, error)` convention:
+
+```go
+result, err := client.Direct(map[string]any{
+    "path":   "/api/resource/{id}",
+    "method": "GET",
+    "params": map[string]any{"id": "example_id"},
+})
+if err != nil {
+    // handle err
+}
+_ = result
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -109,13 +140,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-balance, err := client.Balance(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+balance, err := client.Balance(nil).List(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(balance) // the loaded mock data
+fmt.Println(balance) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -212,7 +243,6 @@ All entities implement the `MercadoBitcoinEntity` interface.
 | `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
 | `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
 | `Create` | `(reqdata, ctrl map[string]any) (any, error)` | Create a new entity. |
-| `Update` | `(reqdata, ctrl map[string]any) (any, error)` | Update an existing entity. |
 | `Remove` | `(reqmatch, ctrl map[string]any) (any, error)` | Remove an entity. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
@@ -226,16 +256,16 @@ operation's data **directly** — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `Load` / `Create` / `Remove` | the entity record (`map[string]any`) |
 | `List` | a `[]any` of entity records |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    balance, err := client.Balance(nil).Load(map[string]any{"id": "example_id"}, nil)
+    balance, err := client.Balance(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // balance is the loaded record
+    // balance is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -380,10 +410,10 @@ Create an instance: `balance := client.Balance(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `available` | ``$NUMBER`` |  |
-| `currency` | ``$STRING`` |  |
-| `locked` | ``$NUMBER`` |  |
-| `total` | ``$NUMBER`` |  |
+| `available` | `float64` |  |
+| `currency` | `string` |  |
+| `locked` | `float64` |  |
+| `total` | `float64` |  |
 
 #### Example: List
 
@@ -410,12 +440,12 @@ Create an instance: `candle := client.Candle(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `close` | ``$NUMBER`` |  |
-| `high` | ``$NUMBER`` |  |
-| `low` | ``$NUMBER`` |  |
-| `open` | ``$NUMBER`` |  |
-| `timestamp` | ``$INTEGER`` |  |
-| `volume` | ``$NUMBER`` |  |
+| `close` | `float64` |  |
+| `high` | `float64` |  |
+| `low` | `float64` |  |
+| `open` | `float64` |  |
+| `timestamp` | `int` |  |
+| `volume` | `float64` |  |
 
 #### Example: Load
 
@@ -442,15 +472,15 @@ Create an instance: `deposit_address := client.DepositAddress(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `qr_code` | ``$STRING`` |  |
-| `tag` | ``$STRING`` |  |
+| `address` | `string` |  |
+| `currency` | `string` |  |
+| `qr_code` | `string` |  |
+| `tag` | `string` |  |
 
 #### Example: Load
 
 ```go
-deposit_address, err := client.DepositAddress(nil).Load(map[string]any{"id": "deposit_address_id"}, nil)
+deposit_address, err := client.DepositAddress(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -475,15 +505,15 @@ Create an instance: `order := client.Order(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | ``$NUMBER`` |  |
-| `filled` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `price` | ``$NUMBER`` |  |
-| `side` | ``$STRING`` |  |
-| `status` | ``$STRING`` |  |
-| `symbol` | ``$STRING`` |  |
-| `timestamp` | ``$INTEGER`` |  |
-| `type` | ``$STRING`` |  |
+| `amount` | `float64` |  |
+| `filled` | `float64` |  |
+| `id` | `string` |  |
+| `price` | `float64` |  |
+| `side` | `string` |  |
+| `status` | `string` |  |
+| `symbol` | `string` |  |
+| `timestamp` | `int` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -527,14 +557,14 @@ Create an instance: `order_book := client.OrderBook(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | ``$ARRAY`` |  |
-| `bid` | ``$ARRAY`` |  |
-| `timestamp` | ``$INTEGER`` |  |
+| `ask` | `[]any` |  |
+| `bid` | `[]any` |  |
+| `timestamp` | `int` |  |
 
 #### Example: Load
 
 ```go
-order_book, err := client.OrderBook(nil).Load(map[string]any{"id": "order_book_id"}, nil)
+order_book, err := client.OrderBook(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -557,14 +587,14 @@ Create an instance: `ticker := client.Ticker(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | ``$NUMBER`` |  |
-| `bid` | ``$NUMBER`` |  |
-| `high` | ``$NUMBER`` |  |
-| `last` | ``$NUMBER`` |  |
-| `low` | ``$NUMBER`` |  |
-| `symbol` | ``$STRING`` |  |
-| `timestamp` | ``$INTEGER`` |  |
-| `volume` | ``$NUMBER`` |  |
+| `ask` | `float64` |  |
+| `bid` | `float64` |  |
+| `high` | `float64` |  |
+| `last` | `float64` |  |
+| `low` | `float64` |  |
+| `symbol` | `string` |  |
+| `timestamp` | `int` |  |
+| `volume` | `float64` |  |
 
 #### Example: Load
 
@@ -601,11 +631,11 @@ Create an instance: `trade := client.Trade(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | ``$NUMBER`` |  |
-| `id` | ``$STRING`` |  |
-| `price` | ``$NUMBER`` |  |
-| `side` | ``$STRING`` |  |
-| `timestamp` | ``$INTEGER`` |  |
+| `amount` | `float64` |  |
+| `id` | `string` |  |
+| `price` | `float64` |  |
+| `side` | `string` |  |
+| `timestamp` | `int` |  |
 
 #### Example: Load
 
@@ -632,35 +662,39 @@ Create an instance: `withdrawal := client.Withdrawal(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_number` | ``$STRING`` |  |
-| `account_type` | ``$STRING`` |  |
-| `address` | ``$STRING`` |  |
-| `agency` | ``$STRING`` |  |
-| `amount` | ``$NUMBER`` |  |
-| `bank` | ``$STRING`` |  |
-| `currency` | ``$STRING`` |  |
-| `tag` | ``$STRING`` |  |
+| `account_number` | `string` |  |
+| `account_type` | `string` |  |
+| `address` | `string` |  |
+| `agency` | `string` |  |
+| `amount` | `float64` |  |
+| `bank` | `string` |  |
+| `currency` | `string` |  |
+| `tag` | `string` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.Withdrawal(nil).Create(map[string]any{
-    "account_number": /* `$STRING` */,
-    "address": /* `$STRING` */,
-    "agency": /* `$STRING` */,
-    "amount": /* `$NUMBER` */,
-    "bank": /* `$STRING` */,
-    "currency": /* `$STRING` */,
+    "account_number": /* string */,
+    "address": /* string */,
+    "agency": /* string */,
+    "amount": /* float64 */,
+    "bank": /* string */,
+    "currency": /* string */,
 }, nil)
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -677,9 +711,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller. An unexpected panic triggers the
-`PreUnexpected` hook.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -720,14 +754,14 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
 balance := client.Balance(nil)
-balance.Load(map[string]any{"id": "example_id"}, nil)
+balance.List(nil, nil)
 
-// balance.Data() now returns the loaded balance data
+// balance.Data() now returns the balance data from the last list
 // balance.Match() returns the last match criteria
 ```
 

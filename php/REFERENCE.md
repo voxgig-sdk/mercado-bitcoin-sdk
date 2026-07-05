@@ -8,7 +8,7 @@ Complete API reference for the MercadoBitcoin PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/mercado-bitcoin_sdk.php';
+require_once __DIR__ . '/mercadobitcoin_sdk.php';
 
 $client = new MercadoBitcoinSDK($options);
 ```
@@ -74,11 +74,11 @@ Create a new `TradeEntity` instance. Pass `null` for no initial data.
 
 Create a new `WithdrawalEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): MercadoBitcoinUtility`
 
 Return a copy of the SDK utility object.
 
@@ -121,36 +121,36 @@ $balance = $client->Balance();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `available` | ``$NUMBER`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `locked` | ``$NUMBER`` | No |  |
-| `total` | ``$NUMBER`` | No |  |
+| `available` | `float` | No |  |
+| `currency` | `string` | No |  |
+| `locked` | `float` | No |  |
+| `total` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Balance()->list([]);
+$results = $client->Balance()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -159,7 +159,7 @@ Set the entity match criteria.
 Create a new `BalanceEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -176,12 +176,12 @@ $candle = $client->Candle();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `close` | ``$NUMBER`` | No |  |
-| `high` | ``$NUMBER`` | No |  |
-| `low` | ``$NUMBER`` | No |  |
-| `open` | ``$NUMBER`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `volume` | ``$NUMBER`` | No |  |
+| `close` | `float` | No |  |
+| `high` | `float` | No |  |
+| `low` | `float` | No |  |
+| `open` | `float` | No |  |
+| `timestamp` | `int` | No |  |
+| `volume` | `float` | No |  |
 
 ### Operations
 
@@ -195,19 +195,19 @@ $result = $client->Candle()->load(["id" => "candle_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -216,7 +216,7 @@ Set the entity match criteria.
 Create a new `CandleEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -233,10 +233,10 @@ $deposit_address = $client->DepositAddress();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `qr_code` | ``$STRING`` | No |  |
-| `tag` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `qr_code` | `string` | No |  |
+| `tag` | `string` | No |  |
 
 ### Operations
 
@@ -245,24 +245,24 @@ $deposit_address = $client->DepositAddress();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->DepositAddress()->load(["id" => "deposit_address_id"]);
+$result = $client->DepositAddress()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -271,7 +271,7 @@ Set the entity match criteria.
 Create a new `DepositAddressEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -288,29 +288,29 @@ $order = $client->Order();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `filled` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `side` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `amount` | `float` | No |  |
+| `filled` | `float` | No |  |
+| `id` | `string` | No |  |
+| `price` | `float` | No |  |
+| `side` | `string` | No |  |
+| `status` | `string` | No |  |
+| `symbol` | `string` | No |  |
+| `timestamp` | `int` | No |  |
+| `type` | `string` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `amount` | - | - | Yes | - | - |
-| `filled` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `price` | - | - | - | - | - |
-| `side` | - | - | Yes | - | - |
-| `status` | - | - | - | - | - |
-| `symbol` | - | - | Yes | - | - |
-| `timestamp` | - | - | - | - | - |
-| `type` | - | - | Yes | - | - |
+| Field | load | list | create | remove |
+| --- | --- | --- | --- | --- |
+| `amount` | - | - | Yes | - |
+| `filled` | - | - | - | - |
+| `id` | - | - | - | - |
+| `price` | - | - | - | - |
+| `side` | - | - | Yes | - |
+| `status` | - | - | - | - |
+| `symbol` | - | - | Yes | - |
+| `timestamp` | - | - | - | - |
+| `type` | - | - | Yes | - |
 
 ### Operations
 
@@ -323,12 +323,12 @@ $result = $client->Order()->create([
 ]);
 ```
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Order()->list([]);
+$results = $client->Order()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -349,19 +349,19 @@ $result = $client->Order()->remove(["id" => "order_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -370,7 +370,7 @@ Set the entity match criteria.
 Create a new `OrderEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -387,9 +387,9 @@ $order_book = $client->OrderBook();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | ``$ARRAY`` | No |  |
-| `bid` | ``$ARRAY`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
+| `ask` | `array` | No |  |
+| `bid` | `array` | No |  |
+| `timestamp` | `int` | No |  |
 
 ### Operations
 
@@ -398,24 +398,24 @@ $order_book = $client->OrderBook();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->OrderBook()->load(["id" => "order_book_id"]);
+$result = $client->OrderBook()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -424,7 +424,7 @@ Set the entity match criteria.
 Create a new `OrderBookEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -441,23 +441,23 @@ $ticker = $client->Ticker();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | ``$NUMBER`` | No |  |
-| `bid` | ``$NUMBER`` | No |  |
-| `high` | ``$NUMBER`` | No |  |
-| `last` | ``$NUMBER`` | No |  |
-| `low` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `volume` | ``$NUMBER`` | No |  |
+| `ask` | `float` | No |  |
+| `bid` | `float` | No |  |
+| `high` | `float` | No |  |
+| `last` | `float` | No |  |
+| `low` | `float` | No |  |
+| `symbol` | `string` | No |  |
+| `timestamp` | `int` | No |  |
+| `volume` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Ticker()->list([]);
+$results = $client->Ticker()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -470,19 +470,19 @@ $result = $client->Ticker()->load(["id" => "ticker_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -491,7 +491,7 @@ Set the entity match criteria.
 Create a new `TickerEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -508,11 +508,11 @@ $trade = $client->Trade();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `side` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
+| `amount` | `float` | No |  |
+| `id` | `string` | No |  |
+| `price` | `float` | No |  |
+| `side` | `string` | No |  |
+| `timestamp` | `int` | No |  |
 
 ### Operations
 
@@ -526,19 +526,19 @@ $result = $client->Trade()->load(["id" => "trade_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -547,7 +547,7 @@ Set the entity match criteria.
 Create a new `TradeEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -564,14 +564,14 @@ $withdrawal = $client->Withdrawal();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_number` | ``$STRING`` | Yes |  |
-| `account_type` | ``$STRING`` | No |  |
-| `address` | ``$STRING`` | Yes |  |
-| `agency` | ``$STRING`` | Yes |  |
-| `amount` | ``$NUMBER`` | Yes |  |
-| `bank` | ``$STRING`` | Yes |  |
-| `currency` | ``$STRING`` | Yes |  |
-| `tag` | ``$STRING`` | No |  |
+| `account_number` | `string` | Yes |  |
+| `account_type` | `string` | No |  |
+| `address` | `string` | Yes |  |
+| `agency` | `string` | Yes |  |
+| `amount` | `float` | Yes |  |
+| `bank` | `string` | Yes |  |
+| `currency` | `string` | Yes |  |
+| `tag` | `string` | No |  |
 
 ### Operations
 
@@ -581,30 +581,30 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Withdrawal()->create([
-  "account_number" => /* `$STRING` */,
-  "address" => /* `$STRING` */,
-  "agency" => /* `$STRING` */,
-  "amount" => /* `$NUMBER` */,
-  "bank" => /* `$STRING` */,
-  "currency" => /* `$STRING` */,
+  "account_number" => null, // string
+  "address" => null, // string
+  "agency" => null, // string
+  "amount" => null, // float
+  "bank" => null, // string
+  "currency" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -613,7 +613,7 @@ Set the entity match criteria.
 Create a new `WithdrawalEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

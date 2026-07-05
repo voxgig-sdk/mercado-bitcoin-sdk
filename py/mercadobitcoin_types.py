@@ -163,12 +163,15 @@ class Withdrawal(WithdrawalRequired, total=False):
     tag: str
 
 
-class WithdrawalCreateData(TypedDict, total=False):
+class WithdrawalCreateDataRequired(TypedDict):
     account_number: str
-    account_type: str
     address: str
     agency: str
     amount: float
     bank: str
     currency: str
+
+
+class WithdrawalCreateData(WithdrawalCreateDataRequired, total=False):
+    account_type: str
     tag: str

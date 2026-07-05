@@ -201,10 +201,10 @@ const balance = client.Balance()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `available` | ``$NUMBER`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `locked` | ``$NUMBER`` | No |  |
-| `total` | ``$NUMBER`` | No |  |
+| `available` | `number` | No |  |
+| `currency` | `string` | No |  |
+| `locked` | `number` | No |  |
+| `total` | `number` | No |  |
 
 ### Operations
 
@@ -254,12 +254,12 @@ const candle = client.Candle()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `close` | ``$NUMBER`` | No |  |
-| `high` | ``$NUMBER`` | No |  |
-| `low` | ``$NUMBER`` | No |  |
-| `open` | ``$NUMBER`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `volume` | ``$NUMBER`` | No |  |
+| `close` | `number` | No |  |
+| `high` | `number` | No |  |
+| `low` | `number` | No |  |
+| `open` | `number` | No |  |
+| `timestamp` | `number` | No |  |
+| `volume` | `number` | No |  |
 
 ### Operations
 
@@ -309,10 +309,10 @@ const deposit_address = client.DepositAddress()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | ``$STRING`` | No |  |
-| `currency` | ``$STRING`` | No |  |
-| `qr_code` | ``$STRING`` | No |  |
-| `tag` | ``$STRING`` | No |  |
+| `address` | `string` | No |  |
+| `currency` | `string` | No |  |
+| `qr_code` | `string` | No |  |
+| `tag` | `string` | No |  |
 
 ### Operations
 
@@ -321,7 +321,7 @@ const deposit_address = client.DepositAddress()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.DepositAddress().load({ id: 'deposit_address_id' })
+const result = await client.DepositAddress().load()
 ```
 
 ### Common Methods
@@ -362,29 +362,29 @@ const order = client.Order()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `filled` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `side` | ``$STRING`` | No |  |
-| `status` | ``$STRING`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `amount` | `number` | No |  |
+| `filled` | `number` | No |  |
+| `id` | `string` | No |  |
+| `price` | `number` | No |  |
+| `side` | `string` | No |  |
+| `status` | `string` | No |  |
+| `symbol` | `string` | No |  |
+| `timestamp` | `number` | No |  |
+| `type` | `string` | No |  |
 
 ### Field Usage by Operation
 
-| Field | load | list | create | update | remove |
-| --- | --- | --- | --- | --- | --- |
-| `amount` | - | - | Yes | - | - |
-| `filled` | - | - | - | - | - |
-| `id` | - | - | - | - | - |
-| `price` | - | - | - | - | - |
-| `side` | - | - | Yes | - | - |
-| `status` | - | - | - | - | - |
-| `symbol` | - | - | Yes | - | - |
-| `timestamp` | - | - | - | - | - |
-| `type` | - | - | Yes | - | - |
+| Field | load | list | create | remove |
+| --- | --- | --- | --- | --- |
+| `amount` | - | - | Yes | - |
+| `filled` | - | - | - | - |
+| `id` | - | - | - | - |
+| `price` | - | - | - | - |
+| `side` | - | - | Yes | - |
+| `status` | - | - | - | - |
+| `symbol` | - | - | Yes | - |
+| `timestamp` | - | - | - | - |
+| `type` | - | - | Yes | - |
 
 ### Operations
 
@@ -459,9 +459,9 @@ const order_book = client.OrderBook()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | ``$ARRAY`` | No |  |
-| `bid` | ``$ARRAY`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
+| `ask` | `any[]` | No |  |
+| `bid` | `any[]` | No |  |
+| `timestamp` | `number` | No |  |
 
 ### Operations
 
@@ -470,7 +470,7 @@ const order_book = client.OrderBook()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.OrderBook().load({ id: 'order_book_id' })
+const result = await client.OrderBook().load()
 ```
 
 ### Common Methods
@@ -511,14 +511,14 @@ const ticker = client.Ticker()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | ``$NUMBER`` | No |  |
-| `bid` | ``$NUMBER`` | No |  |
-| `high` | ``$NUMBER`` | No |  |
-| `last` | ``$NUMBER`` | No |  |
-| `low` | ``$NUMBER`` | No |  |
-| `symbol` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `volume` | ``$NUMBER`` | No |  |
+| `ask` | `number` | No |  |
+| `bid` | `number` | No |  |
+| `high` | `number` | No |  |
+| `last` | `number` | No |  |
+| `low` | `number` | No |  |
+| `symbol` | `string` | No |  |
+| `timestamp` | `number` | No |  |
+| `volume` | `number` | No |  |
 
 ### Operations
 
@@ -576,11 +576,11 @@ const trade = client.Trade()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | ``$NUMBER`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `price` | ``$NUMBER`` | No |  |
-| `side` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
+| `amount` | `number` | No |  |
+| `id` | `string` | No |  |
+| `price` | `number` | No |  |
+| `side` | `string` | No |  |
+| `timestamp` | `number` | No |  |
 
 ### Operations
 
@@ -630,14 +630,14 @@ const withdrawal = client.Withdrawal()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_number` | ``$STRING`` | Yes |  |
-| `account_type` | ``$STRING`` | No |  |
-| `address` | ``$STRING`` | Yes |  |
-| `agency` | ``$STRING`` | Yes |  |
-| `amount` | ``$NUMBER`` | Yes |  |
-| `bank` | ``$STRING`` | Yes |  |
-| `currency` | ``$STRING`` | Yes |  |
-| `tag` | ``$STRING`` | No |  |
+| `account_number` | `string` | Yes |  |
+| `account_type` | `string` | No |  |
+| `address` | `string` | Yes |  |
+| `agency` | `string` | Yes |  |
+| `amount` | `number` | Yes |  |
+| `bank` | `string` | Yes |  |
+| `currency` | `string` | Yes |  |
+| `tag` | `string` | No |  |
 
 ### Operations
 
@@ -647,12 +647,12 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Withdrawal().create({
-  account_number: /* `$STRING` */,
-  address: /* `$STRING` */,
-  agency: /* `$STRING` */,
-  amount: /* `$NUMBER` */,
-  bank: /* `$STRING` */,
-  currency: /* `$STRING` */,
+  account_number: /* string */,
+  address: /* string */,
+  agency: /* string */,
+  amount: /* number */,
+  bank: /* string */,
+  currency: /* string */,
 })
 ```
 

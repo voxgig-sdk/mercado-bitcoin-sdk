@@ -67,8 +67,13 @@ class OrderEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: OrderLoadMatch, ctrl=None) -> Order:
+    def load(self, reqmatch=None, ctrl=None) -> Order:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Order().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -89,8 +94,12 @@ class OrderEntity:
 
 
     
-    def list(self, reqmatch: OrderListMatch, ctrl=None) -> list[Order]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Order]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Order().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,
@@ -131,8 +140,13 @@ class OrderEntity:
     
 
     
-    def remove(self, reqmatch: OrderRemoveMatch, ctrl=None) -> Order:
+    def remove(self, reqmatch=None, ctrl=None) -> Order:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key removes with no
+        # match. Treat None as an empty match so client.Order().remove()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "remove",
             "ctrl": ctrl,

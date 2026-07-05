@@ -65,8 +65,13 @@ class TickerEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: TickerLoadMatch, ctrl=None) -> Ticker:
+    def load(self, reqmatch=None, ctrl=None) -> Ticker:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Ticker().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class TickerEntity:
 
 
     
-    def list(self, reqmatch: TickerListMatch, ctrl=None) -> list[Ticker]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Ticker]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Ticker().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

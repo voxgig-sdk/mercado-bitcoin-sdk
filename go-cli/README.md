@@ -17,8 +17,6 @@ go build -o mercado-bitcoin-cli ./...
 ```sh
 # One-shot: arguments form a single AQL expression
 ./mercado-bitcoin-cli list balance
-./mercado-bitcoin-cli load 1 balance
-./mercado-bitcoin-cli load '{id:1}' balance
 
 # REPL
 ./mercado-bitcoin-cli
@@ -30,7 +28,6 @@ go build -o mercado-bitcoin-cli ./...
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

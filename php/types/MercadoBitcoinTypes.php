@@ -21,7 +21,7 @@ class Balance
     public ?float $total = null;
 }
 
-/** Match filter for Balance#list (any subset of Balance fields). */
+/** Request payload for Balance#list. */
 class BalanceListMatch
 {
     public ?float $available = null;
@@ -56,7 +56,7 @@ class DepositAddress
     public ?string $tag = null;
 }
 
-/** Match filter for DepositAddress#load (any subset of DepositAddress fields). */
+/** Request payload for DepositAddress#load. */
 class DepositAddressLoadMatch
 {
     public ?string $address = null;
@@ -85,7 +85,7 @@ class OrderLoadMatch
     public string $id;
 }
 
-/** Match filter for Order#list (any subset of Order fields). */
+/** Request payload for Order#list. */
 class OrderListMatch
 {
     public ?float $amount = null;
@@ -99,7 +99,7 @@ class OrderListMatch
     public ?string $type = null;
 }
 
-/** Match filter for Order#create (any subset of Order fields). */
+/** Request payload for Order#create. */
 class OrderCreateData
 {
     public ?float $amount = null;
@@ -152,7 +152,7 @@ class TickerLoadMatch
     public string $id;
 }
 
-/** Match filter for Ticker#list (any subset of Ticker fields). */
+/** Request payload for Ticker#list. */
 class TickerListMatch
 {
     public ?float $ask = null;
@@ -194,16 +194,16 @@ class Withdrawal
     public ?string $tag = null;
 }
 
-/** Match filter for Withdrawal#create (any subset of Withdrawal fields). */
+/** Request payload for Withdrawal#create. */
 class WithdrawalCreateData
 {
-    public ?string $account_number = null;
+    public string $account_number;
     public ?string $account_type = null;
-    public ?string $address = null;
-    public ?string $agency = null;
-    public ?float $amount = null;
-    public ?string $bank = null;
-    public ?string $currency = null;
+    public string $address;
+    public string $agency;
+    public float $amount;
+    public string $bank;
+    public string $currency;
     public ?string $tag = null;
 }
 
