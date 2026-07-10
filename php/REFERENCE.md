@@ -398,7 +398,7 @@ $order_book = $client->OrderBook();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->OrderBook()->load();
+$result = $client->OrderBook()->load(["symbol" => "symbol"]);
 ```
 
 ### Common Methods

@@ -120,6 +120,7 @@ same parameters as `Direct()`.
 
 ```go
 balance := client.Balance(nil)
+fmt.Println(balance.GetName()) // "balance"
 ```
 
 ### Fields
@@ -139,6 +140,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Balance(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -169,6 +174,7 @@ Return the entity name.
 
 ```go
 candle := client.Candle(nil)
+fmt.Println(candle.GetName()) // "candle"
 ```
 
 ### Fields
@@ -190,6 +196,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Candle(nil).Load(map[string]any{"id": "candle_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -219,7 +229,8 @@ Return the entity name.
 ## DepositAddressEntity
 
 ```go
-deposit_address := client.DepositAddress(nil)
+depositAddress := client.DepositAddress(nil)
+fmt.Println(depositAddress.GetName()) // "deposit_address"
 ```
 
 ### Fields
@@ -239,6 +250,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.DepositAddress(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -269,6 +284,7 @@ Return the entity name.
 
 ```go
 order := client.Order(nil)
+fmt.Println(order.GetName()) // "order"
 ```
 
 ### Fields
@@ -301,21 +317,16 @@ order := client.Order(nil)
 
 ### Operations
 
-#### `Create(reqdata, ctrl map[string]any) (any, error)`
-
-Create a new entity with the given data.
-
-```go
-result, err := client.Order(nil).Create(map[string]any{
-}, nil)
-```
-
 #### `List(reqmatch, ctrl map[string]any) (any, error)`
 
 List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Order(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -324,6 +335,23 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Order(nil).Load(map[string]any{"id": "order_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
+```
+
+#### `Create(reqdata, ctrl map[string]any) (any, error)`
+
+Create a new entity with the given data.
+
+```go
+result, err := client.Order(nil).Create(map[string]any{
+}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 #### `Remove(reqmatch, ctrl map[string]any) (any, error)`
@@ -332,6 +360,10 @@ Remove the entity matching the given criteria.
 
 ```go
 result, err := client.Order(nil).Remove(map[string]any{"id": "order_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -361,7 +393,8 @@ Return the entity name.
 ## OrderBookEntity
 
 ```go
-order_book := client.OrderBook(nil)
+orderBook := client.OrderBook(nil)
+fmt.Println(orderBook.GetName()) // "order_book"
 ```
 
 ### Fields
@@ -379,7 +412,11 @@ order_book := client.OrderBook(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.OrderBook(nil).Load(nil, nil)
+result, err := client.OrderBook(nil).Load(map[string]any{"symbol": "symbol"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -410,6 +447,7 @@ Return the entity name.
 
 ```go
 ticker := client.Ticker(nil)
+fmt.Println(ticker.GetName()) // "ticker"
 ```
 
 ### Fields
@@ -433,6 +471,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Ticker(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -441,6 +483,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Ticker(nil).Load(map[string]any{"id": "ticker_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -471,6 +517,7 @@ Return the entity name.
 
 ```go
 trade := client.Trade(nil)
+fmt.Println(trade.GetName()) // "trade"
 ```
 
 ### Fields
@@ -491,6 +538,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Trade(nil).Load(map[string]any{"id": "trade_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -521,6 +572,7 @@ Return the entity name.
 
 ```go
 withdrawal := client.Withdrawal(nil)
+fmt.Println(withdrawal.GetName()) // "withdrawal"
 ```
 
 ### Fields
@@ -544,13 +596,17 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Withdrawal(nil).Create(map[string]any{
-    "account_number": /* string */,
-    "address": /* string */,
-    "agency": /* string */,
-    "amount": /* float64 */,
-    "bank": /* string */,
-    "currency": /* string */,
+    "account_number": "example_account_number",
+    "address": "example_address",
+    "agency": "example_agency",
+    "amount": 1,
+    "bank": "example_bank",
+    "currency": "example_currency",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

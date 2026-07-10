@@ -39,7 +39,7 @@ class Config {
     base: 'https://api.mercadobitcoin.net/api/v4',
 
     auth: {
-      prefix: 'Bearer',
+      prefix: '',
     },
 
     headers: {

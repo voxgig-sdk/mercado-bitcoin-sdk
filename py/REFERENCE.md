@@ -393,7 +393,7 @@ order_book = client.OrderBook()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.OrderBook().load()
+result = client.OrderBook().load({"symbol": "symbol"})
 ```
 
 ### Common Methods
@@ -575,12 +575,12 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Withdrawal().create({
-    "account_number": "example",  # str
-    "address": "example",  # str
-    "agency": "example",  # str
+    "account_number": "example_account_number",  # str
+    "address": "example_address",  # str
+    "agency": "example_agency",  # str
     "amount": 1,  # float
-    "bank": "example",  # str
-    "currency": "example",  # str
+    "bank": "example_bank",  # str
+    "currency": "example_currency",  # str
 })
 ```
 

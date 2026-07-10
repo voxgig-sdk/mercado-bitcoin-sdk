@@ -399,7 +399,7 @@ order_book = client.OrderBook
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.OrderBook.load()
+result = client.OrderBook.load({ "symbol" => "symbol" })
 ```
 
 ### Common Methods
@@ -582,12 +582,12 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Withdrawal.create({
-  "account_number" => "example", # String
-  "address" => "example", # String
-  "agency" => "example", # String
+  "account_number" => "example_account_number", # String
+  "address" => "example_address", # String
+  "agency" => "example_agency", # String
   "amount" => 1, # Float
-  "bank" => "example", # String
-  "currency" => "example", # String
+  "bank" => "example_bank", # String
+  "currency" => "example_currency", # String
 })
 ```
 

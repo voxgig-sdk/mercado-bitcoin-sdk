@@ -49,6 +49,16 @@ for _, item in ipairs(balances) do
 end
 ```
 
+### 3. Load an orderbook
+
+OrderBook is nested under symbol, so provide the `symbol`.
+
+```lua
+local orderbook, err = client:OrderBook():load({ symbol = "example_symbol" })
+if err then error(err) end
+print(orderbook)
+```
+
 
 ## Error handling
 
@@ -514,7 +524,7 @@ Create an instance: `local order_book = client:OrderBook(nil)`
 #### Example: Load
 
 ```lua
-local order_book, err = client:OrderBook():load()
+local order_book, err = client:OrderBook():load({ symbol = "symbol" })
 ```
 
 
@@ -609,12 +619,12 @@ Create an instance: `local withdrawal = client:Withdrawal(nil)`
 
 ```lua
 local withdrawal, err = client:Withdrawal():create({
-  account_number = nil, -- string
-  address = nil, -- string
-  agency = nil, -- string
-  amount = nil, -- number
-  bank = nil, -- string
-  currency = nil, -- string
+  account_number = "example_account_number", -- string
+  address = "example_address", -- string
+  agency = "example_agency", -- string
+  amount = 1, -- number
+  bank = "example_bank", -- string
+  currency = "example_currency", -- string
 })
 ```
 

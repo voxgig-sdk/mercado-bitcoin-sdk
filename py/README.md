@@ -53,6 +53,19 @@ except Exception as err:
     print(f"list failed: {err}")
 ```
 
+### 3. Load an orderbook
+
+OrderBook is nested under symbol, so provide the `symbol`.
+`load()` returns the bare record (a `dict`) and raises on error.
+
+```python
+try:
+    orderbook = client.OrderBook().load({"symbol": "example_symbol"})
+    print(orderbook)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
 
 ## Error handling
 
@@ -525,7 +538,7 @@ Create an instance: `order_book = client.OrderBook()`
 #### Example: Load
 
 ```python
-order_book = client.OrderBook().load()
+order_book = client.OrderBook().load({"symbol": "symbol"})
 ```
 
 
@@ -620,12 +633,12 @@ Create an instance: `withdrawal = client.Withdrawal()`
 
 ```python
 withdrawal = client.Withdrawal().create({
-    "account_number": "example",  # str
-    "address": "example",  # str
-    "agency": "example",  # str
+    "account_number": "example_account_number",  # str
+    "address": "example_address",  # str
+    "agency": "example_agency",  # str
     "amount": 1,  # float
-    "bank": "example",  # str
-    "currency": "example",  # str
+    "bank": "example_bank",  # str
+    "currency": "example_currency",  # str
 })
 ```
 

@@ -47,6 +47,22 @@ for (const balance of balances) {
 }
 ```
 
+### 3. Load an orderbook
+
+OrderBook is nested under symbol, so provide the `symbol`.
+`load()` returns the entity directly and throws on failure:
+
+```ts
+try {
+  const orderbook = await client.OrderBook().load({
+    symbol: 'example_symbol',
+  })
+  console.log(orderbook)
+} catch (err) {
+  console.error('load failed:', err)
+}
+```
+
 
 ## Error handling
 
@@ -570,7 +586,7 @@ Create an instance: `const order_book = client.OrderBook()`
 #### Example: Load
 
 ```ts
-const order_book = await client.OrderBook().load()
+const order_book = await client.OrderBook().load({ symbol: 'symbol' })
 ```
 
 
@@ -665,12 +681,12 @@ Create an instance: `const withdrawal = client.Withdrawal()`
 
 ```ts
 const withdrawal = await client.Withdrawal().create({
-  account_number: /* string */,
-  address: /* string */,
-  agency: /* string */,
-  amount: /* number */,
-  bank: /* string */,
-  currency: /* string */,
+  account_number: 'example_account_number',
+  address: 'example_address',
+  agency: 'example_agency',
+  amount: 1,
+  bank: 'example_bank',
+  currency: 'example_currency',
 })
 ```
 

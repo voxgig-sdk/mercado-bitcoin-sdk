@@ -396,7 +396,7 @@ local order_book = client:OrderBook(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:OrderBook():load()
+local result, err = client:OrderBook():load({ symbol = "symbol" })
 ```
 
 ### Common Methods

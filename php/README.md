@@ -47,6 +47,20 @@ try {
 }
 ```
 
+### 3. Load an orderbook
+
+OrderBook is nested under symbol, so provide the `symbol`.
+
+```php
+try {
+    // load() returns the bare OrderBook record (throws on error).
+    $orderbook = $client->OrderBook()->load(["symbol" => "example_symbol"]);
+    print_r($orderbook);
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
 
 ## Error handling
 
@@ -534,7 +548,7 @@ Create an instance: `$order_book = $client->OrderBook();`
 
 ```php
 // load() returns the bare OrderBook record (throws on error).
-$order_book = $client->OrderBook()->load();
+$order_book = $client->OrderBook()->load(["symbol" => "symbol"]);
 ```
 
 

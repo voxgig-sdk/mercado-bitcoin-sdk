@@ -470,7 +470,7 @@ const order_book = client.OrderBook()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.OrderBook().load()
+const result = await client.OrderBook().load({ symbol: 'symbol' })
 ```
 
 ### Common Methods
@@ -647,12 +647,12 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Withdrawal().create({
-  account_number: /* string */,
-  address: /* string */,
-  agency: /* string */,
-  amount: /* number */,
-  bank: /* string */,
-  currency: /* string */,
+  account_number: 'example_account_number',
+  address: 'example_address',
+  agency: 'example_agency',
+  amount: 1,
+  bank: 'example_bank',
+  currency: 'example_currency',
 })
 ```
 

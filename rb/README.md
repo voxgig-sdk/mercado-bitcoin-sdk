@@ -46,6 +46,20 @@ rescue => err
 end
 ```
 
+### 3. Load an orderbook
+
+OrderBook is nested under symbol, so provide the `symbol`.
+
+```ruby
+begin
+  # load returns the bare OrderBook record (raises on error).
+  orderbook = client.OrderBook.load({ "symbol" => "example_symbol" })
+  puts orderbook
+rescue => err
+  warn "load failed: #{err}"
+end
+```
+
 
 ## Error handling
 
@@ -524,7 +538,7 @@ Create an instance: `order_book = client.OrderBook`
 
 ```ruby
 # load returns the bare OrderBook record (raises on error).
-order_book = client.OrderBook.load()
+order_book = client.OrderBook.load({ "symbol" => "symbol" })
 ```
 
 
@@ -622,12 +636,12 @@ Create an instance: `withdrawal = client.Withdrawal`
 
 ```ruby
 withdrawal = client.Withdrawal.create({
-  "account_number" => "example", # String
-  "address" => "example", # String
-  "agency" => "example", # String
+  "account_number" => "example_account_number", # String
+  "address" => "example_address", # String
+  "agency" => "example_agency", # String
   "amount" => 1, # Float
-  "bank" => "example", # String
-  "currency" => "example", # String
+  "bank" => "example_bank", # String
+  "currency" => "example_currency", # String
 })
 ```
 

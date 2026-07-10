@@ -460,7 +460,7 @@ fmt.Println(candle) // the loaded record
 
 ### DepositAddress
 
-Create an instance: `deposit_address := client.DepositAddress(nil)`
+Create an instance: `depositAddress := client.DepositAddress(nil)`
 
 #### Operations
 
@@ -480,11 +480,11 @@ Create an instance: `deposit_address := client.DepositAddress(nil)`
 #### Example: Load
 
 ```go
-deposit_address, err := client.DepositAddress(nil).Load(nil, nil)
+depositAddress, err := client.DepositAddress(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(deposit_address) // the loaded record
+fmt.Println(depositAddress) // the loaded record
 ```
 
 
@@ -496,9 +496,9 @@ Create an instance: `order := client.Order(nil)`
 
 | Method | Description |
 | --- | --- |
-| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `List(match, ctrl)` | List entities matching the criteria. |
 | `Load(match, ctrl)` | Load a single entity by match criteria. |
+| `Create(data, ctrl)` | Create a new entity with the given data. |
 | `Remove(match, ctrl)` | Remove the matching entity. |
 
 #### Fields
@@ -540,12 +540,16 @@ fmt.Println(orders) // the array of records
 ```go
 result, err := client.Order(nil).Create(map[string]any{
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 
 ### OrderBook
 
-Create an instance: `order_book := client.OrderBook(nil)`
+Create an instance: `orderBook := client.OrderBook(nil)`
 
 #### Operations
 
@@ -564,11 +568,11 @@ Create an instance: `order_book := client.OrderBook(nil)`
 #### Example: Load
 
 ```go
-order_book, err := client.OrderBook(nil).Load(nil, nil)
+orderBook, err := client.OrderBook(nil).Load(map[string]any{"symbol": "symbol"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(order_book) // the loaded record
+fmt.Println(orderBook) // the loaded record
 ```
 
 
@@ -675,13 +679,17 @@ Create an instance: `withdrawal := client.Withdrawal(nil)`
 
 ```go
 result, err := client.Withdrawal(nil).Create(map[string]any{
-    "account_number": /* string */,
-    "address": /* string */,
-    "agency": /* string */,
-    "amount": /* float64 */,
-    "bank": /* string */,
-    "currency": /* string */,
+    "account_number": "example_account_number",
+    "address": "example_address",
+    "agency": "example_agency",
+    "amount": 1,
+    "bank": "example_bank",
+    "currency": "example_currency",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

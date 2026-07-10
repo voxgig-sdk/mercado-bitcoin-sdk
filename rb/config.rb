@@ -16,7 +16,7 @@ module MercadoBitcoinConfig
       "options" => {
         "base" => "https://api.mercadobitcoin.net/api/v4",
         "auth" => {
-          "prefix" => "Bearer",
+          "prefix" => "",
         },
         "headers" => {
           "content-type" => "application/json",
