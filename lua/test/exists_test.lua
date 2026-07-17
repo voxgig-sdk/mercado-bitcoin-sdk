@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- MercadoBitcoin SDK exists test
 
 local sdk = require("mercado-bitcoin_sdk")
 
