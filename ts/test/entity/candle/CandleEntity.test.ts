@@ -26,8 +26,8 @@ import {
 describe('CandleEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MERCADOBITCOIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MERCADOBITCOIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MERCADO_BITCOIN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MERCADO_BITCOIN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MercadoBitcoinSDK.test()

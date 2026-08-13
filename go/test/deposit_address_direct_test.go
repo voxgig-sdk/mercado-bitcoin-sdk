@@ -35,7 +35,8 @@ func TestDepositAddressDirect(t *testing.T) {
 		if setup.live {
 			// Live mode is lenient: synthetic IDs frequently 4xx. Skip
 			// rather than fail when the load endpoint isn't reachable with
-			// the IDs we can construct from setup.idmap.
+			// the IDs we can construct from setup.idmap — unless the model
+			// sets main.kit.test.live.strict.
 			if err != nil {
 				t.Skipf("load call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -97,21 +98,21 @@ func deposit_addressDirectSetup(mockres any) *deposit_addressDirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"MERCADOBITCOIN_TEST_DEPOSIT_ADDRESS_ENTID": map[string]any{},
-		"MERCADOBITCOIN_TEST_LIVE":    "FALSE",
-		"MERCADOBITCOIN_APIKEY":       "NONE",
+		"MERCADO_BITCOIN_TEST_DEPOSIT_ADDRESS_ENTID": map[string]any{},
+		"MERCADO_BITCOIN_TEST_LIVE":    "FALSE",
+		"MERCADO_BITCOIN_APIKEY":       "NONE",
 	})
 
-	live := env["MERCADOBITCOIN_TEST_LIVE"] == "TRUE"
+	live := env["MERCADO_BITCOIN_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["MERCADOBITCOIN_APIKEY"],
+			"apikey": env["MERCADO_BITCOIN_APIKEY"],
 		}
 		client := sdk.NewMercadoBitcoinSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["MERCADOBITCOIN_TEST_DEPOSIT_ADDRESS_ENTID"]; ok {
+		if entidRaw, ok := env["MERCADO_BITCOIN_TEST_DEPOSIT_ADDRESS_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

@@ -62,7 +62,7 @@ class OrderEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set MERCADOBITCOIN_TEST_ORDER_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set MERCADO_BITCOIN_TEST_ORDER_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -73,7 +73,7 @@ class OrderEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.order"), "order_ref01"))
 
     order_ref01_data_result = order_ref01_ent.create(order_ref01_data, nil)
-    order_ref01_data = Helpers.to_map(order_ref01_data_result)
+    order_ref01_data = Helpers.to_map(order_ref01_data_result.respond_to?(:data_get) ? order_ref01_data_result.data_get : order_ref01_data_result)
     assert !order_ref01_data.nil?
     assert !order_ref01_data["id"].nil?
 
@@ -93,7 +93,7 @@ class OrderEntityTest < Minitest::Test
       "id" => order_ref01_data["id"],
     }
     order_ref01_data_dt0_loaded = order_ref01_ent.load(order_ref01_match_dt0, nil)
-    order_ref01_data_dt0_load_result = Helpers.to_map(order_ref01_data_dt0_loaded)
+    order_ref01_data_dt0_load_result = Helpers.to_map(order_ref01_data_dt0_loaded.respond_to?(:data_get) ? order_ref01_data_dt0_loaded.data_get : order_ref01_data_dt0_loaded)
     assert !order_ref01_data_dt0_load_result.nil?
     assert_equal order_ref01_data_dt0_load_result["id"], order_ref01_data["id"]
 
@@ -143,39 +143,39 @@ def order_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["MERCADOBITCOIN_TEST_ORDER_ENTID"]
+  entid_env_raw = ENV["MERCADO_BITCOIN_TEST_ORDER_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "MERCADOBITCOIN_TEST_ORDER_ENTID" => idmap,
-    "MERCADOBITCOIN_TEST_LIVE" => "FALSE",
-    "MERCADOBITCOIN_TEST_EXPLAIN" => "FALSE",
-    "MERCADOBITCOIN_APIKEY" => "NONE",
+    "MERCADO_BITCOIN_TEST_ORDER_ENTID" => idmap,
+    "MERCADO_BITCOIN_TEST_LIVE" => "FALSE",
+    "MERCADO_BITCOIN_TEST_EXPLAIN" => "FALSE",
+    "MERCADO_BITCOIN_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["MERCADOBITCOIN_TEST_ORDER_ENTID"])
+    env["MERCADO_BITCOIN_TEST_ORDER_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["MERCADOBITCOIN_TEST_LIVE"] == "TRUE"
+  if env["MERCADO_BITCOIN_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["MERCADOBITCOIN_APIKEY"],
+        "apikey" => env["MERCADO_BITCOIN_APIKEY"],
       },
       extra || {},
     ])
     client = MercadoBitcoinSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["MERCADOBITCOIN_TEST_LIVE"] == "TRUE"
+  live = env["MERCADO_BITCOIN_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["MERCADOBITCOIN_TEST_EXPLAIN"] == "TRUE",
+    explain: env["MERCADO_BITCOIN_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

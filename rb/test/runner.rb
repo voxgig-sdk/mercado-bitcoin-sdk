@@ -23,8 +23,8 @@ module MercadoBitcoinTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("MERCADOBITCOIN_TEST_LIVE")
-    override = getenv("MERCADOBITCOIN_TEST_OVERRIDE")
+    live = getenv("MERCADO_BITCOIN_TEST_LIVE")
+    override = getenv("MERCADO_BITCOIN_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module MercadoBitcoinTestRunner
       end
     end
 
-    explain = getenv("MERCADOBITCOIN_TEST_EXPLAIN")
-    m["MERCADOBITCOIN_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("MERCADO_BITCOIN_TEST_EXPLAIN")
+    m["MERCADO_BITCOIN_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

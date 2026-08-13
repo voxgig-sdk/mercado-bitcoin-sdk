@@ -96,7 +96,7 @@ CandleLoadMatch = Struct.new(
 # @!attribute [rw] currency
 #   @return [String, nil]
 #
-# @!attribute [rw] qr_code
+# @!attribute [rw] qrCode
 #   @return [String, nil]
 #
 # @!attribute [rw] tag
@@ -104,7 +104,7 @@ CandleLoadMatch = Struct.new(
 DepositAddress = Struct.new(
   :address,
   :currency,
-  :qr_code,
+  :qrCode,
   :tag,
   keyword_init: true
 )
@@ -117,7 +117,7 @@ DepositAddress = Struct.new(
 # @!attribute [rw] currency
 #   @return [String, nil]
 #
-# @!attribute [rw] qr_code
+# @!attribute [rw] qrCode
 #   @return [String, nil]
 #
 # @!attribute [rw] tag
@@ -125,7 +125,7 @@ DepositAddress = Struct.new(
 DepositAddressLoadMatch = Struct.new(
   :address,
   :currency,
-  :qr_code,
+  :qrCode,
   :tag,
   keyword_init: true
 )
@@ -273,17 +273,17 @@ OrderRemoveMatch = Struct.new(
 
 # OrderBook entity data model.
 #
-# @!attribute [rw] ask
+# @!attribute [rw] asks
 #   @return [Array, nil]
 #
-# @!attribute [rw] bid
+# @!attribute [rw] bids
 #   @return [Array, nil]
 #
 # @!attribute [rw] timestamp
 #   @return [Integer, nil]
 OrderBook = Struct.new(
-  :ask,
-  :bid,
+  :asks,
+  :bids,
   :timestamp,
   keyword_init: true
 )
@@ -416,10 +416,10 @@ TradeLoadMatch = Struct.new(
 
 # Withdrawal entity data model.
 #
-# @!attribute [rw] account_number
+# @!attribute [rw] accountNumber
 #   @return [String]
 #
-# @!attribute [rw] account_type
+# @!attribute [rw] accountType
 #   @return [String, nil]
 #
 # @!attribute [rw] address
@@ -440,8 +440,8 @@ TradeLoadMatch = Struct.new(
 # @!attribute [rw] tag
 #   @return [String, nil]
 Withdrawal = Struct.new(
-  :account_number,
-  :account_type,
+  :accountNumber,
+  :accountType,
   :address,
   :agency,
   :amount,
@@ -453,10 +453,10 @@ Withdrawal = Struct.new(
 
 # Request payload for Withdrawal#create.
 #
-# @!attribute [rw] account_number
+# @!attribute [rw] accountNumber
 #   @return [String]
 #
-# @!attribute [rw] account_type
+# @!attribute [rw] accountType
 #   @return [String, nil]
 #
 # @!attribute [rw] address
@@ -477,8 +477,8 @@ Withdrawal = Struct.new(
 # @!attribute [rw] tag
 #   @return [String, nil]
 WithdrawalCreateData = Struct.new(
-  :account_number,
-  :account_type,
+  :accountNumber,
+  :accountType,
   :address,
   :agency,
   :amount,

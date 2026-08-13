@@ -235,7 +235,7 @@ $deposit_address = $client->DepositAddress();
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
 | `currency` | `string` | No |  |
-| `qr_code` | `string` | No |  |
+| `qrCode` | `string` | No |  |
 | `tag` | `string` | No |  |
 
 ### Operations
@@ -387,8 +387,8 @@ $order_book = $client->OrderBook();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `array` | No |  |
-| `bid` | `array` | No |  |
+| `asks` | `array` | No |  |
+| `bids` | `array` | No |  |
 | `timestamp` | `int` | No |  |
 
 ### Operations
@@ -564,8 +564,8 @@ $withdrawal = $client->Withdrawal();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_number` | `string` | Yes |  |
-| `account_type` | `string` | No |  |
+| `accountNumber` | `string` | Yes |  |
+| `accountType` | `string` | No |  |
 | `address` | `string` | Yes |  |
 | `agency` | `string` | Yes |  |
 | `amount` | `float` | Yes |  |
@@ -581,7 +581,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Withdrawal()->create([
-  "account_number" => null, // string
+  "accountNumber" => null, // string
   "address" => null, // string
   "agency" => null, // string
   "amount" => null, // float

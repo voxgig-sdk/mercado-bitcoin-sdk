@@ -66,7 +66,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local balances, err = client:Balance():list()
+local trade, err = client:Trade():load({ id = "example_id" })
 if err then error(err) end
 ```
 
@@ -124,7 +124,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Balance():list()
+local result, err = client:Trade():load({ id = "test01" })
 -- result is the returned data; err is set on failure
 ```
 
@@ -243,9 +243,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local balance, err = client:Balance():load()
+    local candle, err = client:Candle():load({ id = "example_id" })
     if err then error(err) end
-    -- balance is the loaded record
+    -- candle is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -286,7 +286,7 @@ API path: `/candles/{symbol}`
 | --- | --- |
 | `address` |  |
 | `currency` |  |
-| `qr_code` |  |
+| `qrCode` |  |
 | `tag` |  |
 
 Operations: Load.
@@ -315,8 +315,8 @@ API path: `/orders`
 
 | Field | Description |
 | --- | --- |
-| `ask` |  |
-| `bid` |  |
+| `asks` |  |
+| `bids` |  |
 | `timestamp` |  |
 
 Operations: Load.
@@ -358,8 +358,8 @@ API path: `/trades/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `account_number` |  |
-| `account_type` |  |
+| `accountNumber` |  |
+| `accountType` |  |
 | `address` |  |
 | `agency` |  |
 | `amount` |  |
@@ -446,7 +446,7 @@ Create an instance: `local deposit_address = client:DepositAddress(nil)`
 | --- | --- | --- |
 | `address` | `string` |  |
 | `currency` | `string` |  |
-| `qr_code` | `string` |  |
+| `qrCode` | `string` |  |
 | `tag` | `string` |  |
 
 #### Example: Load
@@ -517,8 +517,8 @@ Create an instance: `local order_book = client:OrderBook(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | `table` |  |
-| `bid` | `table` |  |
+| `asks` | `table` |  |
+| `bids` | `table` |  |
 | `timestamp` | `number` |  |
 
 #### Example: Load
@@ -606,8 +606,8 @@ Create an instance: `local withdrawal = client:Withdrawal(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_number` | `string` |  |
-| `account_type` | `string` |  |
+| `accountNumber` | `string` |  |
+| `accountType` | `string` |  |
 | `address` | `string` |  |
 | `agency` | `string` |  |
 | `amount` | `number` |  |
@@ -619,7 +619,7 @@ Create an instance: `local withdrawal = client:Withdrawal(nil)`
 
 ```lua
 local withdrawal, err = client:Withdrawal():create({
-  account_number = "example_account_number", -- string
+  accountNumber = "example_accountNumber", -- string
   address = "example_address", -- string
   agency = "example_agency", -- string
   amount = 1, -- number
@@ -701,15 +701,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local balance = client:Balance()
-balance:list()
+local trade = client:Trade()
+trade:load({ id = "example_id" })
 
--- balance:data_get() now returns the balance data from the last list
--- balance:match_get() returns the last match criteria
+-- trade:data_get() now returns the trade data from the last load
+-- trade:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

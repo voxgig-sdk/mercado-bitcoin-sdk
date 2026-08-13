@@ -52,7 +52,7 @@ class DepositAddress
 {
     public ?string $address = null;
     public ?string $currency = null;
-    public ?string $qr_code = null;
+    public ?string $qrCode = null;
     public ?string $tag = null;
 }
 
@@ -61,7 +61,7 @@ class DepositAddressLoadMatch
 {
     public ?string $address = null;
     public ?string $currency = null;
-    public ?string $qr_code = null;
+    public ?string $qrCode = null;
     public ?string $tag = null;
 }
 
@@ -122,8 +122,8 @@ class OrderRemoveMatch
 /** OrderBook entity data model. */
 class OrderBook
 {
-    public ?array $ask = null;
-    public ?array $bid = null;
+    public ?array $asks = null;
+    public ?array $bids = null;
     public ?int $timestamp = null;
 }
 
@@ -184,8 +184,8 @@ class TradeLoadMatch
 /** Withdrawal entity data model. */
 class Withdrawal
 {
-    public string $account_number;
-    public ?string $account_type = null;
+    public string $accountNumber;
+    public ?string $accountType = null;
     public string $address;
     public string $agency;
     public float $amount;
@@ -197,8 +197,8 @@ class Withdrawal
 /** Request payload for Withdrawal#create. */
 class WithdrawalCreateData
 {
-    public string $account_number;
-    public ?string $account_type = null;
+    public string $accountNumber;
+    public ?string $accountType = null;
     public string $address;
     public string $agency;
     public float $amount;

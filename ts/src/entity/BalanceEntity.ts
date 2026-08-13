@@ -37,7 +37,7 @@ class BalanceEntity extends MercadoBitcoinEntityBase<Balance> {
 
 
 
-  async list(this: any, reqmatch?: BalanceListMatch, ctrl?: Control): Promise<Balance[]> {
+  async list(this: any, reqmatch?: BalanceListMatch, ctrl?: Control): Promise<BalanceEntity[]> {
 
     const utility = this._utility
 

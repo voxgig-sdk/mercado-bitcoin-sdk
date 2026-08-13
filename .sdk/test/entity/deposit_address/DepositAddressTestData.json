@@ -4,21 +4,21 @@
       "DEPOSIT_ADDRESS00": {
         "address": "s28",
         "currency": "s29",
-        "qr_code": "s2a",
+        "qrCode": "s2a",
         "tag": "s2b",
         "id": "DEPOSIT_ADDRESS00"
       },
       "DEPOSIT_ADDRESS01": {
         "address": "s50",
         "currency": "s51",
-        "qr_code": "s52",
+        "qrCode": "s52",
         "tag": "s53",
         "id": "DEPOSIT_ADDRESS01"
       },
       "DEPOSIT_ADDRESS02": {
         "address": "s78",
         "currency": "s79",
-        "qr_code": "s7a",
+        "qrCode": "s7a",
         "tag": "s7b",
         "id": "DEPOSIT_ADDRESS02"
       }
@@ -29,7 +29,7 @@
       "deposit_address_ref01": {
         "address": "sa0",
         "currency": "sa1",
-        "qr_code": "sa2",
+        "qrCode": "sa2",
         "tag": "sa3"
       }
     }

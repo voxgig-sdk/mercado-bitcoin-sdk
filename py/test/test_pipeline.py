@@ -16,11 +16,11 @@
 import pytest
 
 from mercadobitcoin_sdk import MercadoBitcoinSDK
-from core.error import MercadoBitcoinError
-from core.result import MercadoBitcoinResult
-from core.response import MercadoBitcoinResponse
-from core.spec import MercadoBitcoinSpec
-from feature.base_feature import MercadoBitcoinBaseFeature
+from mercadobitcoin_sdk.core.error import MercadoBitcoinError
+from mercadobitcoin_sdk.core.result import MercadoBitcoinResult
+from mercadobitcoin_sdk.core.response import MercadoBitcoinResponse
+from mercadobitcoin_sdk.core.spec import MercadoBitcoinSpec
+from mercadobitcoin_sdk.feature.base_feature import MercadoBitcoinBaseFeature
 
 
 def _client():

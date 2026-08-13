@@ -71,12 +71,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-balances, err := client.Balance(nil).List(nil, nil)
+trade, err := client.Trade(nil).Load(map[string]any{"id": "example_id"}, nil)
 if err != nil {
     // handle err
     return
 }
-_ = balances
+_ = trade
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -140,13 +140,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-balance, err := client.Balance(nil).List(
-    nil, nil,
+trade, err := client.Trade(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(balance) // the returned mock data
+fmt.Println(trade) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -306,7 +306,7 @@ API path: `/candles/{symbol}`
 | --- | --- |
 | `"address"` |  |
 | `"currency"` |  |
-| `"qr_code"` |  |
+| `"qrCode"` |  |
 | `"tag"` |  |
 
 Operations: Load.
@@ -335,8 +335,8 @@ API path: `/orders`
 
 | Field | Description |
 | --- | --- |
-| `"ask"` |  |
-| `"bid"` |  |
+| `"asks"` |  |
+| `"bids"` |  |
 | `"timestamp"` |  |
 
 Operations: Load.
@@ -378,8 +378,8 @@ API path: `/trades/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `"account_number"` |  |
-| `"account_type"` |  |
+| `"accountNumber"` |  |
+| `"accountType"` |  |
 | `"address"` |  |
 | `"agency"` |  |
 | `"amount"` |  |
@@ -474,7 +474,7 @@ Create an instance: `depositAddress := client.DepositAddress(nil)`
 | --- | --- | --- |
 | `address` | `string` |  |
 | `currency` | `string` |  |
-| `qr_code` | `string` |  |
+| `qrCode` | `string` |  |
 | `tag` | `string` |  |
 
 #### Example: Load
@@ -561,8 +561,8 @@ Create an instance: `orderBook := client.OrderBook(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | `[]any` |  |
-| `bid` | `[]any` |  |
+| `asks` | `[]any` |  |
+| `bids` | `[]any` |  |
 | `timestamp` | `int` |  |
 
 #### Example: Load
@@ -666,8 +666,8 @@ Create an instance: `withdrawal := client.Withdrawal(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_number` | `string` |  |
-| `account_type` | `string` |  |
+| `accountNumber` | `string` |  |
+| `accountType` | `string` |  |
 | `address` | `string` |  |
 | `agency` | `string` |  |
 | `amount` | `float64` |  |
@@ -679,7 +679,7 @@ Create an instance: `withdrawal := client.Withdrawal(nil)`
 
 ```go
 result, err := client.Withdrawal(nil).Create(map[string]any{
-    "account_number": "example_account_number",
+    "accountNumber": "example_accountNumber",
     "address": "example_address",
     "agency": "example_agency",
     "amount": 1,
@@ -762,15 +762,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `List`, the entity
+Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-balance := client.Balance(nil)
-balance.List(nil, nil)
+trade := client.Trade(nil)
+trade.Load(map[string]any{"id": "example_id"}, nil)
 
-// balance.Data() now returns the balance data from the last list
-// balance.Match() returns the last match criteria
+// trade.Data() now returns the trade data from the last load
+// trade.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

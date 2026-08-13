@@ -52,7 +52,7 @@ OrderBook is nested under symbol, so provide the `symbol`.
 
 ```ruby
 begin
-  # load returns the bare OrderBook record (raises on error).
+  # load returns the ENTITY — call data_get for the OrderBook record (raises on error).
   orderbook = client.OrderBook.load({ "symbol" => "example_symbol" })
   puts orderbook
 rescue => err
@@ -67,9 +67,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  balances = client.Balance.list()
+  trade = client.Trade.load({ "id" => "example_id" })
 rescue => err
-  warn "list failed: #{err}"
+  warn "load failed: #{err}"
 end
 ```
 
@@ -130,14 +130,18 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = MercadoBitcoinSDK.test
+client = MercadoBitcoinSDK.test({
+  "entity" => { "trade" => { "test01" => { "id" => "test01" } } },
+})
 
-# Entity ops return the bare mock record (raises on error).
-balance = client.Balance.list()
-puts balance
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+trade = client.Trade.load({ "id" => "test01" })
+puts trade
 ```
 
 ### Use a custom fetch function
@@ -294,7 +298,7 @@ API path: `/candles/{symbol}`
 | --- | --- |
 | `address` |  |
 | `currency` |  |
-| `qr_code` |  |
+| `qrCode` |  |
 | `tag` |  |
 
 Operations: Load.
@@ -323,8 +327,8 @@ API path: `/orders`
 
 | Field | Description |
 | --- | --- |
-| `ask` |  |
-| `bid` |  |
+| `asks` |  |
+| `bids` |  |
 | `timestamp` |  |
 
 Operations: Load.
@@ -366,8 +370,8 @@ API path: `/trades/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `account_number` |  |
-| `account_type` |  |
+| `accountNumber` |  |
+| `accountType` |  |
 | `address` |  |
 | `agency` |  |
 | `amount` |  |
@@ -435,7 +439,7 @@ Create an instance: `candle = client.Candle`
 #### Example: Load
 
 ```ruby
-# load returns the bare Candle record (raises on error).
+# load returns the ENTITY — call data_get for the Candle record (raises on error).
 candle = client.Candle.load({ "id" => "candle_id" })
 ```
 
@@ -456,13 +460,13 @@ Create an instance: `deposit_address = client.DepositAddress`
 | --- | --- | --- |
 | `address` | `String` |  |
 | `currency` | `String` |  |
-| `qr_code` | `String` |  |
+| `qrCode` | `String` |  |
 | `tag` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare DepositAddress record (raises on error).
+# load returns the ENTITY — call data_get for the DepositAddress record (raises on error).
 deposit_address = client.DepositAddress.load()
 ```
 
@@ -497,7 +501,7 @@ Create an instance: `order = client.Order`
 #### Example: Load
 
 ```ruby
-# load returns the bare Order record (raises on error).
+# load returns the ENTITY — call data_get for the Order record (raises on error).
 order = client.Order.load({ "id" => "order_id" })
 ```
 
@@ -530,14 +534,14 @@ Create an instance: `order_book = client.OrderBook`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | `Array` |  |
-| `bid` | `Array` |  |
+| `asks` | `Array` |  |
+| `bids` | `Array` |  |
 | `timestamp` | `Integer` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare OrderBook record (raises on error).
+# load returns the ENTITY — call data_get for the OrderBook record (raises on error).
 order_book = client.OrderBook.load({ "symbol" => "symbol" })
 ```
 
@@ -569,7 +573,7 @@ Create an instance: `ticker = client.Ticker`
 #### Example: Load
 
 ```ruby
-# load returns the bare Ticker record (raises on error).
+# load returns the ENTITY — call data_get for the Ticker record (raises on error).
 ticker = client.Ticker.load({ "id" => "ticker_id" })
 ```
 
@@ -604,7 +608,7 @@ Create an instance: `trade = client.Trade`
 #### Example: Load
 
 ```ruby
-# load returns the bare Trade record (raises on error).
+# load returns the ENTITY — call data_get for the Trade record (raises on error).
 trade = client.Trade.load({ "id" => "trade_id" })
 ```
 
@@ -623,8 +627,8 @@ Create an instance: `withdrawal = client.Withdrawal`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_number` | `String` |  |
-| `account_type` | `String` |  |
+| `accountNumber` | `String` |  |
+| `accountType` | `String` |  |
 | `address` | `String` |  |
 | `agency` | `String` |  |
 | `amount` | `Float` |  |
@@ -636,7 +640,7 @@ Create an instance: `withdrawal = client.Withdrawal`
 
 ```ruby
 withdrawal = client.Withdrawal.create({
-  "account_number" => "example_account_number", # String
+  "accountNumber" => "example_accountNumber", # String
   "address" => "example_address", # String
   "agency" => "example_agency", # String
   "amount" => 1, # Float
@@ -718,15 +722,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-balance = client.Balance
-balance.list()
+trade = client.Trade
+trade.load({ "id" => "example_id" })
 
-# balance.data_get now returns the balance data from the last list
-# balance.match_get returns the last match criteria
+# trade.data_get now returns the trade data from the last load
+# trade.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

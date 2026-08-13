@@ -6,12 +6,12 @@ main: kit: entity: order_book: {
 
   fields: [
     {
-      name: "ask"
+      name: "asks"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "bid"
+      name: "bids"
       req: false
       type: "`$ARRAY`"
     }

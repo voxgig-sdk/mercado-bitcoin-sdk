@@ -72,6 +72,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/accounts/balance",
                 ["parts"] = {
@@ -81,7 +82,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.balances`",
                 },
                 ["index$"] = 0,
               },
@@ -179,6 +180,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/candles/{symbol}",
                 ["parts"] = {
@@ -229,7 +231,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "qr_code",
+            ["name"] = "qrCode",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
@@ -262,6 +264,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deposits/crypto",
                 ["parts"] = {
@@ -386,6 +389,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/orders",
                 ["parts"] = {
@@ -427,6 +431,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/orders",
                 ["parts"] = {
@@ -466,6 +471,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/orders/{orderId}",
                 ["parts"] = {
@@ -510,6 +516,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/orders/{orderId}",
                 ["parts"] = {
@@ -544,14 +551,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "ask",
+            ["name"] = "asks",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "bid",
+            ["name"] = "bids",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -596,6 +603,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/orderbook/{symbol}",
                 ["parts"] = {
@@ -694,6 +702,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tickers",
                 ["parts"] = {
@@ -728,6 +737,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tickers/{symbol}",
                 ["parts"] = {
@@ -828,6 +838,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/trades/{symbol}",
                 ["parts"] = {
@@ -863,14 +874,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "account_number",
+            ["name"] = "accountNumber",
             ["req"] = true,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "account_type",
+            ["name"] = "accountType",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 1,
@@ -927,6 +938,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/withdrawals/brl",
                 ["parts"] = {
@@ -945,6 +957,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/withdrawals/crypto",
                 ["parts"] = {

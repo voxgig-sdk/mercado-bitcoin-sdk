@@ -26,8 +26,8 @@ import {
 describe('OrderEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MERCADOBITCOIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MERCADOBITCOIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MERCADO_BITCOIN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MERCADO_BITCOIN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MercadoBitcoinSDK.test()
@@ -62,14 +62,14 @@ describe('OrderEntity', async () => {
     const order_ref01_ent = client.Order()
     let order_ref01_data = setup.data.new.order['order_ref01']
 
-    order_ref01_data = await order_ref01_ent.create(order_ref01_data)
+    order_ref01_data = (await order_ref01_ent.create(order_ref01_data)).data()
     assert(null != order_ref01_data.id)
 
 
     // LIST
     const order_ref01_match: any = {}
 
-    const order_ref01_list = await order_ref01_ent.list(order_ref01_match)
+    const order_ref01_list = (await order_ref01_ent.list(order_ref01_match)).map((e: any) => e.data())
 
     assert(!isempty(select(order_ref01_list, { id: order_ref01_data.id })))
 
@@ -77,7 +77,7 @@ describe('OrderEntity', async () => {
     // LOAD
     const order_ref01_match_dt0: any = {}
     order_ref01_match_dt0.id = order_ref01_data.id
-    const order_ref01_data_dt0 = await order_ref01_ent.load(order_ref01_match_dt0)
+    const order_ref01_data_dt0 = (await order_ref01_ent.load(order_ref01_match_dt0)).data()
     assert(order_ref01_data_dt0.id === order_ref01_data.id)
 
 
@@ -89,7 +89,7 @@ describe('OrderEntity', async () => {
     // LIST
     const order_ref01_match_rt0: any = {}
 
-    const order_ref01_list_rt0 = await order_ref01_ent.list(order_ref01_match_rt0)
+    const order_ref01_list_rt0 = (await order_ref01_ent.list(order_ref01_match_rt0)).map((e: any) => e.data())
 
     assert(isempty(select(order_ref01_list_rt0, { id: order_ref01_data.id })))
 

@@ -239,7 +239,7 @@ fmt.Println(depositAddress.GetName()) // "deposit_address"
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
 | `currency` | `string` | No |  |
-| `qr_code` | `string` | No |  |
+| `qrCode` | `string` | No |  |
 | `tag` | `string` | No |  |
 
 ### Operations
@@ -401,8 +401,8 @@ fmt.Println(orderBook.GetName()) // "order_book"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `[]any` | No |  |
-| `bid` | `[]any` | No |  |
+| `asks` | `[]any` | No |  |
+| `bids` | `[]any` | No |  |
 | `timestamp` | `int` | No |  |
 
 ### Operations
@@ -579,8 +579,8 @@ fmt.Println(withdrawal.GetName()) // "withdrawal"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_number` | `string` | Yes |  |
-| `account_type` | `string` | No |  |
+| `accountNumber` | `string` | Yes |  |
+| `accountType` | `string` | No |  |
 | `address` | `string` | Yes |  |
 | `agency` | `string` | Yes |  |
 | `amount` | `float64` | Yes |  |
@@ -596,7 +596,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Withdrawal(nil).Create(map[string]any{
-    "account_number": "example_account_number",
+    "accountNumber": "example_accountNumber",
     "address": "example_address",
     "agency": "example_agency",
     "amount": 1,

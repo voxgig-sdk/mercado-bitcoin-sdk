@@ -311,7 +311,7 @@ const deposit_address = client.DepositAddress()
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
 | `currency` | `string` | No |  |
-| `qr_code` | `string` | No |  |
+| `qrCode` | `string` | No |  |
 | `tag` | `string` | No |  |
 
 ### Operations
@@ -459,8 +459,8 @@ const order_book = client.OrderBook()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `any[]` | No |  |
-| `bid` | `any[]` | No |  |
+| `asks` | `any[]` | No |  |
+| `bids` | `any[]` | No |  |
 | `timestamp` | `number` | No |  |
 
 ### Operations
@@ -630,14 +630,35 @@ const withdrawal = client.Withdrawal()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_number` | `string` | Yes |  |
-| `account_type` | `string` | No |  |
+| `accountNumber` | `string` | Yes |  |
+| `accountType` | `string` | No |  |
 | `address` | `string` | Yes |  |
 | `agency` | `string` | Yes |  |
 | `amount` | `number` | Yes |  |
 | `bank` | `string` | Yes |  |
 | `currency` | `string` | Yes |  |
 | `tag` | `string` | No |  |
+
+### Actions
+
+This entity exposes custom API actions in addition to the standard
+operations. Select one with `$action` in the call's argument; the
+remaining keys are sent as that action's payload.
+
+| Action | Route | Call |
+| --- | --- | --- |
+| `brl` | `/withdrawals/brl` | `client.Withdrawal().create({ $action: 'brl', ... })` |
+| `crypto` | `/withdrawals/crypto` | `client.Withdrawal().create({ $action: 'crypto', ... })` |
+
+An action returns that action's OWN response, which is not necessarily a
+Withdrawal record — check the API definition for its shape.
+
+```ts
+const result = await client.Withdrawal().create({
+  $action: 'brl',
+  /* ...the action's own arguments */
+})
+```
 
 ### Operations
 
@@ -647,7 +668,7 @@ Create a new entity with the given data.
 
 ```ts
 const result = await client.Withdrawal().create({
-  account_number: 'example_account_number',
+  accountNumber: 'example_accountNumber',
   address: 'example_address',
   agency: 'example_agency',
   amount: 1,

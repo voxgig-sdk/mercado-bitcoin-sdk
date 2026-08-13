@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = MercadoBitcoinSDK.test()
-const balances = await client.Balance().list()
-// balances is an array of bare Balance records populated with mock data
-console.log(balances)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = MercadoBitcoinSDK.test({
+  entity: {
+    trade: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const trade = await client.Trade().load({ id: 'test01' })
+// trade is the Trade entity, populated with mock data
+// — call trade.data() for the record itself
+console.log(trade)
 ```
 
 ### Python
 
 ```python
 client = MercadoBitcoinSDK.test()
-balances = client.Balance().list()
-print(balances)
+trade = client.Trade().load({"id": "test01"})
+print(trade)
 ```
 
 ### PHP
@@ -57,17 +66,17 @@ print(balances)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = MercadoBitcoinSDK::test([
-    "entity" => ["balance" => ["test01" => []]],
+    "entity" => ["trade" => ["test01" => ["id" => "test01"]]],
 ]);
-$balances = $client->Balance()->list();
+$trade = $client->Trade()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Balance(nil).List(
-    nil, nil,
+result, err := client.Trade(nil).Load(
+    map[string]any{"id": "test01"}, nil,
 )
 ```
 
@@ -76,16 +85,16 @@ result, err := client.Balance(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = MercadoBitcoinSDK.test({
-  "entity" => { "balance" => { "test01" => {} } },
+  "entity" => { "trade" => { "test01" => { "id" => "test01" } } },
 })
-balances = client.Balance.list()
+trade = client.Trade.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Balance():list()
+local result, err = client:Trade():load({ id = "test01" })
 ```
 
 ## Packages
@@ -112,7 +121,7 @@ const client = new MercadoBitcoinSDK({
   apikey: process.env.MERCADO_BITCOIN_APIKEY,
 })
 
-// List all balances (returns Balance[])
+// List all balances (returns BalanceEntity[] — .data() for the record)
 const balances = await client.Balance().list()
 for (const balance of balances) {
   console.log(balance)
@@ -378,6 +387,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://api.mercadobitcoin.net/api/v4/docs](https://api.mercadobitcoin.net/api/v4/docs)
 

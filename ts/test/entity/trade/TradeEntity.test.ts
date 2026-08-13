@@ -26,8 +26,8 @@ import {
 describe('TradeEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MERCADOBITCOIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MERCADOBITCOIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MERCADO_BITCOIN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MERCADO_BITCOIN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MercadoBitcoinSDK.test()
@@ -63,7 +63,7 @@ describe('TradeEntity', async () => {
     const trade_ref01_ent = client.Trade()
     const trade_ref01_match_dt0: any = {}
     trade_ref01_match_dt0.id = trade_ref01_data.id
-    const trade_ref01_data_dt0 = await trade_ref01_ent.load(trade_ref01_match_dt0)
+    const trade_ref01_data_dt0 = (await trade_ref01_ent.load(trade_ref01_match_dt0)).data()
     assert(trade_ref01_data_dt0.id === trade_ref01_data.id)
 
 

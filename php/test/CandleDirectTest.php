@@ -75,16 +75,16 @@ function candle_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "MERCADOBITCOIN_TEST_CANDLE_ENTID" => [],
-        "MERCADOBITCOIN_TEST_LIVE" => "FALSE",
-        "MERCADOBITCOIN_APIKEY" => "NONE",
+        "MERCADO_BITCOIN_TEST_CANDLE_ENTID" => [],
+        "MERCADO_BITCOIN_TEST_LIVE" => "FALSE",
+        "MERCADO_BITCOIN_APIKEY" => "NONE",
     ]);
 
-    $live = $env["MERCADOBITCOIN_TEST_LIVE"] === "TRUE";
+    $live = $env["MERCADO_BITCOIN_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["MERCADOBITCOIN_APIKEY"],
+            "apikey" => $env["MERCADO_BITCOIN_APIKEY"],
         ];
         $client = new MercadoBitcoinSDK($merged_opts);
         return [

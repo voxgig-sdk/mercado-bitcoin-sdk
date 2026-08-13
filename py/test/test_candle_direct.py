@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from mercadobitcoin_sdk.utility.voxgig_struct import voxgig_struct as vs
 from mercadobitcoin_sdk import MercadoBitcoinSDK
-from core import helpers
+from mercadobitcoin_sdk.core import helpers
 from test import runner
 
 
@@ -66,16 +66,16 @@ def _candle_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "MERCADOBITCOIN_TEST_CANDLE_ENTID": {},
-        "MERCADOBITCOIN_TEST_LIVE": "FALSE",
-        "MERCADOBITCOIN_APIKEY": "NONE",
+        "MERCADO_BITCOIN_TEST_CANDLE_ENTID": {},
+        "MERCADO_BITCOIN_TEST_LIVE": "FALSE",
+        "MERCADO_BITCOIN_APIKEY": "NONE",
     })
 
-    live = env.get("MERCADOBITCOIN_TEST_LIVE") == "TRUE"
+    live = env.get("MERCADO_BITCOIN_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("MERCADOBITCOIN_APIKEY"),
+            "apikey": env.get("MERCADO_BITCOIN_APIKEY"),
         }
         client = MercadoBitcoinSDK(merged_opts)
         return {

@@ -53,7 +53,7 @@ OrderBook is nested under symbol, so provide the `symbol`.
 
 ```php
 try {
-    // load() returns the bare OrderBook record (throws on error).
+    // load() returns the ENTITY — call data_get() for the OrderBook record (throws on error).
     $orderbook = $client->OrderBook()->load(["symbol" => "example_symbol"]);
     print_r($orderbook);
 } catch (\Throwable $err) {
@@ -69,7 +69,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $balances = $client->Balance()->list();
+    $trade = $client->Trade()->load(["id" => "example_id"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -136,14 +136,18 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = MercadoBitcoinSDK::test();
+$client = MercadoBitcoinSDK::test([
+    "entity" => ["trade" => ["test01" => ["id" => "test01"]]],
+]);
 
-// Entity ops return the bare mock record (throws on error).
-$balance = $client->Balance()->list();
-print_r($balance);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$trade = $client->Trade()->load(["id" => "test01"]);
+print_r($trade);
 ```
 
 ### Use a custom fetch function
@@ -252,7 +256,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -304,7 +308,7 @@ API path: `/candles/{symbol}`
 | --- | --- |
 | `address` |  |
 | `currency` |  |
-| `qr_code` |  |
+| `qrCode` |  |
 | `tag` |  |
 
 Operations: Load.
@@ -333,8 +337,8 @@ API path: `/orders`
 
 | Field | Description |
 | --- | --- |
-| `ask` |  |
-| `bid` |  |
+| `asks` |  |
+| `bids` |  |
 | `timestamp` |  |
 
 Operations: Load.
@@ -376,8 +380,8 @@ API path: `/trades/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `account_number` |  |
-| `account_type` |  |
+| `accountNumber` |  |
+| `accountType` |  |
 | `address` |  |
 | `agency` |  |
 | `amount` |  |
@@ -445,7 +449,7 @@ Create an instance: `$candle = $client->Candle();`
 #### Example: Load
 
 ```php
-// load() returns the bare Candle record (throws on error).
+// load() returns the ENTITY — call data_get() for the Candle record (throws on error).
 $candle = $client->Candle()->load(["id" => "candle_id"]);
 ```
 
@@ -466,13 +470,13 @@ Create an instance: `$deposit_address = $client->DepositAddress();`
 | --- | --- | --- |
 | `address` | `string` |  |
 | `currency` | `string` |  |
-| `qr_code` | `string` |  |
+| `qrCode` | `string` |  |
 | `tag` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare DepositAddress record (throws on error).
+// load() returns the ENTITY — call data_get() for the DepositAddress record (throws on error).
 $deposit_address = $client->DepositAddress()->load();
 ```
 
@@ -507,7 +511,7 @@ Create an instance: `$order = $client->Order();`
 #### Example: Load
 
 ```php
-// load() returns the bare Order record (throws on error).
+// load() returns the ENTITY — call data_get() for the Order record (throws on error).
 $order = $client->Order()->load(["id" => "order_id"]);
 ```
 
@@ -540,14 +544,14 @@ Create an instance: `$order_book = $client->OrderBook();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | `array` |  |
-| `bid` | `array` |  |
+| `asks` | `array` |  |
+| `bids` | `array` |  |
 | `timestamp` | `int` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare OrderBook record (throws on error).
+// load() returns the ENTITY — call data_get() for the OrderBook record (throws on error).
 $order_book = $client->OrderBook()->load(["symbol" => "symbol"]);
 ```
 
@@ -579,7 +583,7 @@ Create an instance: `$ticker = $client->Ticker();`
 #### Example: Load
 
 ```php
-// load() returns the bare Ticker record (throws on error).
+// load() returns the ENTITY — call data_get() for the Ticker record (throws on error).
 $ticker = $client->Ticker()->load(["id" => "ticker_id"]);
 ```
 
@@ -614,7 +618,7 @@ Create an instance: `$trade = $client->Trade();`
 #### Example: Load
 
 ```php
-// load() returns the bare Trade record (throws on error).
+// load() returns the ENTITY — call data_get() for the Trade record (throws on error).
 $trade = $client->Trade()->load(["id" => "trade_id"]);
 ```
 
@@ -633,8 +637,8 @@ Create an instance: `$withdrawal = $client->Withdrawal();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_number` | `string` |  |
-| `account_type` | `string` |  |
+| `accountNumber` | `string` |  |
+| `accountType` | `string` |  |
 | `address` | `string` |  |
 | `agency` | `string` |  |
 | `amount` | `float` |  |
@@ -646,7 +650,7 @@ Create an instance: `$withdrawal = $client->Withdrawal();`
 
 ```php
 $withdrawal = $client->Withdrawal()->create([
-    "account_number" => null, // string
+    "accountNumber" => null, // string
     "address" => null, // string
     "agency" => null, // string
     "amount" => null, // float
@@ -728,15 +732,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$balance = $client->Balance();
-$balance->list();
+$trade = $client->Trade();
+$trade->load(["id" => "example_id"]);
 
-// $balance->data_get() now returns the balance data from the last list
-// $balance->match_get() returns the last match criteria
+// $trade->data_get() now returns the trade data from the last load
+// $trade->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

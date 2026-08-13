@@ -16,7 +16,7 @@ main: kit: entity: deposit_address: {
       type: "`$STRING`"
     }
     {
-      name: "qr_code"
+      name: "qrCode"
       req: false
       type: "`$STRING`"
     }

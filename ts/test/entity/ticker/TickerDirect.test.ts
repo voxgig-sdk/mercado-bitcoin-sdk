@@ -19,11 +19,15 @@ import {
 describe('TickerDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MERCADOBITCOIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MERCADOBITCOIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MERCADO_BITCOIN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MERCADO_BITCOIN_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new MercadoBitcoinSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -134,19 +138,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'MERCADOBITCOIN_TEST_TICKER_ENTID': {},
-    'MERCADOBITCOIN_TEST_LIVE': 'FALSE',
-    'MERCADOBITCOIN_APIKEY': 'NONE',
+    'MERCADO_BITCOIN_TEST_TICKER_ENTID': {},
+    'MERCADO_BITCOIN_TEST_LIVE': 'FALSE',
+    'MERCADO_BITCOIN_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.MERCADOBITCOIN_TEST_LIVE
+  const live = 'TRUE' === env.MERCADO_BITCOIN_TEST_LIVE
 
   if (live) {
     const client = new MercadoBitcoinSDK({
-      apikey: env.MERCADOBITCOIN_APIKEY,
+      apikey: env.MERCADO_BITCOIN_APIKEY,
     })
 
-    let idmap: any = env['MERCADOBITCOIN_TEST_TICKER_ENTID']
+    let idmap: any = env['MERCADO_BITCOIN_TEST_TICKER_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

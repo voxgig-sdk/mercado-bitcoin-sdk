@@ -6,12 +6,12 @@ main: kit: entity: withdrawal: {
 
   fields: [
     {
-      name: "account_number"
+      name: "accountNumber"
       req: true
       type: "`$STRING`"
     }
     {
-      name: "account_type"
+      name: "accountType"
       req: false
       type: "`$STRING`"
     }

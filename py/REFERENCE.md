@@ -230,7 +230,7 @@ deposit_address = client.DepositAddress()
 | --- | --- | --- | --- |
 | `address` | `str` | No |  |
 | `currency` | `str` | No |  |
-| `qr_code` | `str` | No |  |
+| `qrCode` | `str` | No |  |
 | `tag` | `str` | No |  |
 
 ### Operations
@@ -382,8 +382,8 @@ order_book = client.OrderBook()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `list` | No |  |
-| `bid` | `list` | No |  |
+| `asks` | `list` | No |  |
+| `bids` | `list` | No |  |
 | `timestamp` | `int` | No |  |
 
 ### Operations
@@ -558,8 +558,8 @@ withdrawal = client.Withdrawal()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_number` | `str` | Yes |  |
-| `account_type` | `str` | No |  |
+| `accountNumber` | `str` | Yes |  |
+| `accountType` | `str` | No |  |
 | `address` | `str` | Yes |  |
 | `agency` | `str` | Yes |  |
 | `amount` | `float` | Yes |  |
@@ -575,7 +575,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Withdrawal().create({
-    "account_number": "example_account_number",  # str
+    "accountNumber": "example_accountNumber",  # str
     "address": "example_address",  # str
     "agency": "example_agency",  # str
     "amount": 1,  # float

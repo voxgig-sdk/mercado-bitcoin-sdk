@@ -35,14 +35,14 @@ export interface CandleLoadMatch {
 export interface DepositAddress {
   address?: string
   currency?: string
-  qr_code?: string
+  qrCode?: string
   tag?: string
 }
 
 export interface DepositAddressLoadMatch {
   address?: string
   currency?: string
-  qr_code?: string
+  qrCode?: string
   tag?: string
 }
 
@@ -91,8 +91,8 @@ export interface OrderRemoveMatch {
 }
 
 export interface OrderBook {
-  ask?: any[]
-  bid?: any[]
+  asks?: any[]
+  bids?: any[]
   timestamp?: number
 }
 
@@ -139,8 +139,8 @@ export interface TradeLoadMatch {
 }
 
 export interface Withdrawal {
-  account_number: string
-  account_type?: string
+  accountNumber: string
+  accountType?: string
   address: string
   agency: string
   amount: number
@@ -150,13 +150,19 @@ export interface Withdrawal {
 }
 
 export interface WithdrawalCreateData {
-  account_number: string
-  account_type?: string
+  accountNumber: string
+  accountType?: string
   address: string
   agency: string
   amount: number
   bank: string
   currency: string
   tag?: string
+
+  // Selects a custom action instead of the plain create:
+  //   'brl' | 'crypto'
+  // The remaining keys are that action's own payload.
+  $action?: string
+  [action: string]: any
 }
 

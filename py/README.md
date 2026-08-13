@@ -56,7 +56,7 @@ except Exception as err:
 ### 3. Load an orderbook
 
 OrderBook is nested under symbol, so provide the `symbol`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -73,10 +73,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    balances = client.Balance().list()
-    print(balances)
+    trade = client.Trade().load({"id": "example_id"})
+    print(trade)
 except Exception as err:
-    print(f"list failed: {err}")
+    print(f"load failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -140,9 +140,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = MercadoBitcoinSDK.test()
 
-# Entity ops return the bare record and raise on error.
-balance = client.Balance().list()
-# balance contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+trade = client.Trade().load({"id": "test01"})
+# trade contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -248,7 +249,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -300,7 +301,7 @@ API path: `/candles/{symbol}`
 | --- | --- |
 | `address` |  |
 | `currency` |  |
-| `qr_code` |  |
+| `qrCode` |  |
 | `tag` |  |
 
 Operations: Load.
@@ -329,8 +330,8 @@ API path: `/orders`
 
 | Field | Description |
 | --- | --- |
-| `ask` |  |
-| `bid` |  |
+| `asks` |  |
+| `bids` |  |
 | `timestamp` |  |
 
 Operations: Load.
@@ -372,8 +373,8 @@ API path: `/trades/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `account_number` |  |
-| `account_type` |  |
+| `accountNumber` |  |
+| `accountType` |  |
 | `address` |  |
 | `agency` |  |
 | `amount` |  |
@@ -460,7 +461,7 @@ Create an instance: `deposit_address = client.DepositAddress()`
 | --- | --- | --- |
 | `address` | `str` |  |
 | `currency` | `str` |  |
-| `qr_code` | `str` |  |
+| `qrCode` | `str` |  |
 | `tag` | `str` |  |
 
 #### Example: Load
@@ -531,8 +532,8 @@ Create an instance: `order_book = client.OrderBook()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | `list` |  |
-| `bid` | `list` |  |
+| `asks` | `list` |  |
+| `bids` | `list` |  |
 | `timestamp` | `int` |  |
 
 #### Example: Load
@@ -620,8 +621,8 @@ Create an instance: `withdrawal = client.Withdrawal()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_number` | `str` |  |
-| `account_type` | `str` |  |
+| `accountNumber` | `str` |  |
+| `accountType` | `str` |  |
 | `address` | `str` |  |
 | `agency` | `str` |  |
 | `amount` | `float` |  |
@@ -633,7 +634,7 @@ Create an instance: `withdrawal = client.Withdrawal()`
 
 ```python
 withdrawal = client.Withdrawal().create({
-    "account_number": "example_account_number",  # str
+    "accountNumber": "example_accountNumber",  # str
     "address": "example_address",  # str
     "agency": "example_agency",  # str
     "amount": 1,  # float
@@ -714,15 +715,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-balance = client.Balance()
-balance.list()
+trade = client.Trade()
+trade.load({"id": "example_id"})
 
-# balance.data_get() now returns the balance data from the last list
-# balance.match_get() returns the last match criteria
+# trade.data_get() now returns the trade data from the last load
+# trade.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

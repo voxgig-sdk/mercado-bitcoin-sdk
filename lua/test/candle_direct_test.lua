@@ -70,16 +70,16 @@ function candle_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["MERCADOBITCOIN_TEST_CANDLE_ENTID"] = {},
-    ["MERCADOBITCOIN_TEST_LIVE"] = "FALSE",
-    ["MERCADOBITCOIN_APIKEY"] = "NONE",
+    ["MERCADO_BITCOIN_TEST_CANDLE_ENTID"] = {},
+    ["MERCADO_BITCOIN_TEST_LIVE"] = "FALSE",
+    ["MERCADO_BITCOIN_APIKEY"] = "NONE",
   })
 
-  local live = env["MERCADOBITCOIN_TEST_LIVE"] == "TRUE"
+  local live = env["MERCADO_BITCOIN_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["MERCADOBITCOIN_APIKEY"],
+      apikey = env["MERCADO_BITCOIN_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

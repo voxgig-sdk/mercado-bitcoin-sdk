@@ -2,8 +2,8 @@
   "existing": {
     "withdrawal": {
       "WITHDRAWAL00": {
-        "account_number": "s50",
-        "account_type": "s51",
+        "accountNumber": "s50",
+        "accountType": "s51",
         "address": "s52",
         "agency": "s53",
         "amount": 84,
@@ -13,8 +13,8 @@
         "id": "WITHDRAWAL00"
       },
       "WITHDRAWAL01": {
-        "account_number": "sa0",
-        "account_type": "sa1",
+        "accountNumber": "sa0",
+        "accountType": "sa1",
         "address": "sa2",
         "agency": "sa3",
         "amount": 164,
@@ -24,8 +24,8 @@
         "id": "WITHDRAWAL01"
       },
       "WITHDRAWAL02": {
-        "account_number": "sf0",
-        "account_type": "sf1",
+        "accountNumber": "sf0",
+        "accountType": "sf1",
         "address": "sf2",
         "agency": "sf3",
         "amount": 244,
@@ -39,8 +39,8 @@
   "new": {
     "withdrawal": {
       "withdrawal_ref01": {
-        "account_number": "s140",
-        "account_type": "s141",
+        "accountNumber": "s140",
+        "accountType": "s141",
         "address": "s142",
         "agency": "s143",
         "amount": 324,

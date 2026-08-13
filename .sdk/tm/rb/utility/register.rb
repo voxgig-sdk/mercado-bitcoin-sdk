@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ MercadoBitcoinUtility.registrar = ->(u) {
   u.prepare_params = MercadoBitcoinUtilities::PrepareParams
   u.prepare_path = MercadoBitcoinUtilities::PreparePath
   u.prepare_query = MercadoBitcoinUtilities::PrepareQuery
+  u.graphql_body = MercadoBitcoinUtilities::GraphqlBody
+  u.graphql_errors = MercadoBitcoinUtilities::GraphqlErrors
   u.result_basic = MercadoBitcoinUtilities::ResultBasic
   u.result_body = MercadoBitcoinUtilities::ResultBody
   u.result_headers = MercadoBitcoinUtilities::ResultHeaders

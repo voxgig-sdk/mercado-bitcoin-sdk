@@ -41,7 +41,7 @@ main: kit: entity: balance: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.balances`"
           }
         }
       ]

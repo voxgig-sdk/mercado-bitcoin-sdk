@@ -26,8 +26,8 @@ import {
 describe('DepositAddressEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MERCADOBITCOIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MERCADOBITCOIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MERCADO_BITCOIN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MERCADO_BITCOIN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MercadoBitcoinSDK.test()
@@ -62,7 +62,7 @@ describe('DepositAddressEntity', async () => {
     // LOAD
     const deposit_address_ref01_ent = client.DepositAddress()
     const deposit_address_ref01_match_dt0: any = {}
-    const deposit_address_ref01_data_dt0 = await deposit_address_ref01_ent.load(deposit_address_ref01_match_dt0)
+    const deposit_address_ref01_data_dt0 = (await deposit_address_ref01_ent.load(deposit_address_ref01_match_dt0)).data()
     assert(null != deposit_address_ref01_data_dt0)
 
 

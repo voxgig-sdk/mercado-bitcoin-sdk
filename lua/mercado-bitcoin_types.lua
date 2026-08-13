@@ -32,13 +32,13 @@
 ---@class DepositAddress
 ---@field address? string
 ---@field currency? string
----@field qr_code? string
+---@field qrCode? string
 ---@field tag? string
 
 ---@class DepositAddressLoadMatch
 ---@field address? string
 ---@field currency? string
----@field qr_code? string
+---@field qrCode? string
 ---@field tag? string
 
 ---@class Order
@@ -81,8 +81,8 @@
 ---@field id string
 
 ---@class OrderBook
----@field ask? table
----@field bid? table
+---@field asks? table
+---@field bids? table
 ---@field timestamp? number
 
 ---@class OrderBookLoadMatch
@@ -122,8 +122,8 @@
 ---@field id string
 
 ---@class Withdrawal
----@field account_number string
----@field account_type? string
+---@field accountNumber string
+---@field accountType? string
 ---@field address string
 ---@field agency string
 ---@field amount number
@@ -132,8 +132,8 @@
 ---@field tag? string
 
 ---@class WithdrawalCreateData
----@field account_number string
----@field account_type? string
+---@field accountNumber string
+---@field accountType? string
 ---@field address string
 ---@field agency string
 ---@field amount number

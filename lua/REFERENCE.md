@@ -233,7 +233,7 @@ local deposit_address = client:DepositAddress(nil)
 | --- | --- | --- | --- |
 | `address` | `string` | No |  |
 | `currency` | `string` | No |  |
-| `qr_code` | `string` | No |  |
+| `qrCode` | `string` | No |  |
 | `tag` | `string` | No |  |
 
 ### Operations
@@ -385,8 +385,8 @@ local order_book = client:OrderBook(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `table` | No |  |
-| `bid` | `table` | No |  |
+| `asks` | `table` | No |  |
+| `bids` | `table` | No |  |
 | `timestamp` | `number` | No |  |
 
 ### Operations
@@ -562,8 +562,8 @@ local withdrawal = client:Withdrawal(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_number` | `string` | Yes |  |
-| `account_type` | `string` | No |  |
+| `accountNumber` | `string` | Yes |  |
+| `accountType` | `string` | No |  |
 | `address` | `string` | Yes |  |
 | `agency` | `string` | Yes |  |
 | `amount` | `number` | Yes |  |
@@ -579,7 +579,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Withdrawal():create({
-  account_number = --[[ string ]],
+  accountNumber = --[[ string ]],
   address = --[[ string ]],
   agency = --[[ string ]],
   amount = --[[ number ]],

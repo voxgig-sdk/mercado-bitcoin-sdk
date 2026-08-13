@@ -236,7 +236,7 @@ deposit_address = client.DepositAddress
 | --- | --- | --- | --- |
 | `address` | `String` | No |  |
 | `currency` | `String` | No |  |
-| `qr_code` | `String` | No |  |
+| `qrCode` | `String` | No |  |
 | `tag` | `String` | No |  |
 
 ### Operations
@@ -388,8 +388,8 @@ order_book = client.OrderBook
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `Array` | No |  |
-| `bid` | `Array` | No |  |
+| `asks` | `Array` | No |  |
+| `bids` | `Array` | No |  |
 | `timestamp` | `Integer` | No |  |
 
 ### Operations
@@ -565,8 +565,8 @@ withdrawal = client.Withdrawal
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `account_number` | `String` | Yes |  |
-| `account_type` | `String` | No |  |
+| `accountNumber` | `String` | Yes |  |
+| `accountType` | `String` | No |  |
 | `address` | `String` | Yes |  |
 | `agency` | `String` | Yes |  |
 | `amount` | `Float` | Yes |  |
@@ -582,7 +582,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Withdrawal.create({
-  "account_number" => "example_account_number", # String
+  "accountNumber" => "example_accountNumber", # String
   "address" => "example_address", # String
   "agency" => "example_agency", # String
   "amount" => 1, # Float

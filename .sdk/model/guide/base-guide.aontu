@@ -8,6 +8,7 @@ guide: {
   entity: balance: {
     path: "/accounts/balance": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.balances`")|top
     }
   }
 

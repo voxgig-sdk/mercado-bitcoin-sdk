@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'MercadoBitcoin',
   }
 
 
@@ -117,6 +117,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/accounts/balance",
               "parts": [
@@ -126,7 +127,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.balances`"
               },
               "index$": 0
             }
@@ -224,6 +225,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/candles/{symbol}",
               "parts": [
@@ -274,7 +276,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "qr_code",
+          "name": "qrCode",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
@@ -307,6 +309,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/deposits/crypto",
               "parts": [
@@ -431,6 +434,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/orders",
               "parts": [
@@ -472,6 +476,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/orders",
               "parts": [
@@ -511,6 +516,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/orders/{orderId}",
               "parts": [
@@ -555,6 +561,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "DELETE",
               "orig": "/orders/{orderId}",
               "parts": [
@@ -589,14 +596,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "ask",
+          "name": "asks",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "bid",
+          "name": "bids",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -641,6 +648,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/orderbook/{symbol}",
               "parts": [
@@ -739,6 +747,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/tickers",
               "parts": [
@@ -773,6 +782,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/tickers/{symbol}",
               "parts": [
@@ -873,6 +883,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/trades/{symbol}",
               "parts": [
@@ -908,14 +919,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "account_number",
+          "name": "accountNumber",
           "req": true,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "account_type",
+          "name": "accountType",
           "req": false,
           "type": "`$STRING`",
           "index$": 1
@@ -972,6 +983,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/withdrawals/brl",
               "parts": [
@@ -990,6 +1002,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/withdrawals/crypto",
               "parts": [

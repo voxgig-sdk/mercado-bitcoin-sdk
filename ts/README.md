@@ -37,7 +37,9 @@ const client = new MercadoBitcoinSDK({
 
 ### 2. List balance records
 
-`list()` resolves to an array of Balance objects — iterate it directly:
+`list()` resolves to an array of Balance ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const balances = await client.Balance().list()
@@ -70,10 +72,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const balances = await client.Balance().list()
-  console.log(balances)
+  const trade = await client.Trade().load({ id: "example_id" })
+  console.log(trade)
 } catch (err) {
-  console.error('list failed:', err)
+  console.error('load failed:', err)
 }
 ```
 
@@ -137,9 +139,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MercadoBitcoinSDK.test()
 
-const balance = await client.Balance().list()
-// balance is a bare entity populated with mock response data
-console.log(balance)
+const trade = await client.Trade().load({ id: 'test01' })
+// trade is the entity, populated with mock response data
+// — call trade.data() for the record itself
+console.log(trade)
 ```
 
 You can also use the instance method:
@@ -154,14 +157,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Balance()
+const entity = client.Trade()
 
 // First call runs the operation and stores its result
-await entity.list()
+await entity.load({ id: 'example' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -348,7 +351,7 @@ API path: `/candles/{symbol}`
 | --- | --- |
 | `address` |  |
 | `currency` |  |
-| `qr_code` |  |
+| `qrCode` |  |
 | `tag` |  |
 
 Operations: load.
@@ -377,8 +380,8 @@ API path: `/orders`
 
 | Field | Description |
 | --- | --- |
-| `ask` |  |
-| `bid` |  |
+| `asks` |  |
+| `bids` |  |
 | `timestamp` |  |
 
 Operations: load.
@@ -420,8 +423,8 @@ API path: `/trades/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `account_number` |  |
-| `account_type` |  |
+| `accountNumber` |  |
+| `accountType` |  |
 | `address` |  |
 | `agency` |  |
 | `amount` |  |
@@ -508,7 +511,7 @@ Create an instance: `const deposit_address = client.DepositAddress()`
 | --- | --- | --- |
 | `address` | `string` |  |
 | `currency` | `string` |  |
-| `qr_code` | `string` |  |
+| `qrCode` | `string` |  |
 | `tag` | `string` |  |
 
 #### Example: Load
@@ -579,8 +582,8 @@ Create an instance: `const order_book = client.OrderBook()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | `any[]` |  |
-| `bid` | `any[]` |  |
+| `asks` | `any[]` |  |
+| `bids` | `any[]` |  |
 | `timestamp` | `number` |  |
 
 #### Example: Load
@@ -668,8 +671,8 @@ Create an instance: `const withdrawal = client.Withdrawal()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `account_number` | `string` |  |
-| `account_type` | `string` |  |
+| `accountNumber` | `string` |  |
+| `accountType` | `string` |  |
 | `address` | `string` |  |
 | `agency` | `string` |  |
 | `amount` | `number` |  |
@@ -681,7 +684,7 @@ Create an instance: `const withdrawal = client.Withdrawal()`
 
 ```ts
 const withdrawal = await client.Withdrawal().create({
-  account_number: 'example_account_number',
+  accountNumber: 'example_accountNumber',
   address: 'example_address',
   agency: 'example_agency',
   amount: 1,
@@ -755,16 +758,16 @@ import { MercadoBitcoinSDK } from '@voxgig-sdk/mercado-bitcoin'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `list`, the entity
+Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const balance = client.Balance()
-await balance.list()
+const trade = client.Trade()
+await trade.load({ id: "example_id" })
 
-// balance.data() now returns the balance data from the last `list`
-// balance.match() returns the last match criteria
+// trade.data() now returns the trade data from the last `load`
+// trade.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

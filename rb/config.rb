@@ -73,6 +73,7 @@ module MercadoBitcoinConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/accounts/balance",
                   "parts" => [
@@ -82,7 +83,7 @@ module MercadoBitcoinConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.balances`",
                   },
                   "index$" => 0,
                 },
@@ -180,6 +181,7 @@ module MercadoBitcoinConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/candles/{symbol}",
                   "parts" => [
@@ -230,7 +232,7 @@ module MercadoBitcoinConfig
             },
             {
               "active" => true,
-              "name" => "qr_code",
+              "name" => "qrCode",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 2,
@@ -263,6 +265,7 @@ module MercadoBitcoinConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/deposits/crypto",
                   "parts" => [
@@ -387,6 +390,7 @@ module MercadoBitcoinConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/orders",
                   "parts" => [
@@ -428,6 +432,7 @@ module MercadoBitcoinConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/orders",
                   "parts" => [
@@ -467,6 +472,7 @@ module MercadoBitcoinConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/orders/{orderId}",
                   "parts" => [
@@ -511,6 +517,7 @@ module MercadoBitcoinConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "DELETE",
                   "orig" => "/orders/{orderId}",
                   "parts" => [
@@ -545,14 +552,14 @@ module MercadoBitcoinConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "ask",
+              "name" => "asks",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "bid",
+              "name" => "bids",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 1,
@@ -597,6 +604,7 @@ module MercadoBitcoinConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/orderbook/{symbol}",
                   "parts" => [
@@ -695,6 +703,7 @@ module MercadoBitcoinConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/tickers",
                   "parts" => [
@@ -729,6 +738,7 @@ module MercadoBitcoinConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/tickers/{symbol}",
                   "parts" => [
@@ -829,6 +839,7 @@ module MercadoBitcoinConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/trades/{symbol}",
                   "parts" => [
@@ -864,14 +875,14 @@ module MercadoBitcoinConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "account_number",
+              "name" => "accountNumber",
               "req" => true,
               "type" => "`$STRING`",
               "index$" => 0,
             },
             {
               "active" => true,
-              "name" => "account_type",
+              "name" => "accountType",
               "req" => false,
               "type" => "`$STRING`",
               "index$" => 1,
@@ -928,6 +939,7 @@ module MercadoBitcoinConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/withdrawals/brl",
                   "parts" => [
@@ -946,6 +958,7 @@ module MercadoBitcoinConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "POST",
                   "orig" => "/withdrawals/crypto",
                   "parts" => [

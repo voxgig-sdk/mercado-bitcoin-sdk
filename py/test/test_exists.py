@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# MercadoBitcoin SDK exists test
 
 import pytest
 from mercadobitcoin_sdk import MercadoBitcoinSDK

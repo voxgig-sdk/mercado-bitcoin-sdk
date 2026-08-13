@@ -2,22 +2,22 @@
   "existing": {
     "order_book": {
       "ORDER_BOOK00": {
-        "ask": [],
-        "bid": [],
+        "asks": [],
+        "bids": [],
         "timestamp": "s20",
         "symbol": "SYMBOL01",
         "id": "ORDER_BOOK00"
       },
       "ORDER_BOOK01": {
-        "ask": [],
-        "bid": [],
+        "asks": [],
+        "bids": [],
         "timestamp": "s3e",
         "symbol": "SYMBOL01",
         "id": "ORDER_BOOK01"
       },
       "ORDER_BOOK02": {
-        "ask": [],
-        "bid": [],
+        "asks": [],
+        "bids": [],
         "timestamp": "s5c",
         "symbol": "SYMBOL01",
         "id": "ORDER_BOOK02"
@@ -27,8 +27,8 @@
   "new": {
     "order_book": {
       "order_book_ref01": {
-        "ask": [],
-        "bid": [],
+        "asks": [],
+        "bids": [],
         "timestamp": "s7a"
       }
     }

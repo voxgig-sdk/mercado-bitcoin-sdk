@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import MercadoBitcoinControl
-from core.error import MercadoBitcoinError
-from core.result import MercadoBitcoinResult
-from core.spec import MercadoBitcoinSpec
+from mercadobitcoin_sdk.config import make_config
+from mercadobitcoin_sdk.features import _make_feature
+from mercadobitcoin_sdk.core.control import MercadoBitcoinControl
+from mercadobitcoin_sdk.core.error import MercadoBitcoinError
+from mercadobitcoin_sdk.core.result import MercadoBitcoinResult
+from mercadobitcoin_sdk.core.spec import MercadoBitcoinSpec
 
 
 # True when this SDK was generated with the named feature.

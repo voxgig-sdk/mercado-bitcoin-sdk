@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ MercadoBitcoinUtility::setRegistrar(function (MercadoBitcoinUtility $u): void {
     $u->prepare_params = [MercadoBitcoinPrepareParams::class, 'call'];
     $u->prepare_path = [MercadoBitcoinPreparePath::class, 'call'];
     $u->prepare_query = [MercadoBitcoinPrepareQuery::class, 'call'];
+    $u->graphql_body = [MercadoBitcoinGraphql::class, 'body'];
+    $u->graphql_errors = [MercadoBitcoinGraphql::class, 'errors'];
     $u->result_basic = [MercadoBitcoinResultBasic::class, 'call'];
     $u->result_body = [MercadoBitcoinResultBody::class, 'call'];
     $u->result_headers = [MercadoBitcoinResultHeaders::class, 'call'];

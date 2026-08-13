@@ -26,8 +26,8 @@ import {
 describe('TickerEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when MERCADOBITCOIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('MERCADOBITCOIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when MERCADO_BITCOIN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('MERCADO_BITCOIN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MercadoBitcoinSDK.test()
@@ -63,7 +63,7 @@ describe('TickerEntity', async () => {
     const ticker_ref01_ent = client.Ticker()
     const ticker_ref01_match: any = {}
 
-    const ticker_ref01_list = await ticker_ref01_ent.list(ticker_ref01_match)
+    const ticker_ref01_list = (await ticker_ref01_ent.list(ticker_ref01_match)).map((e: any) => e.data())
 
 
 
