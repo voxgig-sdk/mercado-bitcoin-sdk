@@ -40,7 +40,7 @@ class MercadoBitcoinSDK
         $utility = new MercadoBitcoinUtility();
         $this->_utility = $utility;
 
-        $config = MercadoBitcoinConfig::make_config();
+        $config = MercadoBitcoinConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

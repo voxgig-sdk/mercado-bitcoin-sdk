@@ -40,7 +40,7 @@ class OrderEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = MercadoBitcoinConfig::make_config();
+        $cfg = MercadoBitcoinConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = MercadoBitcoinSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from mercadobitcoin_sdk.config import make_config
+from mercadobitcoin_sdk.config import shared_config
 from mercadobitcoin_sdk.features import _make_feature
 from mercadobitcoin_sdk.core.control import MercadoBitcoinControl
 from mercadobitcoin_sdk.core.error import MercadoBitcoinError
@@ -24,7 +24,7 @@ from mercadobitcoin_sdk.core.spec import MercadoBitcoinSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

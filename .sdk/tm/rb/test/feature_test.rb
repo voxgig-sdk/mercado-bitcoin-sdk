@@ -15,7 +15,7 @@ require_relative "../MercadoBitcoin_sdk"
 module MercadoBitcoinFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = MercadoBitcoinConfig.make_config["feature"]
+    f = MercadoBitcoinConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

@@ -28,7 +28,7 @@ class MercadoBitcoinSDK
     utility = MercadoBitcoinUtility.new
     @_utility = utility
 
-    config = MercadoBitcoinConfig.make_config
+    config = MercadoBitcoinConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,
