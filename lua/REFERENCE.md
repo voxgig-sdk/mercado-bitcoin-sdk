@@ -119,10 +119,10 @@ local balance = client:Balance(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `available` | `number` | No |  |
-| `currency` | `string` | No |  |
-| `locked` | `number` | No |  |
-| `total` | `number` | No |  |
+| `available` | `number` | No | Available balance |
+| `currency` | `string` | No | Currency code |
+| `locked` | `number` | No | Locked balance |
+| `total` | `number` | No | Total balance |
 
 ### Operations
 
@@ -174,12 +174,12 @@ local candle = client:Candle(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `close` | `number` | No |  |
-| `high` | `number` | No |  |
-| `low` | `number` | No |  |
-| `open` | `number` | No |  |
-| `timestamp` | `number` | No |  |
-| `volume` | `number` | No |  |
+| `close` | `number` | No | Closing price |
+| `high` | `number` | No | Highest price |
+| `low` | `number` | No | Lowest price |
+| `open` | `number` | No | Opening price |
+| `timestamp` | `number` | No | Candle timestamp in milliseconds |
+| `volume` | `number` | No | Trading volume |
 
 ### Operations
 
@@ -231,10 +231,10 @@ local deposit_address = client:DepositAddress(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `currency` | `string` | No |  |
-| `qrCode` | `string` | No |  |
-| `tag` | `string` | No |  |
+| `address` | `string` | No | Deposit address |
+| `currency` | `string` | No | Cryptocurrency code |
+| `qrCode` | `string` | No | QR code for deposit address |
+| `tag` | `string` | No | Deposit tag/memo (if applicable) |
 
 ### Operations
 
@@ -286,15 +286,15 @@ local order = client:Order(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `number` | No |  |
-| `filled` | `number` | No |  |
-| `id` | `string` | No |  |
-| `price` | `number` | No |  |
-| `side` | `string` | No |  |
-| `status` | `string` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `number` | No |  |
-| `type` | `string` | No |  |
+| `amount` | `number` | No | Order amount |
+| `filled` | `number` | No | Filled amount |
+| `id` | `string` | No | Order ID |
+| `price` | `number` | No | Order price |
+| `side` | `string` | No | Order side |
+| `status` | `string` | No | Order status |
+| `symbol` | `string` | No | Trading pair symbol |
+| `timestamp` | `number` | No | Order creation timestamp |
+| `type` | `string` | No | Order type |
 
 ### Field Usage by Operation
 
@@ -385,9 +385,9 @@ local order_book = client:OrderBook(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asks` | `table` | No |  |
-| `bids` | `table` | No |  |
-| `timestamp` | `number` | No |  |
+| `asks` | `table` | No | List of ask orders |
+| `bids` | `table` | No | List of bid orders |
+| `timestamp` | `number` | No | Timestamp in milliseconds |
 
 ### Operations
 
@@ -439,14 +439,14 @@ local ticker = client:Ticker(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `number` | No |  |
-| `bid` | `number` | No |  |
-| `high` | `number` | No |  |
-| `last` | `number` | No |  |
-| `low` | `number` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `number` | No |  |
-| `volume` | `number` | No |  |
+| `ask` | `number` | No | Lowest ask price |
+| `bid` | `number` | No | Highest bid price |
+| `high` | `number` | No | 24h high price |
+| `last` | `number` | No | Last traded price |
+| `low` | `number` | No | 24h low price |
+| `symbol` | `string` | No | Trading pair symbol |
+| `timestamp` | `number` | No | Timestamp in milliseconds |
+| `volume` | `number` | No | 24h trading volume |
 
 ### Operations
 
@@ -506,11 +506,11 @@ local trade = client:Trade(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `number` | No |  |
-| `id` | `string` | No |  |
-| `price` | `number` | No |  |
-| `side` | `string` | No |  |
-| `timestamp` | `number` | No |  |
+| `amount` | `number` | No | Trade amount |
+| `id` | `string` | No | Trade ID |
+| `price` | `number` | No | Trade price |
+| `side` | `string` | No | Trade side |
+| `timestamp` | `number` | No | Timestamp in milliseconds |
 
 ### Operations
 
@@ -562,14 +562,14 @@ local withdrawal = client:Withdrawal(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountNumber` | `string` | Yes |  |
-| `accountType` | `string` | No |  |
-| `address` | `string` | Yes |  |
-| `agency` | `string` | Yes |  |
-| `amount` | `number` | Yes |  |
-| `bank` | `string` | Yes |  |
-| `currency` | `string` | Yes |  |
-| `tag` | `string` | No |  |
+| `accountNumber` | `string` | Yes | Bank account number |
+| `accountType` | `string` | No | Account type |
+| `address` | `string` | Yes | Destination address |
+| `agency` | `string` | Yes | Bank agency |
+| `amount` | `number` | Yes | Withdrawal amount in BRL |
+| `bank` | `string` | Yes | Bank code |
+| `currency` | `string` | Yes | Cryptocurrency code |
+| `tag` | `string` | No | Destination tag/memo (if applicable) |
 
 ### Operations
 

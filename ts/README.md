@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -321,10 +321,10 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `available` |  |
-| `currency` |  |
-| `locked` |  |
-| `total` |  |
+| `available` | Available balance |
+| `currency` | Currency code |
+| `locked` | Locked balance |
+| `total` | Total balance |
 
 Operations: list.
 
@@ -334,12 +334,12 @@ API path: `/accounts/balance`
 
 | Field | Description |
 | --- | --- |
-| `close` |  |
-| `high` |  |
-| `low` |  |
-| `open` |  |
-| `timestamp` |  |
-| `volume` |  |
+| `close` | Closing price |
+| `high` | Highest price |
+| `low` | Lowest price |
+| `open` | Opening price |
+| `timestamp` | Candle timestamp in milliseconds |
+| `volume` | Trading volume |
 
 Operations: load.
 
@@ -349,10 +349,10 @@ API path: `/candles/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `currency` |  |
-| `qrCode` |  |
-| `tag` |  |
+| `address` | Deposit address |
+| `currency` | Cryptocurrency code |
+| `qrCode` | QR code for deposit address |
+| `tag` | Deposit tag/memo (if applicable) |
 
 Operations: load.
 
@@ -362,15 +362,15 @@ API path: `/deposits/crypto`
 
 | Field | Description |
 | --- | --- |
-| `amount` |  |
-| `filled` |  |
-| `id` |  |
-| `price` |  |
-| `side` |  |
-| `status` |  |
-| `symbol` |  |
-| `timestamp` |  |
-| `type` |  |
+| `amount` | Order amount |
+| `filled` | Filled amount |
+| `id` | Order ID |
+| `price` | Order price |
+| `side` | Order side |
+| `status` | Order status |
+| `symbol` | Trading pair symbol |
+| `timestamp` | Order creation timestamp |
+| `type` | Order type |
 
 Operations: create, list, load, remove.
 
@@ -380,9 +380,9 @@ API path: `/orders`
 
 | Field | Description |
 | --- | --- |
-| `asks` |  |
-| `bids` |  |
-| `timestamp` |  |
+| `asks` | List of ask orders |
+| `bids` | List of bid orders |
+| `timestamp` | Timestamp in milliseconds |
 
 Operations: load.
 
@@ -392,14 +392,14 @@ API path: `/orderbook/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `ask` |  |
-| `bid` |  |
-| `high` |  |
-| `last` |  |
-| `low` |  |
-| `symbol` |  |
-| `timestamp` |  |
-| `volume` |  |
+| `ask` | Lowest ask price |
+| `bid` | Highest bid price |
+| `high` | 24h high price |
+| `last` | Last traded price |
+| `low` | 24h low price |
+| `symbol` | Trading pair symbol |
+| `timestamp` | Timestamp in milliseconds |
+| `volume` | 24h trading volume |
 
 Operations: list, load.
 
@@ -409,11 +409,11 @@ API path: `/tickers`
 
 | Field | Description |
 | --- | --- |
-| `amount` |  |
-| `id` |  |
-| `price` |  |
-| `side` |  |
-| `timestamp` |  |
+| `amount` | Trade amount |
+| `id` | Trade ID |
+| `price` | Trade price |
+| `side` | Trade side |
+| `timestamp` | Timestamp in milliseconds |
 
 Operations: load.
 
@@ -423,14 +423,14 @@ API path: `/trades/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `accountNumber` |  |
-| `accountType` |  |
-| `address` |  |
-| `agency` |  |
-| `amount` |  |
-| `bank` |  |
-| `currency` |  |
-| `tag` |  |
+| `accountNumber` | Bank account number |
+| `accountType` | Account type |
+| `address` | Destination address |
+| `agency` | Bank agency |
+| `amount` | Withdrawal amount in BRL |
+| `bank` | Bank code |
+| `currency` | Cryptocurrency code |
+| `tag` | Destination tag/memo (if applicable) |
 
 Operations: create.
 
@@ -455,10 +455,10 @@ Create an instance: `const balance = client.Balance()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `available` | `number` |  |
-| `currency` | `string` |  |
-| `locked` | `number` |  |
-| `total` | `number` |  |
+| `available` | `number` | Available balance |
+| `currency` | `string` | Currency code |
+| `locked` | `number` | Locked balance |
+| `total` | `number` | Total balance |
 
 #### Example: List
 
@@ -481,12 +481,12 @@ Create an instance: `const candle = client.Candle()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `close` | `number` |  |
-| `high` | `number` |  |
-| `low` | `number` |  |
-| `open` | `number` |  |
-| `timestamp` | `number` |  |
-| `volume` | `number` |  |
+| `close` | `number` | Closing price |
+| `high` | `number` | Highest price |
+| `low` | `number` | Lowest price |
+| `open` | `number` | Opening price |
+| `timestamp` | `number` | Candle timestamp in milliseconds |
+| `volume` | `number` | Trading volume |
 
 #### Example: Load
 
@@ -509,10 +509,10 @@ Create an instance: `const deposit_address = client.DepositAddress()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `currency` | `string` |  |
-| `qrCode` | `string` |  |
-| `tag` | `string` |  |
+| `address` | `string` | Deposit address |
+| `currency` | `string` | Cryptocurrency code |
+| `qrCode` | `string` | QR code for deposit address |
+| `tag` | `string` | Deposit tag/memo (if applicable) |
 
 #### Example: Load
 
@@ -538,15 +538,15 @@ Create an instance: `const order = client.Order()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | `number` |  |
-| `filled` | `number` |  |
-| `id` | `string` |  |
-| `price` | `number` |  |
-| `side` | `string` |  |
-| `status` | `string` |  |
-| `symbol` | `string` |  |
-| `timestamp` | `number` |  |
-| `type` | `string` |  |
+| `amount` | `number` | Order amount |
+| `filled` | `number` | Filled amount |
+| `id` | `string` | Order ID |
+| `price` | `number` | Order price |
+| `side` | `string` | Order side |
+| `status` | `string` | Order status |
+| `symbol` | `string` | Trading pair symbol |
+| `timestamp` | `number` | Order creation timestamp |
+| `type` | `string` | Order type |
 
 #### Example: Load
 
@@ -582,9 +582,9 @@ Create an instance: `const order_book = client.OrderBook()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asks` | `any[]` |  |
-| `bids` | `any[]` |  |
-| `timestamp` | `number` |  |
+| `asks` | `any[]` | List of ask orders |
+| `bids` | `any[]` | List of bid orders |
+| `timestamp` | `number` | Timestamp in milliseconds |
 
 #### Example: Load
 
@@ -608,14 +608,14 @@ Create an instance: `const ticker = client.Ticker()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | `number` |  |
-| `bid` | `number` |  |
-| `high` | `number` |  |
-| `last` | `number` |  |
-| `low` | `number` |  |
-| `symbol` | `string` |  |
-| `timestamp` | `number` |  |
-| `volume` | `number` |  |
+| `ask` | `number` | Lowest ask price |
+| `bid` | `number` | Highest bid price |
+| `high` | `number` | 24h high price |
+| `last` | `number` | Last traded price |
+| `low` | `number` | 24h low price |
+| `symbol` | `string` | Trading pair symbol |
+| `timestamp` | `number` | Timestamp in milliseconds |
+| `volume` | `number` | 24h trading volume |
 
 #### Example: Load
 
@@ -644,11 +644,11 @@ Create an instance: `const trade = client.Trade()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | `number` |  |
-| `id` | `string` |  |
-| `price` | `number` |  |
-| `side` | `string` |  |
-| `timestamp` | `number` |  |
+| `amount` | `number` | Trade amount |
+| `id` | `string` | Trade ID |
+| `price` | `number` | Trade price |
+| `side` | `string` | Trade side |
+| `timestamp` | `number` | Timestamp in milliseconds |
 
 #### Example: Load
 
@@ -671,14 +671,14 @@ Create an instance: `const withdrawal = client.Withdrawal()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accountNumber` | `string` |  |
-| `accountType` | `string` |  |
-| `address` | `string` |  |
-| `agency` | `string` |  |
-| `amount` | `number` |  |
-| `bank` | `string` |  |
-| `currency` | `string` |  |
-| `tag` | `string` |  |
+| `accountNumber` | `string` | Bank account number |
+| `accountType` | `string` | Account type |
+| `address` | `string` | Destination address |
+| `agency` | `string` | Bank agency |
+| `amount` | `number` | Withdrawal amount in BRL |
+| `bank` | `string` | Bank code |
+| `currency` | `string` | Cryptocurrency code |
+| `tag` | `string` | Destination tag/memo (if applicable) |
 
 #### Example: Create
 

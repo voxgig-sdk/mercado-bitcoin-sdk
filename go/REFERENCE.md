@@ -127,10 +127,10 @@ fmt.Println(balance.GetName()) // "balance"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `available` | `float64` | No |  |
-| `currency` | `string` | No |  |
-| `locked` | `float64` | No |  |
-| `total` | `float64` | No |  |
+| `available` | `float64` | No | Available balance |
+| `currency` | `string` | No | Currency code |
+| `locked` | `float64` | No | Locked balance |
+| `total` | `float64` | No | Total balance |
 
 ### Operations
 
@@ -181,12 +181,12 @@ fmt.Println(candle.GetName()) // "candle"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `close` | `float64` | No |  |
-| `high` | `float64` | No |  |
-| `low` | `float64` | No |  |
-| `open` | `float64` | No |  |
-| `timestamp` | `int` | No |  |
-| `volume` | `float64` | No |  |
+| `close` | `float64` | No | Closing price |
+| `high` | `float64` | No | Highest price |
+| `low` | `float64` | No | Lowest price |
+| `open` | `float64` | No | Opening price |
+| `timestamp` | `int` | No | Candle timestamp in milliseconds |
+| `volume` | `float64` | No | Trading volume |
 
 ### Operations
 
@@ -237,10 +237,10 @@ fmt.Println(depositAddress.GetName()) // "deposit_address"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `currency` | `string` | No |  |
-| `qrCode` | `string` | No |  |
-| `tag` | `string` | No |  |
+| `address` | `string` | No | Deposit address |
+| `currency` | `string` | No | Cryptocurrency code |
+| `qrCode` | `string` | No | QR code for deposit address |
+| `tag` | `string` | No | Deposit tag/memo (if applicable) |
 
 ### Operations
 
@@ -291,15 +291,15 @@ fmt.Println(order.GetName()) // "order"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `float64` | No |  |
-| `filled` | `float64` | No |  |
-| `id` | `string` | No |  |
-| `price` | `float64` | No |  |
-| `side` | `string` | No |  |
-| `status` | `string` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `int` | No |  |
-| `type` | `string` | No |  |
+| `amount` | `float64` | No | Order amount |
+| `filled` | `float64` | No | Filled amount |
+| `id` | `string` | No | Order ID |
+| `price` | `float64` | No | Order price |
+| `side` | `string` | No | Order side |
+| `status` | `string` | No | Order status |
+| `symbol` | `string` | No | Trading pair symbol |
+| `timestamp` | `int` | No | Order creation timestamp |
+| `type` | `string` | No | Order type |
 
 ### Field Usage by Operation
 
@@ -401,9 +401,9 @@ fmt.Println(orderBook.GetName()) // "order_book"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asks` | `[]any` | No |  |
-| `bids` | `[]any` | No |  |
-| `timestamp` | `int` | No |  |
+| `asks` | `[]any` | No | List of ask orders |
+| `bids` | `[]any` | No | List of bid orders |
+| `timestamp` | `int` | No | Timestamp in milliseconds |
 
 ### Operations
 
@@ -454,14 +454,14 @@ fmt.Println(ticker.GetName()) // "ticker"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `float64` | No |  |
-| `bid` | `float64` | No |  |
-| `high` | `float64` | No |  |
-| `last` | `float64` | No |  |
-| `low` | `float64` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `int` | No |  |
-| `volume` | `float64` | No |  |
+| `ask` | `float64` | No | Lowest ask price |
+| `bid` | `float64` | No | Highest bid price |
+| `high` | `float64` | No | 24h high price |
+| `last` | `float64` | No | Last traded price |
+| `low` | `float64` | No | 24h low price |
+| `symbol` | `string` | No | Trading pair symbol |
+| `timestamp` | `int` | No | Timestamp in milliseconds |
+| `volume` | `float64` | No | 24h trading volume |
 
 ### Operations
 
@@ -524,11 +524,11 @@ fmt.Println(trade.GetName()) // "trade"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `float64` | No |  |
-| `id` | `string` | No |  |
-| `price` | `float64` | No |  |
-| `side` | `string` | No |  |
-| `timestamp` | `int` | No |  |
+| `amount` | `float64` | No | Trade amount |
+| `id` | `string` | No | Trade ID |
+| `price` | `float64` | No | Trade price |
+| `side` | `string` | No | Trade side |
+| `timestamp` | `int` | No | Timestamp in milliseconds |
 
 ### Operations
 
@@ -579,14 +579,14 @@ fmt.Println(withdrawal.GetName()) // "withdrawal"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountNumber` | `string` | Yes |  |
-| `accountType` | `string` | No |  |
-| `address` | `string` | Yes |  |
-| `agency` | `string` | Yes |  |
-| `amount` | `float64` | Yes |  |
-| `bank` | `string` | Yes |  |
-| `currency` | `string` | Yes |  |
-| `tag` | `string` | No |  |
+| `accountNumber` | `string` | Yes | Bank account number |
+| `accountType` | `string` | No | Account type |
+| `address` | `string` | Yes | Destination address |
+| `agency` | `string` | Yes | Bank agency |
+| `amount` | `float64` | Yes | Withdrawal amount in BRL |
+| `bank` | `string` | Yes | Bank code |
+| `currency` | `string` | Yes | Cryptocurrency code |
+| `tag` | `string` | No | Destination tag/memo (if applicable) |
 
 ### Operations
 

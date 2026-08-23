@@ -1,0 +1,86 @@
+# Entity: order_book
+
+main: kit: entity: order_book: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "asks"
+      req: false
+      short: "List of ask orders"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "bids"
+      req: false
+      short: "List of bid orders"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Timestamp in milliseconds"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "order_book"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "symbol"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/orderbook/{symbol}"
+          parts: [
+            "orderbook"
+            "{symbol}"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "symbol"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "orderbook"
+      ]
+    ]
+  }
+
+
+
+}

@@ -1,0 +1,57 @@
+# Entity: balance
+
+main: kit: entity: balance: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "available"
+      req: false
+      short: "Available balance"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "currency"
+      req: false
+      short: "Currency code"
+      type: "`$STRING`"
+    }
+    {
+      name: "locked"
+      req: false
+      short: "Locked balance"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "total"
+      req: false
+      short: "Total balance"
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "balance"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/accounts/balance"
+          parts: [
+            "accounts"
+            "balance"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.balances`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

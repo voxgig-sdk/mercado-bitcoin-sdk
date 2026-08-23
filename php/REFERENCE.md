@@ -121,10 +121,10 @@ $balance = $client->Balance();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `available` | `float` | No |  |
-| `currency` | `string` | No |  |
-| `locked` | `float` | No |  |
-| `total` | `float` | No |  |
+| `available` | `float` | No | Available balance |
+| `currency` | `string` | No | Currency code |
+| `locked` | `float` | No | Locked balance |
+| `total` | `float` | No | Total balance |
 
 ### Operations
 
@@ -176,12 +176,12 @@ $candle = $client->Candle();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `close` | `float` | No |  |
-| `high` | `float` | No |  |
-| `low` | `float` | No |  |
-| `open` | `float` | No |  |
-| `timestamp` | `int` | No |  |
-| `volume` | `float` | No |  |
+| `close` | `float` | No | Closing price |
+| `high` | `float` | No | Highest price |
+| `low` | `float` | No | Lowest price |
+| `open` | `float` | No | Opening price |
+| `timestamp` | `int` | No | Candle timestamp in milliseconds |
+| `volume` | `float` | No | Trading volume |
 
 ### Operations
 
@@ -233,10 +233,10 @@ $deposit_address = $client->DepositAddress();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `currency` | `string` | No |  |
-| `qrCode` | `string` | No |  |
-| `tag` | `string` | No |  |
+| `address` | `string` | No | Deposit address |
+| `currency` | `string` | No | Cryptocurrency code |
+| `qrCode` | `string` | No | QR code for deposit address |
+| `tag` | `string` | No | Deposit tag/memo (if applicable) |
 
 ### Operations
 
@@ -288,15 +288,15 @@ $order = $client->Order();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `float` | No |  |
-| `filled` | `float` | No |  |
-| `id` | `string` | No |  |
-| `price` | `float` | No |  |
-| `side` | `string` | No |  |
-| `status` | `string` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `int` | No |  |
-| `type` | `string` | No |  |
+| `amount` | `float` | No | Order amount |
+| `filled` | `float` | No | Filled amount |
+| `id` | `string` | No | Order ID |
+| `price` | `float` | No | Order price |
+| `side` | `string` | No | Order side |
+| `status` | `string` | No | Order status |
+| `symbol` | `string` | No | Trading pair symbol |
+| `timestamp` | `int` | No | Order creation timestamp |
+| `type` | `string` | No | Order type |
 
 ### Field Usage by Operation
 
@@ -387,9 +387,9 @@ $order_book = $client->OrderBook();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asks` | `array` | No |  |
-| `bids` | `array` | No |  |
-| `timestamp` | `int` | No |  |
+| `asks` | `array` | No | List of ask orders |
+| `bids` | `array` | No | List of bid orders |
+| `timestamp` | `int` | No | Timestamp in milliseconds |
 
 ### Operations
 
@@ -441,14 +441,14 @@ $ticker = $client->Ticker();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `float` | No |  |
-| `bid` | `float` | No |  |
-| `high` | `float` | No |  |
-| `last` | `float` | No |  |
-| `low` | `float` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `int` | No |  |
-| `volume` | `float` | No |  |
+| `ask` | `float` | No | Lowest ask price |
+| `bid` | `float` | No | Highest bid price |
+| `high` | `float` | No | 24h high price |
+| `last` | `float` | No | Last traded price |
+| `low` | `float` | No | 24h low price |
+| `symbol` | `string` | No | Trading pair symbol |
+| `timestamp` | `int` | No | Timestamp in milliseconds |
+| `volume` | `float` | No | 24h trading volume |
 
 ### Operations
 
@@ -508,11 +508,11 @@ $trade = $client->Trade();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `float` | No |  |
-| `id` | `string` | No |  |
-| `price` | `float` | No |  |
-| `side` | `string` | No |  |
-| `timestamp` | `int` | No |  |
+| `amount` | `float` | No | Trade amount |
+| `id` | `string` | No | Trade ID |
+| `price` | `float` | No | Trade price |
+| `side` | `string` | No | Trade side |
+| `timestamp` | `int` | No | Timestamp in milliseconds |
 
 ### Operations
 
@@ -564,14 +564,14 @@ $withdrawal = $client->Withdrawal();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountNumber` | `string` | Yes |  |
-| `accountType` | `string` | No |  |
-| `address` | `string` | Yes |  |
-| `agency` | `string` | Yes |  |
-| `amount` | `float` | Yes |  |
-| `bank` | `string` | Yes |  |
-| `currency` | `string` | Yes |  |
-| `tag` | `string` | No |  |
+| `accountNumber` | `string` | Yes | Bank account number |
+| `accountType` | `string` | No | Account type |
+| `address` | `string` | Yes | Destination address |
+| `agency` | `string` | Yes | Bank agency |
+| `amount` | `float` | Yes | Withdrawal amount in BRL |
+| `bank` | `string` | Yes | Bank code |
+| `currency` | `string` | Yes | Cryptocurrency code |
+| `tag` | `string` | No | Destination tag/memo (if applicable) |
 
 ### Operations
 

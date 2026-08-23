@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "MercadoBitcoin",
+            "slug": "mercado-bitcoin",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -60,18 +63,22 @@ def make_config():
         "fields": [
           {
             "name": "available",
+            "short": "Available balance",
             "type": "`$NUMBER`",
           },
           {
             "name": "currency",
+            "short": "Currency code",
             "type": "`$STRING`",
           },
           {
             "name": "locked",
+            "short": "Locked balance",
             "type": "`$NUMBER`",
           },
           {
             "name": "total",
+            "short": "Total balance",
             "type": "`$NUMBER`",
           },
         ],
@@ -107,26 +114,32 @@ def make_config():
         "fields": [
           {
             "name": "close",
+            "short": "Closing price",
             "type": "`$NUMBER`",
           },
           {
             "name": "high",
+            "short": "Highest price",
             "type": "`$NUMBER`",
           },
           {
             "name": "low",
+            "short": "Lowest price",
             "type": "`$NUMBER`",
           },
           {
             "name": "open",
+            "short": "Opening price",
             "type": "`$NUMBER`",
           },
           {
             "name": "timestamp",
+            "short": "Candle timestamp in milliseconds",
             "type": "`$INTEGER`",
           },
           {
             "name": "volume",
+            "short": "Trading volume",
             "type": "`$NUMBER`",
           },
         ],
@@ -199,18 +212,22 @@ def make_config():
         "fields": [
           {
             "name": "address",
+            "short": "Deposit address",
             "type": "`$STRING`",
           },
           {
             "name": "currency",
+            "short": "Cryptocurrency code",
             "type": "`$STRING`",
           },
           {
             "name": "qrCode",
+            "short": "QR code for deposit address",
             "type": "`$STRING`",
           },
           {
             "name": "tag",
+            "short": "Deposit tag/memo (if applicable)",
             "type": "`$STRING`",
           },
         ],
@@ -266,18 +283,22 @@ def make_config():
                 "type": "`$NUMBER`",
               },
             },
+            "short": "Order amount",
             "type": "`$NUMBER`",
           },
           {
             "name": "filled",
+            "short": "Filled amount",
             "type": "`$NUMBER`",
           },
           {
             "name": "id",
+            "short": "Order ID",
             "type": "`$STRING`",
           },
           {
             "name": "price",
+            "short": "Order price",
             "type": "`$NUMBER`",
           },
           {
@@ -288,10 +309,12 @@ def make_config():
                 "type": "`$STRING`",
               },
             },
+            "short": "Order side",
             "type": "`$STRING`",
           },
           {
             "name": "status",
+            "short": "Order status",
             "type": "`$STRING`",
           },
           {
@@ -302,10 +325,12 @@ def make_config():
                 "type": "`$STRING`",
               },
             },
+            "short": "Trading pair symbol",
             "type": "`$STRING`",
           },
           {
             "name": "timestamp",
+            "short": "Order creation timestamp",
             "type": "`$INTEGER`",
           },
           {
@@ -316,6 +341,7 @@ def make_config():
                 "type": "`$STRING`",
               },
             },
+            "short": "Order type",
             "type": "`$STRING`",
           },
         ],
@@ -470,14 +496,17 @@ def make_config():
         "fields": [
           {
             "name": "asks",
+            "short": "List of ask orders",
             "type": "`$ARRAY`",
           },
           {
             "name": "bids",
+            "short": "List of bid orders",
             "type": "`$ARRAY`",
           },
           {
             "name": "timestamp",
+            "short": "Timestamp in milliseconds",
             "type": "`$INTEGER`",
           },
         ],
@@ -541,34 +570,42 @@ def make_config():
         "fields": [
           {
             "name": "ask",
+            "short": "Lowest ask price",
             "type": "`$NUMBER`",
           },
           {
             "name": "bid",
+            "short": "Highest bid price",
             "type": "`$NUMBER`",
           },
           {
             "name": "high",
+            "short": "24h high price",
             "type": "`$NUMBER`",
           },
           {
             "name": "last",
+            "short": "Last traded price",
             "type": "`$NUMBER`",
           },
           {
             "name": "low",
+            "short": "24h low price",
             "type": "`$NUMBER`",
           },
           {
             "name": "symbol",
+            "short": "Trading pair symbol",
             "type": "`$STRING`",
           },
           {
             "name": "timestamp",
+            "short": "Timestamp in milliseconds",
             "type": "`$INTEGER`",
           },
           {
             "name": "volume",
+            "short": "24h trading volume",
             "type": "`$NUMBER`",
           },
         ],
@@ -643,22 +680,27 @@ def make_config():
         "fields": [
           {
             "name": "amount",
+            "short": "Trade amount",
             "type": "`$NUMBER`",
           },
           {
             "name": "id",
+            "short": "Trade ID",
             "type": "`$STRING`",
           },
           {
             "name": "price",
+            "short": "Trade price",
             "type": "`$NUMBER`",
           },
           {
             "name": "side",
+            "short": "Trade side",
             "type": "`$STRING`",
           },
           {
             "name": "timestamp",
+            "short": "Timestamp in milliseconds",
             "type": "`$INTEGER`",
           },
         ],
@@ -724,39 +766,47 @@ def make_config():
           {
             "name": "accountNumber",
             "req": True,
+            "short": "Bank account number",
             "type": "`$STRING`",
           },
           {
             "name": "accountType",
+            "short": "Account type",
             "type": "`$STRING`",
           },
           {
             "name": "address",
             "req": True,
+            "short": "Destination address",
             "type": "`$STRING`",
           },
           {
             "name": "agency",
             "req": True,
+            "short": "Bank agency",
             "type": "`$STRING`",
           },
           {
             "name": "amount",
             "req": True,
+            "short": "Withdrawal amount in BRL",
             "type": "`$NUMBER`",
           },
           {
             "name": "bank",
             "req": True,
+            "short": "Bank code",
             "type": "`$STRING`",
           },
           {
             "name": "currency",
             "req": True,
+            "short": "Cryptocurrency code",
             "type": "`$STRING`",
           },
           {
             "name": "tag",
+            "short": "Destination tag/memo (if applicable)",
             "type": "`$STRING`",
           },
         ],

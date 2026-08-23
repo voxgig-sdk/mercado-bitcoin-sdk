@@ -1,0 +1,118 @@
+# Entity: ticker
+
+main: kit: entity: ticker: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ask"
+      req: false
+      short: "Lowest ask price"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "bid"
+      req: false
+      short: "Highest bid price"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "high"
+      req: false
+      short: "24h high price"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "last"
+      req: false
+      short: "Last traded price"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "low"
+      req: false
+      short: "24h low price"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "symbol"
+      req: false
+      short: "Trading pair symbol"
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Timestamp in milliseconds"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "volume"
+      req: false
+      short: "24h trading volume"
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "ticker"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/tickers"
+          parts: [
+            "tickers"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/tickers/{symbol}"
+          parts: [
+            "tickers"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              symbol: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

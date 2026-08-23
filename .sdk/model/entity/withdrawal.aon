@@ -1,0 +1,99 @@
+# Entity: withdrawal
+
+main: kit: entity: withdrawal: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "accountNumber"
+      req: true
+      short: "Bank account number"
+      type: "`$STRING`"
+    }
+    {
+      name: "accountType"
+      req: false
+      short: "Account type"
+      type: "`$STRING`"
+    }
+    {
+      name: "address"
+      req: true
+      short: "Destination address"
+      type: "`$STRING`"
+    }
+    {
+      name: "agency"
+      req: true
+      short: "Bank agency"
+      type: "`$STRING`"
+    }
+    {
+      name: "amount"
+      req: true
+      short: "Withdrawal amount in BRL"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "bank"
+      req: true
+      short: "Bank code"
+      type: "`$STRING`"
+    }
+    {
+      name: "currency"
+      req: true
+      short: "Cryptocurrency code"
+      type: "`$STRING`"
+    }
+    {
+      name: "tag"
+      req: false
+      short: "Destination tag/memo (if applicable)"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "withdrawal"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/withdrawals/brl"
+          parts: [
+            "withdrawals"
+            "brl"
+          ]
+          select: {
+            "$action": "brl"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "POST"
+          orig: "/withdrawals/crypto"
+          parts: [
+            "withdrawals"
+            "crypto"
+          ]
+          select: {
+            "$action": "crypto"
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

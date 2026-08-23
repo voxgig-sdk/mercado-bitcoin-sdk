@@ -201,10 +201,10 @@ const balance = client.Balance()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `available` | `number` | No |  |
-| `currency` | `string` | No |  |
-| `locked` | `number` | No |  |
-| `total` | `number` | No |  |
+| `available` | `number` | No | Available balance |
+| `currency` | `string` | No | Currency code |
+| `locked` | `number` | No | Locked balance |
+| `total` | `number` | No | Total balance |
 
 ### Operations
 
@@ -254,12 +254,12 @@ const candle = client.Candle()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `close` | `number` | No |  |
-| `high` | `number` | No |  |
-| `low` | `number` | No |  |
-| `open` | `number` | No |  |
-| `timestamp` | `number` | No |  |
-| `volume` | `number` | No |  |
+| `close` | `number` | No | Closing price |
+| `high` | `number` | No | Highest price |
+| `low` | `number` | No | Lowest price |
+| `open` | `number` | No | Opening price |
+| `timestamp` | `number` | No | Candle timestamp in milliseconds |
+| `volume` | `number` | No | Trading volume |
 
 ### Operations
 
@@ -309,10 +309,10 @@ const deposit_address = client.DepositAddress()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `string` | No |  |
-| `currency` | `string` | No |  |
-| `qrCode` | `string` | No |  |
-| `tag` | `string` | No |  |
+| `address` | `string` | No | Deposit address |
+| `currency` | `string` | No | Cryptocurrency code |
+| `qrCode` | `string` | No | QR code for deposit address |
+| `tag` | `string` | No | Deposit tag/memo (if applicable) |
 
 ### Operations
 
@@ -362,15 +362,15 @@ const order = client.Order()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `number` | No |  |
-| `filled` | `number` | No |  |
-| `id` | `string` | No |  |
-| `price` | `number` | No |  |
-| `side` | `string` | No |  |
-| `status` | `string` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `number` | No |  |
-| `type` | `string` | No |  |
+| `amount` | `number` | No | Order amount |
+| `filled` | `number` | No | Filled amount |
+| `id` | `string` | No | Order ID |
+| `price` | `number` | No | Order price |
+| `side` | `string` | No | Order side |
+| `status` | `string` | No | Order status |
+| `symbol` | `string` | No | Trading pair symbol |
+| `timestamp` | `number` | No | Order creation timestamp |
+| `type` | `string` | No | Order type |
 
 ### Field Usage by Operation
 
@@ -459,9 +459,9 @@ const order_book = client.OrderBook()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asks` | `any[]` | No |  |
-| `bids` | `any[]` | No |  |
-| `timestamp` | `number` | No |  |
+| `asks` | `any[]` | No | List of ask orders |
+| `bids` | `any[]` | No | List of bid orders |
+| `timestamp` | `number` | No | Timestamp in milliseconds |
 
 ### Operations
 
@@ -511,14 +511,14 @@ const ticker = client.Ticker()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `number` | No |  |
-| `bid` | `number` | No |  |
-| `high` | `number` | No |  |
-| `last` | `number` | No |  |
-| `low` | `number` | No |  |
-| `symbol` | `string` | No |  |
-| `timestamp` | `number` | No |  |
-| `volume` | `number` | No |  |
+| `ask` | `number` | No | Lowest ask price |
+| `bid` | `number` | No | Highest bid price |
+| `high` | `number` | No | 24h high price |
+| `last` | `number` | No | Last traded price |
+| `low` | `number` | No | 24h low price |
+| `symbol` | `string` | No | Trading pair symbol |
+| `timestamp` | `number` | No | Timestamp in milliseconds |
+| `volume` | `number` | No | 24h trading volume |
 
 ### Operations
 
@@ -576,11 +576,11 @@ const trade = client.Trade()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `number` | No |  |
-| `id` | `string` | No |  |
-| `price` | `number` | No |  |
-| `side` | `string` | No |  |
-| `timestamp` | `number` | No |  |
+| `amount` | `number` | No | Trade amount |
+| `id` | `string` | No | Trade ID |
+| `price` | `number` | No | Trade price |
+| `side` | `string` | No | Trade side |
+| `timestamp` | `number` | No | Timestamp in milliseconds |
 
 ### Operations
 
@@ -630,14 +630,14 @@ const withdrawal = client.Withdrawal()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountNumber` | `string` | Yes |  |
-| `accountType` | `string` | No |  |
-| `address` | `string` | Yes |  |
-| `agency` | `string` | Yes |  |
-| `amount` | `number` | Yes |  |
-| `bank` | `string` | Yes |  |
-| `currency` | `string` | Yes |  |
-| `tag` | `string` | No |  |
+| `accountNumber` | `string` | Yes | Bank account number |
+| `accountType` | `string` | No | Account type |
+| `address` | `string` | Yes | Destination address |
+| `agency` | `string` | Yes | Bank agency |
+| `amount` | `number` | Yes | Withdrawal amount in BRL |
+| `bank` | `string` | Yes | Bank code |
+| `currency` | `string` | Yes | Cryptocurrency code |
+| `tag` | `string` | No | Destination tag/memo (if applicable) |
 
 ### Actions
 

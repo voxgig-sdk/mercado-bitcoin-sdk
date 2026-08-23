@@ -36,24 +36,28 @@
               "active": true,
               "name": "available",
               "req": false,
+              "short": "Available balance",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "currency",
               "req": false,
+              "short": "Currency code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "locked",
               "req": false,
+              "short": "Locked balance",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "total",
               "req": false,
+              "short": "Total balance",
               "type": "`$NUMBER`"
             }
           ],
@@ -96,36 +100,42 @@
               "active": true,
               "name": "close",
               "req": false,
+              "short": "Closing price",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "high",
               "req": false,
+              "short": "Highest price",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "low",
               "req": false,
+              "short": "Lowest price",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "open",
               "req": false,
+              "short": "Opening price",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Candle timestamp in milliseconds",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "volume",
               "req": false,
+              "short": "Trading volume",
               "type": "`$NUMBER`"
             }
           ],
@@ -210,24 +220,28 @@
               "active": true,
               "name": "address",
               "req": false,
+              "short": "Deposit address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "currency",
               "req": false,
+              "short": "Cryptocurrency code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "qrCode",
               "req": false,
+              "short": "QR code for deposit address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "tag",
               "req": false,
+              "short": "Deposit tag/memo (if applicable)",
               "type": "`$STRING`"
             }
           ],
@@ -291,24 +305,28 @@
                 }
               },
               "req": false,
+              "short": "Order amount",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "filled",
               "req": false,
+              "short": "Filled amount",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Order ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "price",
               "req": false,
+              "short": "Order price",
               "type": "`$NUMBER`"
             },
             {
@@ -321,12 +339,14 @@
                 }
               },
               "req": false,
+              "short": "Order side",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "status",
               "req": false,
+              "short": "Order status",
               "type": "`$STRING`"
             },
             {
@@ -339,12 +359,14 @@
                 }
               },
               "req": false,
+              "short": "Trading pair symbol",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Order creation timestamp",
               "type": "`$INTEGER`"
             },
             {
@@ -357,6 +379,7 @@
                 }
               },
               "req": false,
+              "short": "Order type",
               "type": "`$STRING`"
             }
           ],
@@ -531,18 +554,21 @@
               "active": true,
               "name": "asks",
               "req": false,
+              "short": "List of ask orders",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "bids",
               "req": false,
+              "short": "List of bid orders",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Timestamp in milliseconds",
               "type": "`$INTEGER`"
             }
           ],
@@ -616,48 +642,56 @@
               "active": true,
               "name": "ask",
               "req": false,
+              "short": "Lowest ask price",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "bid",
               "req": false,
+              "short": "Highest bid price",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "high",
               "req": false,
+              "short": "24h high price",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "last",
               "req": false,
+              "short": "Last traded price",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "low",
               "req": false,
+              "short": "24h low price",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "symbol",
               "req": false,
+              "short": "Trading pair symbol",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Timestamp in milliseconds",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "volume",
               "req": false,
+              "short": "24h trading volume",
               "type": "`$NUMBER`"
             }
           ],
@@ -741,30 +775,35 @@
               "active": true,
               "name": "amount",
               "req": false,
+              "short": "Trade amount",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Trade ID",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "price",
               "req": false,
+              "short": "Trade price",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "side",
               "req": false,
+              "short": "Trade side",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "Timestamp in milliseconds",
               "type": "`$INTEGER`"
             }
           ],
@@ -843,48 +882,56 @@
               "active": true,
               "name": "accountNumber",
               "req": true,
+              "short": "Bank account number",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "accountType",
               "req": false,
+              "short": "Account type",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "address",
               "req": true,
+              "short": "Destination address",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "agency",
               "req": true,
+              "short": "Bank agency",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "amount",
               "req": true,
+              "short": "Withdrawal amount in BRL",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "bank",
               "req": true,
+              "short": "Bank code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "currency",
               "req": true,
+              "short": "Cryptocurrency code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "tag",
               "req": false,
+              "short": "Destination tag/memo (if applicable)",
               "type": "`$STRING`"
             }
           ],

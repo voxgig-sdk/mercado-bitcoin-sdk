@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "MercadoBitcoin",
+			"slug": "mercado-bitcoin",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -43,18 +46,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "available",
+						"short": "Available balance",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "currency",
+						"short": "Currency code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "locked",
+						"short": "Locked balance",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "total",
+						"short": "Total balance",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -90,26 +97,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "close",
+						"short": "Closing price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "high",
+						"short": "Highest price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "low",
+						"short": "Lowest price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "open",
+						"short": "Opening price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Candle timestamp in milliseconds",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "volume",
+						"short": "Trading volume",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -182,18 +195,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "address",
+						"short": "Deposit address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "currency",
+						"short": "Cryptocurrency code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "qrCode",
+						"short": "QR code for deposit address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "tag",
+						"short": "Deposit tag/memo (if applicable)",
 						"type": "`$STRING`",
 					},
 				},
@@ -249,18 +266,22 @@ func MakeConfig() map[string]any {
 								"type": "`$NUMBER`",
 							},
 						},
+						"short": "Order amount",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "filled",
+						"short": "Filled amount",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Order ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "price",
+						"short": "Order price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
@@ -271,10 +292,12 @@ func MakeConfig() map[string]any {
 								"type": "`$STRING`",
 							},
 						},
+						"short": "Order side",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "status",
+						"short": "Order status",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -285,10 +308,12 @@ func MakeConfig() map[string]any {
 								"type": "`$STRING`",
 							},
 						},
+						"short": "Trading pair symbol",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Order creation timestamp",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -299,6 +324,7 @@ func MakeConfig() map[string]any {
 								"type": "`$STRING`",
 							},
 						},
+						"short": "Order type",
 						"type": "`$STRING`",
 					},
 				},
@@ -453,14 +479,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "asks",
+						"short": "List of ask orders",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "bids",
+						"short": "List of bid orders",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Timestamp in milliseconds",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -524,34 +553,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ask",
+						"short": "Lowest ask price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "bid",
+						"short": "Highest bid price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "high",
+						"short": "24h high price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "last",
+						"short": "Last traded price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "low",
+						"short": "24h low price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "symbol",
+						"short": "Trading pair symbol",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Timestamp in milliseconds",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "volume",
+						"short": "24h trading volume",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -626,22 +663,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "amount",
+						"short": "Trade amount",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Trade ID",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "price",
+						"short": "Trade price",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "side",
+						"short": "Trade side",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Timestamp in milliseconds",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -707,39 +749,47 @@ func MakeConfig() map[string]any {
 					map[string]any{
 						"name": "accountNumber",
 						"req": true,
+						"short": "Bank account number",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "accountType",
+						"short": "Account type",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "address",
 						"req": true,
+						"short": "Destination address",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "agency",
 						"req": true,
+						"short": "Bank agency",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "amount",
 						"req": true,
+						"short": "Withdrawal amount in BRL",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "bank",
 						"req": true,
+						"short": "Bank code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "currency",
 						"req": true,
+						"short": "Cryptocurrency code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "tag",
+						"short": "Destination tag/memo (if applicable)",
 						"type": "`$STRING`",
 					},
 				},

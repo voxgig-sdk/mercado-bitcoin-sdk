@@ -278,10 +278,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `available` |  |
-| `currency` |  |
-| `locked` |  |
-| `total` |  |
+| `available` | Available balance |
+| `currency` | Currency code |
+| `locked` | Locked balance |
+| `total` | Total balance |
 
 Operations: List.
 
@@ -291,12 +291,12 @@ API path: `/accounts/balance`
 
 | Field | Description |
 | --- | --- |
-| `close` |  |
-| `high` |  |
-| `low` |  |
-| `open` |  |
-| `timestamp` |  |
-| `volume` |  |
+| `close` | Closing price |
+| `high` | Highest price |
+| `low` | Lowest price |
+| `open` | Opening price |
+| `timestamp` | Candle timestamp in milliseconds |
+| `volume` | Trading volume |
 
 Operations: Load.
 
@@ -306,10 +306,10 @@ API path: `/candles/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `currency` |  |
-| `qrCode` |  |
-| `tag` |  |
+| `address` | Deposit address |
+| `currency` | Cryptocurrency code |
+| `qrCode` | QR code for deposit address |
+| `tag` | Deposit tag/memo (if applicable) |
 
 Operations: Load.
 
@@ -319,15 +319,15 @@ API path: `/deposits/crypto`
 
 | Field | Description |
 | --- | --- |
-| `amount` |  |
-| `filled` |  |
-| `id` |  |
-| `price` |  |
-| `side` |  |
-| `status` |  |
-| `symbol` |  |
-| `timestamp` |  |
-| `type` |  |
+| `amount` | Order amount |
+| `filled` | Filled amount |
+| `id` | Order ID |
+| `price` | Order price |
+| `side` | Order side |
+| `status` | Order status |
+| `symbol` | Trading pair symbol |
+| `timestamp` | Order creation timestamp |
+| `type` | Order type |
 
 Operations: Create, List, Load, Remove.
 
@@ -337,9 +337,9 @@ API path: `/orders`
 
 | Field | Description |
 | --- | --- |
-| `asks` |  |
-| `bids` |  |
-| `timestamp` |  |
+| `asks` | List of ask orders |
+| `bids` | List of bid orders |
+| `timestamp` | Timestamp in milliseconds |
 
 Operations: Load.
 
@@ -349,14 +349,14 @@ API path: `/orderbook/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `ask` |  |
-| `bid` |  |
-| `high` |  |
-| `last` |  |
-| `low` |  |
-| `symbol` |  |
-| `timestamp` |  |
-| `volume` |  |
+| `ask` | Lowest ask price |
+| `bid` | Highest bid price |
+| `high` | 24h high price |
+| `last` | Last traded price |
+| `low` | 24h low price |
+| `symbol` | Trading pair symbol |
+| `timestamp` | Timestamp in milliseconds |
+| `volume` | 24h trading volume |
 
 Operations: List, Load.
 
@@ -366,11 +366,11 @@ API path: `/tickers`
 
 | Field | Description |
 | --- | --- |
-| `amount` |  |
-| `id` |  |
-| `price` |  |
-| `side` |  |
-| `timestamp` |  |
+| `amount` | Trade amount |
+| `id` | Trade ID |
+| `price` | Trade price |
+| `side` | Trade side |
+| `timestamp` | Timestamp in milliseconds |
 
 Operations: Load.
 
@@ -380,14 +380,14 @@ API path: `/trades/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `accountNumber` |  |
-| `accountType` |  |
-| `address` |  |
-| `agency` |  |
-| `amount` |  |
-| `bank` |  |
-| `currency` |  |
-| `tag` |  |
+| `accountNumber` | Bank account number |
+| `accountType` | Account type |
+| `address` | Destination address |
+| `agency` | Bank agency |
+| `amount` | Withdrawal amount in BRL |
+| `bank` | Bank code |
+| `currency` | Cryptocurrency code |
+| `tag` | Destination tag/memo (if applicable) |
 
 Operations: Create.
 
@@ -412,10 +412,10 @@ Create an instance: `$balance = $client->Balance();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `available` | `float` |  |
-| `currency` | `string` |  |
-| `locked` | `float` |  |
-| `total` | `float` |  |
+| `available` | `float` | Available balance |
+| `currency` | `string` | Currency code |
+| `locked` | `float` | Locked balance |
+| `total` | `float` | Total balance |
 
 #### Example: List
 
@@ -439,12 +439,12 @@ Create an instance: `$candle = $client->Candle();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `close` | `float` |  |
-| `high` | `float` |  |
-| `low` | `float` |  |
-| `open` | `float` |  |
-| `timestamp` | `int` |  |
-| `volume` | `float` |  |
+| `close` | `float` | Closing price |
+| `high` | `float` | Highest price |
+| `low` | `float` | Lowest price |
+| `open` | `float` | Opening price |
+| `timestamp` | `int` | Candle timestamp in milliseconds |
+| `volume` | `float` | Trading volume |
 
 #### Example: Load
 
@@ -468,10 +468,10 @@ Create an instance: `$deposit_address = $client->DepositAddress();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `string` |  |
-| `currency` | `string` |  |
-| `qrCode` | `string` |  |
-| `tag` | `string` |  |
+| `address` | `string` | Deposit address |
+| `currency` | `string` | Cryptocurrency code |
+| `qrCode` | `string` | QR code for deposit address |
+| `tag` | `string` | Deposit tag/memo (if applicable) |
 
 #### Example: Load
 
@@ -498,15 +498,15 @@ Create an instance: `$order = $client->Order();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | `float` |  |
-| `filled` | `float` |  |
-| `id` | `string` |  |
-| `price` | `float` |  |
-| `side` | `string` |  |
-| `status` | `string` |  |
-| `symbol` | `string` |  |
-| `timestamp` | `int` |  |
-| `type` | `string` |  |
+| `amount` | `float` | Order amount |
+| `filled` | `float` | Filled amount |
+| `id` | `string` | Order ID |
+| `price` | `float` | Order price |
+| `side` | `string` | Order side |
+| `status` | `string` | Order status |
+| `symbol` | `string` | Trading pair symbol |
+| `timestamp` | `int` | Order creation timestamp |
+| `type` | `string` | Order type |
 
 #### Example: Load
 
@@ -544,9 +544,9 @@ Create an instance: `$order_book = $client->OrderBook();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asks` | `array` |  |
-| `bids` | `array` |  |
-| `timestamp` | `int` |  |
+| `asks` | `array` | List of ask orders |
+| `bids` | `array` | List of bid orders |
+| `timestamp` | `int` | Timestamp in milliseconds |
 
 #### Example: Load
 
@@ -571,14 +571,14 @@ Create an instance: `$ticker = $client->Ticker();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | `float` |  |
-| `bid` | `float` |  |
-| `high` | `float` |  |
-| `last` | `float` |  |
-| `low` | `float` |  |
-| `symbol` | `string` |  |
-| `timestamp` | `int` |  |
-| `volume` | `float` |  |
+| `ask` | `float` | Lowest ask price |
+| `bid` | `float` | Highest bid price |
+| `high` | `float` | 24h high price |
+| `last` | `float` | Last traded price |
+| `low` | `float` | 24h low price |
+| `symbol` | `string` | Trading pair symbol |
+| `timestamp` | `int` | Timestamp in milliseconds |
+| `volume` | `float` | 24h trading volume |
 
 #### Example: Load
 
@@ -609,11 +609,11 @@ Create an instance: `$trade = $client->Trade();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | `float` |  |
-| `id` | `string` |  |
-| `price` | `float` |  |
-| `side` | `string` |  |
-| `timestamp` | `int` |  |
+| `amount` | `float` | Trade amount |
+| `id` | `string` | Trade ID |
+| `price` | `float` | Trade price |
+| `side` | `string` | Trade side |
+| `timestamp` | `int` | Timestamp in milliseconds |
 
 #### Example: Load
 
@@ -637,14 +637,14 @@ Create an instance: `$withdrawal = $client->Withdrawal();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accountNumber` | `string` |  |
-| `accountType` | `string` |  |
-| `address` | `string` |  |
-| `agency` | `string` |  |
-| `amount` | `float` |  |
-| `bank` | `string` |  |
-| `currency` | `string` |  |
-| `tag` | `string` |  |
+| `accountNumber` | `string` | Bank account number |
+| `accountType` | `string` | Account type |
+| `address` | `string` | Destination address |
+| `agency` | `string` | Bank agency |
+| `amount` | `float` | Withdrawal amount in BRL |
+| `bank` | `string` | Bank code |
+| `currency` | `string` | Cryptocurrency code |
+| `tag` | `string` | Destination tag/memo (if applicable) |
 
 #### Example: Create
 

@@ -1,0 +1,100 @@
+# Entity: trade
+
+main: kit: entity: trade: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "amount"
+      req: false
+      short: "Trade amount"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Trade ID"
+      type: "`$STRING`"
+    }
+    {
+      name: "price"
+      req: false
+      short: "Trade price"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "side"
+      req: false
+      short: "Trade side"
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      short: "Timestamp in milliseconds"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "trade"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "symbol"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/trades/{symbol}"
+          parts: [
+            "trades"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              symbol: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+              "limit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

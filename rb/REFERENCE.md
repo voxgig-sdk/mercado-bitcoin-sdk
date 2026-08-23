@@ -122,10 +122,10 @@ balance = client.Balance
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `available` | `Float` | No |  |
-| `currency` | `String` | No |  |
-| `locked` | `Float` | No |  |
-| `total` | `Float` | No |  |
+| `available` | `Float` | No | Available balance |
+| `currency` | `String` | No | Currency code |
+| `locked` | `Float` | No | Locked balance |
+| `total` | `Float` | No | Total balance |
 
 ### Operations
 
@@ -177,12 +177,12 @@ candle = client.Candle
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `close` | `Float` | No |  |
-| `high` | `Float` | No |  |
-| `low` | `Float` | No |  |
-| `open` | `Float` | No |  |
-| `timestamp` | `Integer` | No |  |
-| `volume` | `Float` | No |  |
+| `close` | `Float` | No | Closing price |
+| `high` | `Float` | No | Highest price |
+| `low` | `Float` | No | Lowest price |
+| `open` | `Float` | No | Opening price |
+| `timestamp` | `Integer` | No | Candle timestamp in milliseconds |
+| `volume` | `Float` | No | Trading volume |
 
 ### Operations
 
@@ -234,10 +234,10 @@ deposit_address = client.DepositAddress
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `address` | `String` | No |  |
-| `currency` | `String` | No |  |
-| `qrCode` | `String` | No |  |
-| `tag` | `String` | No |  |
+| `address` | `String` | No | Deposit address |
+| `currency` | `String` | No | Cryptocurrency code |
+| `qrCode` | `String` | No | QR code for deposit address |
+| `tag` | `String` | No | Deposit tag/memo (if applicable) |
 
 ### Operations
 
@@ -289,15 +289,15 @@ order = client.Order
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `Float` | No |  |
-| `filled` | `Float` | No |  |
-| `id` | `String` | No |  |
-| `price` | `Float` | No |  |
-| `side` | `String` | No |  |
-| `status` | `String` | No |  |
-| `symbol` | `String` | No |  |
-| `timestamp` | `Integer` | No |  |
-| `type` | `String` | No |  |
+| `amount` | `Float` | No | Order amount |
+| `filled` | `Float` | No | Filled amount |
+| `id` | `String` | No | Order ID |
+| `price` | `Float` | No | Order price |
+| `side` | `String` | No | Order side |
+| `status` | `String` | No | Order status |
+| `symbol` | `String` | No | Trading pair symbol |
+| `timestamp` | `Integer` | No | Order creation timestamp |
+| `type` | `String` | No | Order type |
 
 ### Field Usage by Operation
 
@@ -388,9 +388,9 @@ order_book = client.OrderBook
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `asks` | `Array` | No |  |
-| `bids` | `Array` | No |  |
-| `timestamp` | `Integer` | No |  |
+| `asks` | `Array` | No | List of ask orders |
+| `bids` | `Array` | No | List of bid orders |
+| `timestamp` | `Integer` | No | Timestamp in milliseconds |
 
 ### Operations
 
@@ -442,14 +442,14 @@ ticker = client.Ticker
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ask` | `Float` | No |  |
-| `bid` | `Float` | No |  |
-| `high` | `Float` | No |  |
-| `last` | `Float` | No |  |
-| `low` | `Float` | No |  |
-| `symbol` | `String` | No |  |
-| `timestamp` | `Integer` | No |  |
-| `volume` | `Float` | No |  |
+| `ask` | `Float` | No | Lowest ask price |
+| `bid` | `Float` | No | Highest bid price |
+| `high` | `Float` | No | 24h high price |
+| `last` | `Float` | No | Last traded price |
+| `low` | `Float` | No | 24h low price |
+| `symbol` | `String` | No | Trading pair symbol |
+| `timestamp` | `Integer` | No | Timestamp in milliseconds |
+| `volume` | `Float` | No | 24h trading volume |
 
 ### Operations
 
@@ -509,11 +509,11 @@ trade = client.Trade
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `amount` | `Float` | No |  |
-| `id` | `String` | No |  |
-| `price` | `Float` | No |  |
-| `side` | `String` | No |  |
-| `timestamp` | `Integer` | No |  |
+| `amount` | `Float` | No | Trade amount |
+| `id` | `String` | No | Trade ID |
+| `price` | `Float` | No | Trade price |
+| `side` | `String` | No | Trade side |
+| `timestamp` | `Integer` | No | Timestamp in milliseconds |
 
 ### Operations
 
@@ -565,14 +565,14 @@ withdrawal = client.Withdrawal
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `accountNumber` | `String` | Yes |  |
-| `accountType` | `String` | No |  |
-| `address` | `String` | Yes |  |
-| `agency` | `String` | Yes |  |
-| `amount` | `Float` | Yes |  |
-| `bank` | `String` | Yes |  |
-| `currency` | `String` | Yes |  |
-| `tag` | `String` | No |  |
+| `accountNumber` | `String` | Yes | Bank account number |
+| `accountType` | `String` | No | Account type |
+| `address` | `String` | Yes | Destination address |
+| `agency` | `String` | Yes | Bank agency |
+| `amount` | `Float` | Yes | Withdrawal amount in BRL |
+| `bank` | `String` | Yes | Bank code |
+| `currency` | `String` | Yes | Cryptocurrency code |
+| `tag` | `String` | No | Destination tag/memo (if applicable) |
 
 ### Operations
 

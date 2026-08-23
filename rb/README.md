@@ -268,10 +268,10 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `available` |  |
-| `currency` |  |
-| `locked` |  |
-| `total` |  |
+| `available` | Available balance |
+| `currency` | Currency code |
+| `locked` | Locked balance |
+| `total` | Total balance |
 
 Operations: List.
 
@@ -281,12 +281,12 @@ API path: `/accounts/balance`
 
 | Field | Description |
 | --- | --- |
-| `close` |  |
-| `high` |  |
-| `low` |  |
-| `open` |  |
-| `timestamp` |  |
-| `volume` |  |
+| `close` | Closing price |
+| `high` | Highest price |
+| `low` | Lowest price |
+| `open` | Opening price |
+| `timestamp` | Candle timestamp in milliseconds |
+| `volume` | Trading volume |
 
 Operations: Load.
 
@@ -296,10 +296,10 @@ API path: `/candles/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `address` |  |
-| `currency` |  |
-| `qrCode` |  |
-| `tag` |  |
+| `address` | Deposit address |
+| `currency` | Cryptocurrency code |
+| `qrCode` | QR code for deposit address |
+| `tag` | Deposit tag/memo (if applicable) |
 
 Operations: Load.
 
@@ -309,15 +309,15 @@ API path: `/deposits/crypto`
 
 | Field | Description |
 | --- | --- |
-| `amount` |  |
-| `filled` |  |
-| `id` |  |
-| `price` |  |
-| `side` |  |
-| `status` |  |
-| `symbol` |  |
-| `timestamp` |  |
-| `type` |  |
+| `amount` | Order amount |
+| `filled` | Filled amount |
+| `id` | Order ID |
+| `price` | Order price |
+| `side` | Order side |
+| `status` | Order status |
+| `symbol` | Trading pair symbol |
+| `timestamp` | Order creation timestamp |
+| `type` | Order type |
 
 Operations: Create, List, Load, Remove.
 
@@ -327,9 +327,9 @@ API path: `/orders`
 
 | Field | Description |
 | --- | --- |
-| `asks` |  |
-| `bids` |  |
-| `timestamp` |  |
+| `asks` | List of ask orders |
+| `bids` | List of bid orders |
+| `timestamp` | Timestamp in milliseconds |
 
 Operations: Load.
 
@@ -339,14 +339,14 @@ API path: `/orderbook/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `ask` |  |
-| `bid` |  |
-| `high` |  |
-| `last` |  |
-| `low` |  |
-| `symbol` |  |
-| `timestamp` |  |
-| `volume` |  |
+| `ask` | Lowest ask price |
+| `bid` | Highest bid price |
+| `high` | 24h high price |
+| `last` | Last traded price |
+| `low` | 24h low price |
+| `symbol` | Trading pair symbol |
+| `timestamp` | Timestamp in milliseconds |
+| `volume` | 24h trading volume |
 
 Operations: List, Load.
 
@@ -356,11 +356,11 @@ API path: `/tickers`
 
 | Field | Description |
 | --- | --- |
-| `amount` |  |
-| `id` |  |
-| `price` |  |
-| `side` |  |
-| `timestamp` |  |
+| `amount` | Trade amount |
+| `id` | Trade ID |
+| `price` | Trade price |
+| `side` | Trade side |
+| `timestamp` | Timestamp in milliseconds |
 
 Operations: Load.
 
@@ -370,14 +370,14 @@ API path: `/trades/{symbol}`
 
 | Field | Description |
 | --- | --- |
-| `accountNumber` |  |
-| `accountType` |  |
-| `address` |  |
-| `agency` |  |
-| `amount` |  |
-| `bank` |  |
-| `currency` |  |
-| `tag` |  |
+| `accountNumber` | Bank account number |
+| `accountType` | Account type |
+| `address` | Destination address |
+| `agency` | Bank agency |
+| `amount` | Withdrawal amount in BRL |
+| `bank` | Bank code |
+| `currency` | Cryptocurrency code |
+| `tag` | Destination tag/memo (if applicable) |
 
 Operations: Create.
 
@@ -402,10 +402,10 @@ Create an instance: `balance = client.Balance`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `available` | `Float` |  |
-| `currency` | `String` |  |
-| `locked` | `Float` |  |
-| `total` | `Float` |  |
+| `available` | `Float` | Available balance |
+| `currency` | `String` | Currency code |
+| `locked` | `Float` | Locked balance |
+| `total` | `Float` | Total balance |
 
 #### Example: List
 
@@ -429,12 +429,12 @@ Create an instance: `candle = client.Candle`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `close` | `Float` |  |
-| `high` | `Float` |  |
-| `low` | `Float` |  |
-| `open` | `Float` |  |
-| `timestamp` | `Integer` |  |
-| `volume` | `Float` |  |
+| `close` | `Float` | Closing price |
+| `high` | `Float` | Highest price |
+| `low` | `Float` | Lowest price |
+| `open` | `Float` | Opening price |
+| `timestamp` | `Integer` | Candle timestamp in milliseconds |
+| `volume` | `Float` | Trading volume |
 
 #### Example: Load
 
@@ -458,10 +458,10 @@ Create an instance: `deposit_address = client.DepositAddress`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `address` | `String` |  |
-| `currency` | `String` |  |
-| `qrCode` | `String` |  |
-| `tag` | `String` |  |
+| `address` | `String` | Deposit address |
+| `currency` | `String` | Cryptocurrency code |
+| `qrCode` | `String` | QR code for deposit address |
+| `tag` | `String` | Deposit tag/memo (if applicable) |
 
 #### Example: Load
 
@@ -488,15 +488,15 @@ Create an instance: `order = client.Order`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | `Float` |  |
-| `filled` | `Float` |  |
-| `id` | `String` |  |
-| `price` | `Float` |  |
-| `side` | `String` |  |
-| `status` | `String` |  |
-| `symbol` | `String` |  |
-| `timestamp` | `Integer` |  |
-| `type` | `String` |  |
+| `amount` | `Float` | Order amount |
+| `filled` | `Float` | Filled amount |
+| `id` | `String` | Order ID |
+| `price` | `Float` | Order price |
+| `side` | `String` | Order side |
+| `status` | `String` | Order status |
+| `symbol` | `String` | Trading pair symbol |
+| `timestamp` | `Integer` | Order creation timestamp |
+| `type` | `String` | Order type |
 
 #### Example: Load
 
@@ -534,9 +534,9 @@ Create an instance: `order_book = client.OrderBook`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `asks` | `Array` |  |
-| `bids` | `Array` |  |
-| `timestamp` | `Integer` |  |
+| `asks` | `Array` | List of ask orders |
+| `bids` | `Array` | List of bid orders |
+| `timestamp` | `Integer` | Timestamp in milliseconds |
 
 #### Example: Load
 
@@ -561,14 +561,14 @@ Create an instance: `ticker = client.Ticker`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ask` | `Float` |  |
-| `bid` | `Float` |  |
-| `high` | `Float` |  |
-| `last` | `Float` |  |
-| `low` | `Float` |  |
-| `symbol` | `String` |  |
-| `timestamp` | `Integer` |  |
-| `volume` | `Float` |  |
+| `ask` | `Float` | Lowest ask price |
+| `bid` | `Float` | Highest bid price |
+| `high` | `Float` | 24h high price |
+| `last` | `Float` | Last traded price |
+| `low` | `Float` | 24h low price |
+| `symbol` | `String` | Trading pair symbol |
+| `timestamp` | `Integer` | Timestamp in milliseconds |
+| `volume` | `Float` | 24h trading volume |
 
 #### Example: Load
 
@@ -599,11 +599,11 @@ Create an instance: `trade = client.Trade`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `amount` | `Float` |  |
-| `id` | `String` |  |
-| `price` | `Float` |  |
-| `side` | `String` |  |
-| `timestamp` | `Integer` |  |
+| `amount` | `Float` | Trade amount |
+| `id` | `String` | Trade ID |
+| `price` | `Float` | Trade price |
+| `side` | `String` | Trade side |
+| `timestamp` | `Integer` | Timestamp in milliseconds |
 
 #### Example: Load
 
@@ -627,14 +627,14 @@ Create an instance: `withdrawal = client.Withdrawal`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `accountNumber` | `String` |  |
-| `accountType` | `String` |  |
-| `address` | `String` |  |
-| `agency` | `String` |  |
-| `amount` | `Float` |  |
-| `bank` | `String` |  |
-| `currency` | `String` |  |
-| `tag` | `String` |  |
+| `accountNumber` | `String` | Bank account number |
+| `accountType` | `String` | Account type |
+| `address` | `String` | Destination address |
+| `agency` | `String` | Bank agency |
+| `amount` | `Float` | Withdrawal amount in BRL |
+| `bank` | `String` | Bank code |
+| `currency` | `String` | Cryptocurrency code |
+| `tag` | `String` | Destination tag/memo (if applicable) |
 
 #### Example: Create
 
