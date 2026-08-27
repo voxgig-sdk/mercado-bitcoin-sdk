@@ -33,6 +33,7 @@ class BalanceListMatch(TypedDict, total=False):
 class Candle(TypedDict, total=False):
     close: float
     high: float
+    id: str
     low: float
     open: float
     timestamp: int
@@ -115,6 +116,7 @@ class Ticker(TypedDict, total=False):
     ask: float
     bid: float
     high: float
+    id: str
     last: float
     low: float
     symbol: str
@@ -130,6 +132,7 @@ class TickerListMatch(TypedDict, total=False):
     ask: float
     bid: float
     high: float
+    id: str
     last: float
     low: float
     symbol: str

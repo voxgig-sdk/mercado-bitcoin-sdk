@@ -66,6 +66,12 @@ describe('TickerEntity', async () => {
     const ticker_ref01_list = (await ticker_ref01_ent.list(ticker_ref01_match)).map((e: any) => e.data())
 
 
+    // LOAD
+    const ticker_ref01_match_dt0: any = {}
+    ticker_ref01_match_dt0.id = ticker_ref01_data.id
+    const ticker_ref01_data_dt0 = (await ticker_ref01_ent.load(ticker_ref01_match_dt0)).data()
+    assert(ticker_ref01_data_dt0.id === ticker_ref01_data.id)
+
 
   })
 })

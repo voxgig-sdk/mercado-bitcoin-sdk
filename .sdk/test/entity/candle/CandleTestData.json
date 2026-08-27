@@ -2,43 +2,43 @@
   "existing": {
     "candle": {
       "CANDLE00": {
-        "close": 60,
-        "high": 61,
-        "low": 62,
-        "open": 63,
-        "timestamp": "s40",
-        "volume": 65,
-        "id": "CANDLE00"
+        "close": 70,
+        "high": 71,
+        "id": "CANDLE00",
+        "low": 73,
+        "open": 74,
+        "timestamp": "s4b",
+        "volume": 76
       },
       "CANDLE01": {
-        "close": 120,
-        "high": 121,
-        "low": 122,
-        "open": 123,
-        "timestamp": "s7c",
-        "volume": 125,
-        "id": "CANDLE01"
+        "close": 140,
+        "high": 141,
+        "id": "CANDLE01",
+        "low": 143,
+        "open": 144,
+        "timestamp": "s91",
+        "volume": 146
       },
       "CANDLE02": {
-        "close": 180,
-        "high": 181,
-        "low": 182,
-        "open": 183,
-        "timestamp": "sb8",
-        "volume": 185,
-        "id": "CANDLE02"
+        "close": 210,
+        "high": 211,
+        "id": "CANDLE02",
+        "low": 213,
+        "open": 214,
+        "timestamp": "sd7",
+        "volume": 216
       }
     }
   },
   "new": {
     "candle": {
       "candle_ref01": {
-        "close": 240,
-        "high": 241,
-        "low": 242,
-        "open": 243,
-        "timestamp": "sf4",
-        "volume": 245
+        "close": 280,
+        "high": 281,
+        "low": 283,
+        "open": 284,
+        "timestamp": "s11d",
+        "volume": 286
       }
     }
   }

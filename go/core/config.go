@@ -20,6 +20,7 @@ func MakeConfig() map[string]any {
 				"options": map[string]any{
 					"active": false,
 				},
+				"transport": "base",
 			},
 		},
 		"options": map[string]any{
@@ -104,6 +105,10 @@ func MakeConfig() map[string]any {
 						"name": "high",
 						"short": "Highest price",
 						"type": "`$NUMBER`",
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "low",
@@ -565,6 +570,10 @@ func MakeConfig() map[string]any {
 						"name": "high",
 						"short": "24h high price",
 						"type": "`$NUMBER`",
+					},
+					map[string]any{
+						"name": "id",
+						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "last",

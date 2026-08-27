@@ -48,9 +48,13 @@ class CandleEntityTest extends TestCase
 
         // LOAD
         $candle_ref01_ent = $client->Candle(null);
-        $candle_ref01_match_dt0 = [];
+        $candle_ref01_match_dt0 = [
+            "id" => $candle_ref01_data["id"],
+        ];
         $candle_ref01_data_dt0_loaded = $candle_ref01_ent->load($candle_ref01_match_dt0, null);
-        $this->assertNotNull($candle_ref01_data_dt0_loaded);
+        $candle_ref01_data_dt0_load_result = Helpers::to_map(is_object($candle_ref01_data_dt0_loaded) && method_exists($candle_ref01_data_dt0_loaded, 'data_get') ? $candle_ref01_data_dt0_loaded->data_get() : $candle_ref01_data_dt0_loaded);
+        $this->assertNotNull($candle_ref01_data_dt0_load_result);
+        $this->assertEquals($candle_ref01_data_dt0_load_result["id"], $candle_ref01_data["id"]);
 
     }
 }

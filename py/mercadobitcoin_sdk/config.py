@@ -37,6 +37,7 @@ def make_config():
         "options": {
           "active": False,
         },
+        "transport": "base",
       },
         },
         "options": {
@@ -121,6 +122,10 @@ def make_config():
             "name": "high",
             "short": "Highest price",
             "type": "`$NUMBER`",
+          },
+          {
+            "name": "id",
+            "type": "`$STRING`",
           },
           {
             "name": "low",
@@ -582,6 +587,10 @@ def make_config():
             "name": "high",
             "short": "24h high price",
             "type": "`$NUMBER`",
+          },
+          {
+            "name": "id",
+            "type": "`$STRING`",
           },
           {
             "name": "last",

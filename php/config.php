@@ -42,6 +42,7 @@ class MercadoBitcoinConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -126,6 +127,10 @@ class MercadoBitcoinConfig
               'name' => 'high',
               'short' => 'Highest price',
               'type' => '`$NUMBER`',
+            ],
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
             ],
             [
               'name' => 'low',
@@ -587,6 +592,10 @@ class MercadoBitcoinConfig
               'name' => 'high',
               'short' => '24h high price',
               'type' => '`$NUMBER`',
+            ],
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
             ],
             [
               'name' => 'last',

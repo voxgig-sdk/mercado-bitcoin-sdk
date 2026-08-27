@@ -178,6 +178,7 @@ $candle = $client->Candle();
 | --- | --- | --- | --- |
 | `close` | `float` | No | Closing price |
 | `high` | `float` | No | Highest price |
+| `id` | `string` | No |  |
 | `low` | `float` | No | Lowest price |
 | `open` | `float` | No | Opening price |
 | `timestamp` | `int` | No | Candle timestamp in milliseconds |
@@ -444,6 +445,7 @@ $ticker = $client->Ticker();
 | `ask` | `float` | No | Lowest ask price |
 | `bid` | `float` | No | Highest bid price |
 | `high` | `float` | No | 24h high price |
+| `id` | `string` | No |  |
 | `last` | `float` | No | Last traded price |
 | `low` | `float` | No | 24h low price |
 | `symbol` | `string` | No | Trading pair symbol |

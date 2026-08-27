@@ -176,6 +176,7 @@ local candle = client:Candle(nil)
 | --- | --- | --- | --- |
 | `close` | `number` | No | Closing price |
 | `high` | `number` | No | Highest price |
+| `id` | `string` | No |  |
 | `low` | `number` | No | Lowest price |
 | `open` | `number` | No | Opening price |
 | `timestamp` | `number` | No | Candle timestamp in milliseconds |
@@ -442,6 +443,7 @@ local ticker = client:Ticker(nil)
 | `ask` | `number` | No | Lowest ask price |
 | `bid` | `number` | No | Highest bid price |
 | `high` | `number` | No | 24h high price |
+| `id` | `string` | No |  |
 | `last` | `number` | No | Last traded price |
 | `low` | `number` | No | 24h low price |
 | `symbol` | `string` | No | Trading pair symbol |

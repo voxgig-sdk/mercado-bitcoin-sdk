@@ -16,6 +16,7 @@ local function make_config()
         ["options"] = {
           ["active"] = false,
         },
+        ["transport"] = "base",
       },
     },
     options = {
@@ -100,6 +101,10 @@ local function make_config()
             ["name"] = "high",
             ["short"] = "Highest price",
             ["type"] = "`$NUMBER`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "low",
@@ -561,6 +566,10 @@ local function make_config()
             ["name"] = "high",
             ["short"] = "24h high price",
             ["type"] = "`$NUMBER`",
+          },
+          {
+            ["name"] = "id",
+            ["type"] = "`$STRING`",
           },
           {
             ["name"] = "last",

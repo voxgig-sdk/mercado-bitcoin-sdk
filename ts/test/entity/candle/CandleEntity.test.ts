@@ -59,9 +59,12 @@ describe('CandleEntity', async () => {
 
     let candle_ref01_data = Object.values(setup.data.existing.candle)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const candle_ref01_ent = client.Candle()
+    const candle_ref01_match_dt0: any = {}
+    candle_ref01_match_dt0.id = candle_ref01_data.id
+    const candle_ref01_data_dt0 = (await candle_ref01_ent.load(candle_ref01_match_dt0)).data()
+    assert(candle_ref01_data_dt0.id === candle_ref01_data.id)
 
 
   })

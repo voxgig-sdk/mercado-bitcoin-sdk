@@ -179,6 +179,7 @@ candle = client.Candle
 | --- | --- | --- | --- |
 | `close` | `Float` | No | Closing price |
 | `high` | `Float` | No | Highest price |
+| `id` | `String` | No |  |
 | `low` | `Float` | No | Lowest price |
 | `open` | `Float` | No | Opening price |
 | `timestamp` | `Integer` | No | Candle timestamp in milliseconds |
@@ -445,6 +446,7 @@ ticker = client.Ticker
 | `ask` | `Float` | No | Lowest ask price |
 | `bid` | `Float` | No | Highest bid price |
 | `high` | `Float` | No | 24h high price |
+| `id` | `String` | No |  |
 | `last` | `Float` | No | Last traded price |
 | `low` | `Float` | No | 24h low price |
 | `symbol` | `String` | No | Trading pair symbol |

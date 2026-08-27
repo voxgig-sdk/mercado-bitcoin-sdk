@@ -183,6 +183,7 @@ fmt.Println(candle.GetName()) // "candle"
 | --- | --- | --- | --- |
 | `close` | `float64` | No | Closing price |
 | `high` | `float64` | No | Highest price |
+| `id` | `string` | No |  |
 | `low` | `float64` | No | Lowest price |
 | `open` | `float64` | No | Opening price |
 | `timestamp` | `int` | No | Candle timestamp in milliseconds |
@@ -457,6 +458,7 @@ fmt.Println(ticker.GetName()) // "ticker"
 | `ask` | `float64` | No | Lowest ask price |
 | `bid` | `float64` | No | Highest bid price |
 | `high` | `float64` | No | 24h high price |
+| `id` | `string` | No |  |
 | `last` | `float64` | No | Last traded price |
 | `low` | `float64` | No | 24h low price |
 | `symbol` | `string` | No | Trading pair symbol |

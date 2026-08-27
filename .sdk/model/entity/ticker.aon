@@ -24,6 +24,11 @@ main: kit: entity: ticker: {
       type: "`$NUMBER`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "last"
       req: false
       short: "Last traded price"
@@ -54,6 +59,11 @@ main: kit: entity: ticker: {
       type: "`$NUMBER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "ticker"
   op: {

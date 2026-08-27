@@ -40,7 +40,8 @@ class Config {
      test:     {
       "options": {
         "active": false
-      }
+      },
+      "transport": "base"
     },
 
   }
@@ -150,6 +151,10 @@ class Config {
           "name": "high",
           "short": "Highest price",
           "type": "`$NUMBER`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         },
         {
           "name": "low",
@@ -611,6 +616,10 @@ class Config {
           "name": "high",
           "short": "24h high price",
           "type": "`$NUMBER`"
+        },
+        {
+          "name": "id",
+          "type": "`$STRING`"
         },
         {
           "name": "last",

@@ -35,6 +35,7 @@ class Candle
 {
     public ?float $close = null;
     public ?float $high = null;
+    public ?string $id = null;
     public ?float $low = null;
     public ?float $open = null;
     public ?int $timestamp = null;
@@ -139,6 +140,7 @@ class Ticker
     public ?float $ask = null;
     public ?float $bid = null;
     public ?float $high = null;
+    public ?string $id = null;
     public ?float $last = null;
     public ?float $low = null;
     public ?string $symbol = null;
@@ -158,6 +160,7 @@ class TickerListMatch
     public ?float $ask = null;
     public ?float $bid = null;
     public ?float $high = null;
+    public ?string $id = null;
     public ?float $last = null;
     public ?float $low = null;
     public ?string $symbol = null;

@@ -271,6 +271,7 @@ API path: `/accounts/balance`
 | --- | --- |
 | `close` | Closing price |
 | `high` | Highest price |
+| `id` |  |
 | `low` | Lowest price |
 | `open` | Opening price |
 | `timestamp` | Candle timestamp in milliseconds |
@@ -330,6 +331,7 @@ API path: `/orderbook/{symbol}`
 | `ask` | Lowest ask price |
 | `bid` | Highest bid price |
 | `high` | 24h high price |
+| `id` |  |
 | `last` | Last traded price |
 | `low` | 24h low price |
 | `symbol` | Trading pair symbol |
@@ -418,6 +420,7 @@ Create an instance: `local candle = client:Candle(nil)`
 | --- | --- | --- |
 | `close` | `number` | Closing price |
 | `high` | `number` | Highest price |
+| `id` | `string` |  |
 | `low` | `number` | Lowest price |
 | `open` | `number` | Opening price |
 | `timestamp` | `number` | Candle timestamp in milliseconds |
@@ -546,6 +549,7 @@ Create an instance: `local ticker = client:Ticker(nil)`
 | `ask` | `number` | Lowest ask price |
 | `bid` | `number` | Highest bid price |
 | `high` | `number` | 24h high price |
+| `id` | `string` |  |
 | `last` | `number` | Last traded price |
 | `low` | `number` | 24h low price |
 | `symbol` | `string` | Trading pair symbol |

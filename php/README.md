@@ -293,6 +293,7 @@ API path: `/accounts/balance`
 | --- | --- |
 | `close` | Closing price |
 | `high` | Highest price |
+| `id` |  |
 | `low` | Lowest price |
 | `open` | Opening price |
 | `timestamp` | Candle timestamp in milliseconds |
@@ -352,6 +353,7 @@ API path: `/orderbook/{symbol}`
 | `ask` | Lowest ask price |
 | `bid` | Highest bid price |
 | `high` | 24h high price |
+| `id` |  |
 | `last` | Last traded price |
 | `low` | 24h low price |
 | `symbol` | Trading pair symbol |
@@ -441,6 +443,7 @@ Create an instance: `$candle = $client->Candle();`
 | --- | --- | --- |
 | `close` | `float` | Closing price |
 | `high` | `float` | Highest price |
+| `id` | `string` |  |
 | `low` | `float` | Lowest price |
 | `open` | `float` | Opening price |
 | `timestamp` | `int` | Candle timestamp in milliseconds |
@@ -574,6 +577,7 @@ Create an instance: `$ticker = $client->Ticker();`
 | `ask` | `float` | Lowest ask price |
 | `bid` | `float` | Highest bid price |
 | `high` | `float` | 24h high price |
+| `id` | `string` |  |
 | `last` | `float` | Last traded price |
 | `low` | `float` | 24h low price |
 | `symbol` | `string` | Trading pair symbol |

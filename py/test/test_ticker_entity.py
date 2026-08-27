@@ -88,9 +88,13 @@ class TestTickerEntity:
         assert isinstance(ticker_ref01_list_result, list)
 
         # LOAD
-        ticker_ref01_match_dt0 = {}
+        ticker_ref01_match_dt0 = {
+            "id": ticker_ref01_data["id"],
+        }
         ticker_ref01_data_dt0_loaded = ticker_ref01_ent.load(ticker_ref01_match_dt0, None)
-        assert ticker_ref01_data_dt0_loaded is not None
+        ticker_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(ticker_ref01_data_dt0_loaded))
+        assert ticker_ref01_data_dt0_load_result is not None
+        assert ticker_ref01_data_dt0_load_result["id"] == ticker_ref01_data["id"]
 
 
 

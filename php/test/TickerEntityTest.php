@@ -93,9 +93,13 @@ class TickerEntityTest extends TestCase
         $this->assertIsArray($ticker_ref01_list_result);
 
         // LOAD
-        $ticker_ref01_match_dt0 = [];
+        $ticker_ref01_match_dt0 = [
+            "id" => $ticker_ref01_data["id"],
+        ];
         $ticker_ref01_data_dt0_loaded = $ticker_ref01_ent->load($ticker_ref01_match_dt0, null);
-        $this->assertNotNull($ticker_ref01_data_dt0_loaded);
+        $ticker_ref01_data_dt0_load_result = Helpers::to_map(is_object($ticker_ref01_data_dt0_loaded) && method_exists($ticker_ref01_data_dt0_loaded, 'data_get') ? $ticker_ref01_data_dt0_loaded->data_get() : $ticker_ref01_data_dt0_loaded);
+        $this->assertNotNull($ticker_ref01_data_dt0_load_result);
+        $this->assertEquals($ticker_ref01_data_dt0_load_result["id"], $ticker_ref01_data["id"]);
 
     }
 }

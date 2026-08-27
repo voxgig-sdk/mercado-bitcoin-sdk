@@ -61,13 +61,19 @@ func TestCandleEntity(t *testing.T) {
 
 		// LOAD
 		candleRef01Ent := client.Candle(nil)
-		candleRef01MatchDt0 := map[string]any{}
+		candleRef01MatchDt0 := map[string]any{
+			"id": candleRef01Data["id"],
+		}
 		candleRef01DataDt0Loaded, err := candleRef01Ent.Load(candleRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if candleRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		candleRef01DataDt0LoadResult := core.ToMapAny(entityData(candleRef01DataDt0Loaded))
+		if candleRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if candleRef01DataDt0LoadResult["id"] != candleRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

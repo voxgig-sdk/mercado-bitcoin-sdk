@@ -18,6 +18,11 @@ main: kit: entity: candle: {
       type: "`$NUMBER`"
     }
     {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
       name: "low"
       req: false
       short: "Lowest price"
@@ -42,6 +47,11 @@ main: kit: entity: candle: {
       type: "`$NUMBER`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "candle"
   op: {

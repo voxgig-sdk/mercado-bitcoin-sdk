@@ -32,6 +32,7 @@ type BalanceListMatch struct {
 type Candle struct {
 	Close *float64 `json:"close,omitempty"`
 	High *float64 `json:"high,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Low *float64 `json:"low,omitempty"`
 	Open *float64 `json:"open,omitempty"`
 	Timestamp *int `json:"timestamp,omitempty"`
@@ -125,6 +126,7 @@ type Ticker struct {
 	Ask *float64 `json:"ask,omitempty"`
 	Bid *float64 `json:"bid,omitempty"`
 	High *float64 `json:"high,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Last *float64 `json:"last,omitempty"`
 	Low *float64 `json:"low,omitempty"`
 	Symbol *string `json:"symbol,omitempty"`
@@ -142,6 +144,7 @@ type TickerListMatch struct {
 	Ask *float64 `json:"ask,omitempty"`
 	Bid *float64 `json:"bid,omitempty"`
 	High *float64 `json:"high,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Last *float64 `json:"last,omitempty"`
 	Low *float64 `json:"low,omitempty"`
 	Symbol *string `json:"symbol,omitempty"`

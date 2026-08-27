@@ -121,13 +121,19 @@ func TestTickerEntity(t *testing.T) {
 		}
 
 		// LOAD
-		tickerRef01MatchDt0 := map[string]any{}
+		tickerRef01MatchDt0 := map[string]any{
+			"id": tickerRef01Data["id"],
+		}
 		tickerRef01DataDt0Loaded, err := tickerRef01Ent.Load(tickerRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if tickerRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		tickerRef01DataDt0LoadResult := core.ToMapAny(entityData(tickerRef01DataDt0Loaded))
+		if tickerRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if tickerRef01DataDt0LoadResult["id"] != tickerRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

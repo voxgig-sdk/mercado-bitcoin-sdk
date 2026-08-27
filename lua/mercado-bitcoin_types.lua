@@ -21,6 +21,7 @@
 ---@class Candle
 ---@field close? number
 ---@field high? number
+---@field id? string
 ---@field low? number
 ---@field open? number
 ---@field timestamp? number
@@ -92,6 +93,7 @@
 ---@field ask? number
 ---@field bid? number
 ---@field high? number
+---@field id? string
 ---@field last? number
 ---@field low? number
 ---@field symbol? string
@@ -105,6 +107,7 @@
 ---@field ask? number
 ---@field bid? number
 ---@field high? number
+---@field id? string
 ---@field last? number
 ---@field low? number
 ---@field symbol? string

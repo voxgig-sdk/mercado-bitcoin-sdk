@@ -48,9 +48,13 @@ class TestCandleEntity:
 
         # LOAD
         candle_ref01_ent = client.Candle(None)
-        candle_ref01_match_dt0 = {}
+        candle_ref01_match_dt0 = {
+            "id": candle_ref01_data["id"],
+        }
         candle_ref01_data_dt0_loaded = candle_ref01_ent.load(candle_ref01_match_dt0, None)
-        assert candle_ref01_data_dt0_loaded is not None
+        candle_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(candle_ref01_data_dt0_loaded))
+        assert candle_ref01_data_dt0_load_result is not None
+        assert candle_ref01_data_dt0_load_result["id"] == candle_ref01_data["id"]
 
 
 

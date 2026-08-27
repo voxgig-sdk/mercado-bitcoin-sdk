@@ -28,6 +28,7 @@ module MercadoBitcoinConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -112,6 +113,10 @@ module MercadoBitcoinConfig
               "name" => "high",
               "short" => "Highest price",
               "type" => "`$NUMBER`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "low",
@@ -573,6 +578,10 @@ module MercadoBitcoinConfig
               "name" => "high",
               "short" => "24h high price",
               "type" => "`$NUMBER`",
+            },
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
             },
             {
               "name" => "last",

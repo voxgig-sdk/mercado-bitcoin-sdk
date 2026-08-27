@@ -44,10 +44,14 @@ describe("CandleEntity", function()
 
     -- LOAD
     local candle_ref01_ent = client:Candle(nil)
-    local candle_ref01_match_dt0 = {}
+    local candle_ref01_match_dt0 = {
+      id = candle_ref01_data["id"],
+    }
     local candle_ref01_data_dt0_loaded, err = candle_ref01_ent:load(candle_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(candle_ref01_data_dt0_loaded)
+    local candle_ref01_data_dt0_load_result = helpers.to_map(type(candle_ref01_data_dt0_loaded) == 'table' and candle_ref01_data_dt0_loaded.data_get and candle_ref01_data_dt0_loaded:data_get() or candle_ref01_data_dt0_loaded)
+    assert.is_not_nil(candle_ref01_data_dt0_load_result)
+    assert.are.equal(candle_ref01_data_dt0_load_result["id"], candle_ref01_data["id"])
 
   end)
 end)

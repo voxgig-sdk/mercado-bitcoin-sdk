@@ -41,9 +41,13 @@ class CandleEntityTest < Minitest::Test
 
     # LOAD
     candle_ref01_ent = client.Candle(nil)
-    candle_ref01_match_dt0 = {}
+    candle_ref01_match_dt0 = {
+      "id" => candle_ref01_data["id"],
+    }
     candle_ref01_data_dt0_loaded = candle_ref01_ent.load(candle_ref01_match_dt0, nil)
-    assert !candle_ref01_data_dt0_loaded.nil?
+    candle_ref01_data_dt0_load_result = Helpers.to_map(candle_ref01_data_dt0_loaded.respond_to?(:data_get) ? candle_ref01_data_dt0_loaded.data_get : candle_ref01_data_dt0_loaded)
+    assert !candle_ref01_data_dt0_load_result.nil?
+    assert_equal candle_ref01_data_dt0_load_result["id"], candle_ref01_data["id"]
 
   end
 end

@@ -2,51 +2,51 @@
   "existing": {
     "ticker": {
       "TICKER00": {
-        "ask": 80,
-        "bid": 81,
-        "high": 82,
-        "last": 83,
-        "low": 84,
-        "symbol": "s55",
-        "timestamp": "s56",
-        "volume": 87,
-        "id": "TICKER00"
+        "ask": 90,
+        "bid": 91,
+        "high": 92,
+        "id": "TICKER00",
+        "last": 94,
+        "low": 95,
+        "symbol": "s60",
+        "timestamp": "s61",
+        "volume": 98
       },
       "TICKER01": {
-        "ask": 160,
-        "bid": 161,
-        "high": 162,
-        "last": 163,
-        "low": 164,
-        "symbol": "sa5",
-        "timestamp": "sa6",
-        "volume": 167,
-        "id": "TICKER01"
+        "ask": 180,
+        "bid": 181,
+        "high": 182,
+        "id": "TICKER01",
+        "last": 184,
+        "low": 185,
+        "symbol": "sba",
+        "timestamp": "sbb",
+        "volume": 188
       },
       "TICKER02": {
-        "ask": 240,
-        "bid": 241,
-        "high": 242,
-        "last": 243,
-        "low": 244,
-        "symbol": "sf5",
-        "timestamp": "sf6",
-        "volume": 247,
-        "id": "TICKER02"
+        "ask": 270,
+        "bid": 271,
+        "high": 272,
+        "id": "TICKER02",
+        "last": 274,
+        "low": 275,
+        "symbol": "s114",
+        "timestamp": "s115",
+        "volume": 278
       }
     }
   },
   "new": {
     "ticker": {
       "ticker_ref01": {
-        "ask": 320,
-        "bid": 321,
-        "high": 322,
-        "last": 323,
-        "low": 324,
-        "symbol": "s145",
-        "timestamp": "s146",
-        "volume": 327
+        "ask": 360,
+        "bid": 361,
+        "high": 362,
+        "last": 364,
+        "low": 365,
+        "symbol": "s16e",
+        "timestamp": "s16f",
+        "volume": 368
       }
     }
   }

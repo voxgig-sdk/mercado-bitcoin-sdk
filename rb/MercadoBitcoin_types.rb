@@ -58,6 +58,9 @@ BalanceListMatch = Struct.new(
 # @!attribute [rw] high
 #   @return [Float, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] low
 #   @return [Float, nil]
 #
@@ -72,6 +75,7 @@ BalanceListMatch = Struct.new(
 Candle = Struct.new(
   :close,
   :high,
+  :id,
   :low,
   :open,
   :timestamp,
@@ -308,6 +312,9 @@ OrderBookLoadMatch = Struct.new(
 # @!attribute [rw] high
 #   @return [Float, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] last
 #   @return [Float, nil]
 #
@@ -326,6 +333,7 @@ Ticker = Struct.new(
   :ask,
   :bid,
   :high,
+  :id,
   :last,
   :low,
   :symbol,
@@ -354,6 +362,9 @@ TickerLoadMatch = Struct.new(
 # @!attribute [rw] high
 #   @return [Float, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] last
 #   @return [Float, nil]
 #
@@ -372,6 +383,7 @@ TickerListMatch = Struct.new(
   :ask,
   :bid,
   :high,
+  :id,
   :last,
   :low,
   :symbol,

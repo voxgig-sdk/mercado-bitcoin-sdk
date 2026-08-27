@@ -22,6 +22,7 @@ export interface BalanceListMatch {
 export interface Candle {
   close?: number
   high?: number
+  id?: string
   low?: number
   open?: number
   timestamp?: number
@@ -104,6 +105,7 @@ export interface Ticker {
   ask?: number
   bid?: number
   high?: number
+  id?: string
   last?: number
   low?: number
   symbol?: string
@@ -119,6 +121,7 @@ export interface TickerListMatch {
   ask?: number
   bid?: number
   high?: number
+  id?: string
   last?: number
   low?: number
   symbol?: string
