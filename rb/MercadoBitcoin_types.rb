@@ -87,8 +87,16 @@ Candle = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] interval
+#   @return [String, nil]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 CandleLoadMatch = Struct.new(
   :id,
+  :interval,
+  :limit,
   keyword_init: true
 )
 
@@ -115,22 +123,10 @@ DepositAddress = Struct.new(
 
 # Request payload for DepositAddress#load.
 #
-# @!attribute [rw] address
-#   @return [String, nil]
-#
 # @!attribute [rw] currency
-#   @return [String, nil]
-#
-# @!attribute [rw] qrCode
-#   @return [String, nil]
-#
-# @!attribute [rw] tag
-#   @return [String, nil]
+#   @return [String]
 DepositAddressLoadMatch = Struct.new(
-  :address,
   :currency,
-  :qrCode,
-  :tag,
   keyword_init: true
 )
 
@@ -186,42 +182,14 @@ OrderLoadMatch = Struct.new(
 
 # Request payload for Order#list.
 #
-# @!attribute [rw] amount
-#   @return [Float, nil]
-#
-# @!attribute [rw] filled
-#   @return [Float, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] price
-#   @return [Float, nil]
-#
-# @!attribute [rw] side
-#   @return [String, nil]
-#
 # @!attribute [rw] status
 #   @return [String, nil]
 #
 # @!attribute [rw] symbol
 #   @return [String, nil]
-#
-# @!attribute [rw] timestamp
-#   @return [Integer, nil]
-#
-# @!attribute [rw] type
-#   @return [String, nil]
 OrderListMatch = Struct.new(
-  :amount,
-  :filled,
-  :id,
-  :price,
-  :side,
   :status,
   :symbol,
-  :timestamp,
-  :type,
   keyword_init: true
 )
 
@@ -296,8 +264,12 @@ OrderBook = Struct.new(
 #
 # @!attribute [rw] symbol
 #   @return [String]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 OrderBookLoadMatch = Struct.new(
   :symbol,
+  :limit,
   keyword_init: true
 )
 
@@ -421,8 +393,12 @@ Trade = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] limit
+#   @return [Integer, nil]
 TradeLoadMatch = Struct.new(
   :id,
+  :limit,
   keyword_init: true
 )
 

@@ -31,6 +31,8 @@ export interface Candle {
 
 export interface CandleLoadMatch {
   id: string
+  interval?: string
+  limit?: number
 }
 
 export interface DepositAddress {
@@ -41,10 +43,7 @@ export interface DepositAddress {
 }
 
 export interface DepositAddressLoadMatch {
-  address?: string
-  currency?: string
-  qrCode?: string
-  tag?: string
+  currency: string
 }
 
 export interface Order {
@@ -64,15 +63,8 @@ export interface OrderLoadMatch {
 }
 
 export interface OrderListMatch {
-  amount?: number
-  filled?: number
-  id?: string
-  price?: number
-  side?: string
   status?: string
   symbol?: string
-  timestamp?: number
-  type?: string
 }
 
 export interface OrderCreateData {
@@ -99,6 +91,7 @@ export interface OrderBook {
 
 export interface OrderBookLoadMatch {
   symbol: string
+  limit?: number
 }
 
 export interface Ticker {
@@ -139,6 +132,7 @@ export interface Trade {
 
 export interface TradeLoadMatch {
   id: string
+  limit?: number
 }
 
 export interface Withdrawal {

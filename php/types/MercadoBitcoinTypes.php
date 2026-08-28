@@ -46,6 +46,8 @@ class Candle
 class CandleLoadMatch
 {
     public string $id;
+    public ?string $interval = null;
+    public ?int $limit = null;
 }
 
 /** DepositAddress entity data model. */
@@ -60,10 +62,7 @@ class DepositAddress
 /** Request payload for DepositAddress#load. */
 class DepositAddressLoadMatch
 {
-    public ?string $address = null;
-    public ?string $currency = null;
-    public ?string $qrCode = null;
-    public ?string $tag = null;
+    public string $currency;
 }
 
 /** Order entity data model. */
@@ -89,15 +88,8 @@ class OrderLoadMatch
 /** Request payload for Order#list. */
 class OrderListMatch
 {
-    public ?float $amount = null;
-    public ?float $filled = null;
-    public ?string $id = null;
-    public ?float $price = null;
-    public ?string $side = null;
     public ?string $status = null;
     public ?string $symbol = null;
-    public ?int $timestamp = null;
-    public ?string $type = null;
 }
 
 /** Request payload for Order#create. */
@@ -132,6 +124,7 @@ class OrderBook
 class OrderBookLoadMatch
 {
     public string $symbol;
+    public ?int $limit = null;
 }
 
 /** Ticker entity data model. */
@@ -182,6 +175,7 @@ class Trade
 class TradeLoadMatch
 {
     public string $id;
+    public ?int $limit = null;
 }
 
 /** Withdrawal entity data model. */

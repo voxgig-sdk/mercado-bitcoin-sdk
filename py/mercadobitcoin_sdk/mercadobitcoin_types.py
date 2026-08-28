@@ -40,8 +40,13 @@ class Candle(TypedDict, total=False):
     volume: float
 
 
-class CandleLoadMatch(TypedDict):
+class CandleLoadMatchRequired(TypedDict):
     id: str
+
+
+class CandleLoadMatch(CandleLoadMatchRequired, total=False):
+    interval: str
+    limit: int
 
 
 class DepositAddress(TypedDict, total=False):
@@ -51,11 +56,8 @@ class DepositAddress(TypedDict, total=False):
     tag: str
 
 
-class DepositAddressLoadMatch(TypedDict, total=False):
-    address: str
+class DepositAddressLoadMatch(TypedDict):
     currency: str
-    qrCode: str
-    tag: str
 
 
 class Order(TypedDict, total=False):
@@ -75,15 +77,8 @@ class OrderLoadMatch(TypedDict):
 
 
 class OrderListMatch(TypedDict, total=False):
-    amount: float
-    filled: float
-    id: str
-    price: float
-    side: str
     status: str
     symbol: str
-    timestamp: int
-    type: str
 
 
 class OrderCreateData(TypedDict, total=False):
@@ -108,8 +103,12 @@ class OrderBook(TypedDict, total=False):
     timestamp: int
 
 
-class OrderBookLoadMatch(TypedDict):
+class OrderBookLoadMatchRequired(TypedDict):
     symbol: str
+
+
+class OrderBookLoadMatch(OrderBookLoadMatchRequired, total=False):
+    limit: int
 
 
 class Ticker(TypedDict, total=False):
@@ -148,8 +147,12 @@ class Trade(TypedDict, total=False):
     timestamp: int
 
 
-class TradeLoadMatch(TypedDict):
+class TradeLoadMatchRequired(TypedDict):
     id: str
+
+
+class TradeLoadMatch(TradeLoadMatchRequired, total=False):
+    limit: int
 
 
 class WithdrawalRequired(TypedDict):

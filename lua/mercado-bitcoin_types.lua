@@ -29,6 +29,8 @@
 
 ---@class CandleLoadMatch
 ---@field id string
+---@field interval? string
+---@field limit? number
 
 ---@class DepositAddress
 ---@field address? string
@@ -37,10 +39,7 @@
 ---@field tag? string
 
 ---@class DepositAddressLoadMatch
----@field address? string
----@field currency? string
----@field qrCode? string
----@field tag? string
+---@field currency string
 
 ---@class Order
 ---@field amount? number
@@ -57,15 +56,8 @@
 ---@field id string
 
 ---@class OrderListMatch
----@field amount? number
----@field filled? number
----@field id? string
----@field price? number
----@field side? string
 ---@field status? string
 ---@field symbol? string
----@field timestamp? number
----@field type? string
 
 ---@class OrderCreateData
 ---@field amount? number
@@ -88,6 +80,7 @@
 
 ---@class OrderBookLoadMatch
 ---@field symbol string
+---@field limit? number
 
 ---@class Ticker
 ---@field ask? number
@@ -123,6 +116,7 @@
 
 ---@class TradeLoadMatch
 ---@field id string
+---@field limit? number
 
 ---@class Withdrawal
 ---@field accountNumber string

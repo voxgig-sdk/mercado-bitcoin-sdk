@@ -42,6 +42,8 @@ type Candle struct {
 // CandleLoadMatch is the typed request payload for Candle.LoadTyped.
 type CandleLoadMatch struct {
 	Id string `json:"id"`
+	Interval *string `json:"interval,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 }
 
 // DepositAddress is the typed data model for the deposit_address entity.
@@ -54,10 +56,7 @@ type DepositAddress struct {
 
 // DepositAddressLoadMatch is the typed request payload for DepositAddress.LoadTyped.
 type DepositAddressLoadMatch struct {
-	Address *string `json:"address,omitempty"`
-	Currency *string `json:"currency,omitempty"`
-	QrCode *string `json:"qrCode,omitempty"`
-	Tag *string `json:"tag,omitempty"`
+	Currency string `json:"currency"`
 }
 
 // Order is the typed data model for the order entity.
@@ -80,15 +79,8 @@ type OrderLoadMatch struct {
 
 // OrderListMatch is the typed request payload for Order.ListTyped.
 type OrderListMatch struct {
-	Amount *float64 `json:"amount,omitempty"`
-	Filled *float64 `json:"filled,omitempty"`
-	Id *string `json:"id,omitempty"`
-	Price *float64 `json:"price,omitempty"`
-	Side *string `json:"side,omitempty"`
 	Status *string `json:"status,omitempty"`
 	Symbol *string `json:"symbol,omitempty"`
-	Timestamp *int `json:"timestamp,omitempty"`
-	Type *string `json:"type,omitempty"`
 }
 
 // OrderCreateData is the typed request payload for Order.CreateTyped.
@@ -119,6 +111,7 @@ type OrderBook struct {
 // OrderBookLoadMatch is the typed request payload for OrderBook.LoadTyped.
 type OrderBookLoadMatch struct {
 	Symbol string `json:"symbol"`
+	Limit *int `json:"limit,omitempty"`
 }
 
 // Ticker is the typed data model for the ticker entity.
@@ -164,6 +157,7 @@ type Trade struct {
 // TradeLoadMatch is the typed request payload for Trade.LoadTyped.
 type TradeLoadMatch struct {
 	Id string `json:"id"`
+	Limit *int `json:"limit,omitempty"`
 }
 
 // Withdrawal is the typed data model for the withdrawal entity.
