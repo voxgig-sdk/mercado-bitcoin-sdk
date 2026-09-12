@@ -100,14 +100,22 @@ func deposit_addressDirectSetup(mockres any) *deposit_addressDirectSetupResult {
 	env := envOverride(map[string]any{
 		"MERCADO_BITCOIN_TEST_DEPOSIT_ADDRESS_ENTID": map[string]any{},
 		"MERCADO_BITCOIN_TEST_LIVE":    "FALSE",
-		"MERCADO_BITCOIN_APIKEY":       "NONE",
+		"MERCADO_BITCOIN_APIKEY":       "",
 	})
 
 	live := env["MERCADO_BITCOIN_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["MERCADO_BITCOIN_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewMercadoBitcoinSDK(mergedOpts)
 

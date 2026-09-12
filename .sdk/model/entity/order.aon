@@ -98,8 +98,10 @@ main: kit: entity: order: {
         {
           method: "POST"
           orig: "/orders"
-          parts: [
-            "orders"
+          segments: [
+            {
+              lit: "orders"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -132,8 +134,10 @@ main: kit: entity: order: {
           }
           method: "GET"
           orig: "/orders"
-          parts: [
-            "orders"
+          segments: [
+            {
+              lit: "orders"
+            }
           ]
           select: {
             exist: [
@@ -165,15 +169,19 @@ main: kit: entity: order: {
           }
           method: "GET"
           orig: "/orders/{orderId}"
-          parts: [
-            "orders"
-            "{id}"
-          ]
           rename: {
             param: {
               orderId: "id"
             }
           }
+          segments: [
+            {
+              lit: "orders"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"
@@ -203,15 +211,19 @@ main: kit: entity: order: {
           }
           method: "DELETE"
           orig: "/orders/{orderId}"
-          parts: [
-            "orders"
-            "{id}"
-          ]
           rename: {
             param: {
               orderId: "id"
             }
           }
+          segments: [
+            {
+              lit: "orders"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

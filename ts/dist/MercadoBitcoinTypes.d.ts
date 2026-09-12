@@ -1,0 +1,134 @@
+export interface Balance {
+    available?: number;
+    currency?: string;
+    locked?: number;
+    total?: number;
+}
+export interface BalanceListMatch {
+    available?: number;
+    currency?: string;
+    locked?: number;
+    total?: number;
+}
+export interface Candle {
+    close?: number;
+    high?: number;
+    id?: string;
+    low?: number;
+    open?: number;
+    timestamp?: number;
+    volume?: number;
+}
+export interface CandleLoadMatch {
+    id: string;
+    interval?: string;
+    limit?: number;
+}
+export interface DepositAddress {
+    address?: string;
+    currency?: string;
+    qrCode?: string;
+    tag?: string;
+}
+export interface DepositAddressLoadMatch {
+    currency: string;
+}
+export interface Order {
+    amount?: number;
+    filled?: number;
+    id?: string;
+    price?: number;
+    side?: string;
+    status?: string;
+    symbol?: string;
+    timestamp?: number;
+    type?: string;
+}
+export interface OrderLoadMatch {
+    id: string;
+}
+export interface OrderListMatch {
+    status?: string;
+    symbol?: string;
+}
+export interface OrderCreateData {
+    amount?: number;
+    filled?: number;
+    id?: string;
+    price?: number;
+    side?: string;
+    status?: string;
+    symbol?: string;
+    timestamp?: number;
+    type?: string;
+}
+export interface OrderRemoveMatch {
+    id: string;
+}
+export interface OrderBook {
+    asks?: any[];
+    bids?: any[];
+    timestamp?: number;
+}
+export interface OrderBookLoadMatch {
+    symbol: string;
+    limit?: number;
+}
+export interface Ticker {
+    ask?: number;
+    bid?: number;
+    high?: number;
+    id?: string;
+    last?: number;
+    low?: number;
+    symbol?: string;
+    timestamp?: number;
+    volume?: number;
+}
+export interface TickerLoadMatch {
+    id: string;
+}
+export interface TickerListMatch {
+    ask?: number;
+    bid?: number;
+    high?: number;
+    id?: string;
+    last?: number;
+    low?: number;
+    symbol?: string;
+    timestamp?: number;
+    volume?: number;
+}
+export interface Trade {
+    amount?: number;
+    id?: string;
+    price?: number;
+    side?: string;
+    timestamp?: number;
+}
+export interface TradeLoadMatch {
+    id: string;
+    limit?: number;
+}
+export interface Withdrawal {
+    accountNumber: string;
+    accountType?: string;
+    address: string;
+    agency: string;
+    amount: number;
+    bank: string;
+    currency: string;
+    tag?: string;
+}
+export interface WithdrawalCreateData {
+    accountNumber: string;
+    accountType?: string;
+    address: string;
+    agency: string;
+    amount: number;
+    bank: string;
+    currency: string;
+    tag?: string;
+    $action?: string;
+    [action: string]: any;
+}

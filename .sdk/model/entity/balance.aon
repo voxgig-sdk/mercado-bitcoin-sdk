@@ -39,9 +39,13 @@ main: kit: entity: balance: {
         {
           method: "GET"
           orig: "/accounts/balance"
-          parts: [
-            "accounts"
-            "balance"
+          segments: [
+            {
+              lit: "accounts"
+            }
+            {
+              lit: "balance"
+            }
           ]
           transform: {
             req: "`reqdata`"

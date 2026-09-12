@@ -73,9 +73,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/accounts/balance",
-                  "parts": [
-                    "accounts",
-                    "balance"
+                  "segments": [
+                    {
+                      "lit": "accounts"
+                    },
+                    {
+                      "lit": "balance"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -192,15 +196,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/candles/{symbol}",
-                  "parts": [
-                    "candles",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "symbol": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "candles"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id",
@@ -278,9 +286,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/deposits/crypto",
-                  "parts": [
-                    "deposits",
-                    "crypto"
+                  "segments": [
+                    {
+                      "lit": "deposits"
+                    },
+                    {
+                      "lit": "crypto"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -409,8 +421,10 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/orders",
-                  "parts": [
-                    "orders"
+                  "segments": [
+                    {
+                      "lit": "orders"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -449,8 +463,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/orders",
-                  "parts": [
-                    "orders"
+                  "segments": [
+                    {
+                      "lit": "orders"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -486,15 +502,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/orders/{orderId}",
-                  "parts": [
-                    "orders",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "orderId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "orders"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -528,15 +548,19 @@
                   "kind": "http",
                   "method": "DELETE",
                   "orig": "/orders/{orderId}",
-                  "parts": [
-                    "orders",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "orderId": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "orders"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -616,9 +640,13 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/orderbook/{symbol}",
-                  "parts": [
-                    "orderbook",
-                    "{symbol}"
+                  "segments": [
+                    {
+                      "lit": "orderbook"
+                    },
+                    {
+                      "var": "symbol"
+                    }
                   ],
                   "select": {
                     "exist": [
@@ -727,8 +755,10 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/tickers",
-                  "parts": [
-                    "tickers"
+                  "segments": [
+                    {
+                      "lit": "tickers"
+                    }
                   ],
                   "select": {},
                   "transform": {
@@ -759,15 +789,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/tickers/{symbol}",
-                  "parts": [
-                    "tickers",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "symbol": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "tickers"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id"
@@ -865,15 +899,19 @@
                   "kind": "http",
                   "method": "GET",
                   "orig": "/trades/{symbol}",
-                  "parts": [
-                    "trades",
-                    "{id}"
-                  ],
                   "rename": {
                     "param": {
                       "symbol": "id"
                     }
                   },
+                  "segments": [
+                    {
+                      "lit": "trades"
+                    },
+                    {
+                      "var": "id"
+                    }
+                  ],
                   "select": {
                     "exist": [
                       "id",
@@ -967,9 +1005,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/withdrawals/brl",
-                  "parts": [
-                    "withdrawals",
-                    "brl"
+                  "segments": [
+                    {
+                      "lit": "withdrawals"
+                    },
+                    {
+                      "lit": "brl"
+                    }
                   ],
                   "select": {
                     "$action": "brl"
@@ -985,9 +1027,13 @@
                   "kind": "http",
                   "method": "POST",
                   "orig": "/withdrawals/crypto",
-                  "parts": [
-                    "withdrawals",
-                    "crypto"
+                  "segments": [
+                    {
+                      "lit": "withdrawals"
+                    },
+                    {
+                      "lit": "crypto"
+                    }
                   ],
                   "select": {
                     "$action": "crypto"
@@ -1069,8 +1115,11 @@
             }
           },
           "name": "test",
+          "needs": {},
           "origname": "",
           "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
           "target": {
             "go": {
               "deps": {}
@@ -1481,6 +1530,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1506,6 +1558,10 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/runner_test.go",
+            "test/struct_runner_test.go"
+          ],
           "title": "Golang"
         },
         "go-cli": {
@@ -1557,6 +1613,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1581,6 +1638,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go CLI"
         },
         "go-mcp": {
@@ -1632,6 +1690,7 @@
               "active": false
             }
           },
+          "provides": {},
           "publish": {
             "registry": {
               "active": false,
@@ -1656,6 +1715,7 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [],
           "title": "Go MCP server"
         },
         "lua": {
@@ -1696,6 +1756,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1721,6 +1784,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.lua"
+          ],
           "title": "Lua"
         },
         "php": {
@@ -1755,6 +1821,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1780,6 +1849,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/StructRunner.php"
+          ],
           "title": "PHP"
         },
         "py": {
@@ -1820,6 +1892,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1845,6 +1920,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.py"
+          ],
           "title": "Python"
         },
         "rb": {
@@ -1890,6 +1968,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1915,6 +1996,9 @@
             "version": "0.0.1"
           },
           "srcfeature": false,
+          "superseded": [
+            "test/struct_runner.rb"
+          ],
           "title": "Ruby"
         },
         "ts": {
@@ -1932,11 +2016,6 @@
               "active": true,
               "kind": "dev",
               "version": "^25.6.0"
-            },
-            "dotenv": {
-              "active": true,
-              "kind": "dev",
-              "version": "^17.4.2"
             },
             "typescript": {
               "active": true,
@@ -1965,6 +2044,9 @@
             "sdkrel": ""
           },
           "package": "@voxgig/sdkgen",
+          "provides": {
+            "sekreto": true
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1989,6 +2071,14 @@
             },
             "version": "0.0.1"
           },
+          "superseded": [
+            "test/runner.ts",
+            "test/vendor/omni/compat.ts",
+            "src/feature/secrets/sekreto/Providers.ts",
+            "src/feature/secrets/sekreto/Sigv4.ts",
+            "src/feature/secrets/sekreto/provider/Registry.ts",
+            "src/feature/secrets/sekreto/provider/http.ts"
+          ],
           "title": "TypeScript"
         }
       },

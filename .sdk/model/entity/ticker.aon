@@ -73,8 +73,10 @@ main: kit: entity: ticker: {
         {
           method: "GET"
           orig: "/tickers"
-          parts: [
-            "tickers"
+          segments: [
+            {
+              lit: "tickers"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -100,15 +102,19 @@ main: kit: entity: ticker: {
           }
           method: "GET"
           orig: "/tickers/{symbol}"
-          parts: [
-            "tickers"
-            "{id}"
-          ]
           rename: {
             param: {
               symbol: "id"
             }
           }
+          segments: [
+            {
+              lit: "tickers"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

@@ -50,9 +50,13 @@ main: kit: entity: deposit_address: {
           }
           method: "GET"
           orig: "/deposits/crypto"
-          parts: [
-            "deposits"
-            "crypto"
+          segments: [
+            {
+              lit: "deposits"
+            }
+            {
+              lit: "crypto"
+            }
           ]
           select: {
             exist: [

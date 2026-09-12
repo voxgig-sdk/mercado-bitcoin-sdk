@@ -90,15 +90,19 @@ main: kit: entity: candle: {
           }
           method: "GET"
           orig: "/candles/{symbol}"
-          parts: [
-            "candles"
-            "{id}"
-          ]
           rename: {
             param: {
               symbol: "id"
             }
           }
+          segments: [
+            {
+              lit: "candles"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

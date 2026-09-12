@@ -54,9 +54,13 @@ main: kit: entity: order_book: {
           }
           method: "GET"
           orig: "/orderbook/{symbol}"
-          parts: [
-            "orderbook"
-            "{symbol}"
+          segments: [
+            {
+              lit: "orderbook"
+            }
+            {
+              var: "symbol"
+            }
           ]
           select: {
             exist: [

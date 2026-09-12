@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -123,15 +134,23 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/accounts/balance",
-              "parts": [
-                "accounts",
-                "balance"
+              "segments": [
+                {
+                  "lit": "accounts"
+                },
+                {
+                  "lit": "balance"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.balances`"
-              }
+              },
+              "parts": [
+                "accounts",
+                "balance"
+              ]
             }
           ]
         }
@@ -177,6 +196,10 @@ class Config {
           "type": "`$NUMBER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "candle",
       "op": {
         "load": {
@@ -214,15 +237,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/candles/{symbol}",
-              "parts": [
-                "candles",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "symbol": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "candles"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id",
@@ -233,7 +260,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "candles",
+                "{id}"
+              ]
             }
           ]
         }
@@ -286,9 +317,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/deposits/crypto",
-              "parts": [
-                "deposits",
-                "crypto"
+              "segments": [
+                {
+                  "lit": "deposits"
+                },
+                {
+                  "lit": "crypto"
+                }
               ],
               "select": {
                 "exist": [
@@ -298,7 +333,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "deposits",
+                "crypto"
+              ]
             }
           ]
         }
@@ -379,6 +418,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "order",
       "op": {
         "create": {
@@ -390,14 +433,19 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/orders",
-              "parts": [
-                "orders"
+              "segments": [
+                {
+                  "lit": "orders"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "orders"
+              ]
             }
           ]
         },
@@ -425,8 +473,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/orders",
-              "parts": [
-                "orders"
+              "segments": [
+                {
+                  "lit": "orders"
+                }
               ],
               "select": {
                 "exist": [
@@ -437,7 +487,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "orders"
+              ]
             }
           ]
         },
@@ -460,15 +513,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/orders/{orderId}",
-              "parts": [
-                "orders",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "orderId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "orders"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -477,7 +534,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "orders",
+                "{id}"
+              ]
             }
           ]
         },
@@ -500,15 +561,19 @@ class Config {
               "kind": "http",
               "method": "DELETE",
               "orig": "/orders/{orderId}",
-              "parts": [
-                "orders",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "orderId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "orders"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -517,7 +582,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "orders",
+                "{id}"
+              ]
             }
           ]
         }
@@ -574,9 +643,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/orderbook/{symbol}",
-              "parts": [
-                "orderbook",
-                "{symbol}"
+              "segments": [
+                {
+                  "lit": "orderbook"
+                },
+                {
+                  "var": "symbol"
+                }
               ],
               "select": {
                 "exist": [
@@ -587,7 +660,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "orderbook",
+                "{symbol}"
+              ]
             }
           ]
         }
@@ -647,6 +724,10 @@ class Config {
           "type": "`$NUMBER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "ticker",
       "op": {
         "list": {
@@ -658,14 +739,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/tickers",
-              "parts": [
-                "tickers"
+              "segments": [
+                {
+                  "lit": "tickers"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "tickers"
+              ]
             }
           ]
         },
@@ -688,15 +774,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/tickers/{symbol}",
-              "parts": [
-                "tickers",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "symbol": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "tickers"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -705,7 +795,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "tickers",
+                "{id}"
+              ]
             }
           ]
         }
@@ -742,6 +836,10 @@ class Config {
           "type": "`$INTEGER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "trade",
       "op": {
         "load": {
@@ -772,15 +870,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/trades/{symbol}",
-              "parts": [
-                "trades",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "symbol": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "trades"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id",
@@ -790,7 +892,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "trades",
+                "{id}"
+              ]
             }
           ]
         }
@@ -859,9 +965,13 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/withdrawals/brl",
-              "parts": [
-                "withdrawals",
-                "brl"
+              "segments": [
+                {
+                  "lit": "withdrawals"
+                },
+                {
+                  "lit": "brl"
+                }
               ],
               "select": {
                 "$action": "brl"
@@ -869,16 +979,24 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "withdrawals",
+                "brl"
+              ]
             },
             {
               "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/withdrawals/crypto",
-              "parts": [
-                "withdrawals",
-                "crypto"
+              "segments": [
+                {
+                  "lit": "withdrawals"
+                },
+                {
+                  "lit": "crypto"
+                }
               ],
               "select": {
                 "$action": "crypto"
@@ -886,7 +1004,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "withdrawals",
+                "crypto"
+              ]
             }
           ]
         }
@@ -902,6 +1024,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

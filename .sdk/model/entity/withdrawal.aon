@@ -63,9 +63,13 @@ main: kit: entity: withdrawal: {
         {
           method: "POST"
           orig: "/withdrawals/brl"
-          parts: [
-            "withdrawals"
-            "brl"
+          segments: [
+            {
+              lit: "withdrawals"
+            }
+            {
+              lit: "brl"
+            }
           ]
           select: {
             "$action": "brl"
@@ -78,9 +82,13 @@ main: kit: entity: withdrawal: {
         {
           method: "POST"
           orig: "/withdrawals/crypto"
-          parts: [
-            "withdrawals"
-            "crypto"
+          segments: [
+            {
+              lit: "withdrawals"
+            }
+            {
+              lit: "crypto"
+            }
           ]
           select: {
             "$action": "crypto"

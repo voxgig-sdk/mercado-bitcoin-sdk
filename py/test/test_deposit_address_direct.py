@@ -58,15 +58,18 @@ def _deposit_address_direct_setup(mockres):
     env = runner.env_override({
         "MERCADO_BITCOIN_TEST_DEPOSIT_ADDRESS_ENTID": {},
         "MERCADO_BITCOIN_TEST_LIVE": "FALSE",
-        "MERCADO_BITCOIN_APIKEY": "NONE",
+        "MERCADO_BITCOIN_APIKEY": "",
     })
 
     live = env.get("MERCADO_BITCOIN_TEST_LIVE") == "TRUE"
 
     if live:
-        merged_opts = {
+        # sdk-test-control.json's test.client.options seeds the live
+        # client; the generated fields below overwrite anything they name.
+        merged_opts = dict(runner.live_client_options())
+        merged_opts.update({
             "apikey": env.get("MERCADO_BITCOIN_APIKEY"),
-        }
+        })
         client = MercadoBitcoinSDK(merged_opts)
         return {
             "client": client,

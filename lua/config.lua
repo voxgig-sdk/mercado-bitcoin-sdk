@@ -73,14 +73,22 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/accounts/balance",
-                ["parts"] = {
-                  "accounts",
-                  "balance",
+                ["segments"] = {
+                  {
+                    ["lit"] = "accounts",
+                  },
+                  {
+                    ["lit"] = "balance",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.balances`",
+                },
+                ["parts"] = {
+                  "accounts",
+                  "balance",
                 },
               },
             },
@@ -127,6 +135,10 @@ local function make_config()
             ["type"] = "`$NUMBER`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "candle",
         ["op"] = {
           ["load"] = {
@@ -164,13 +176,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/candles/{symbol}",
-                ["parts"] = {
-                  "candles",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["symbol"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "candles",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -183,6 +199,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "candles",
+                  "{id}",
                 },
               },
             },
@@ -236,9 +256,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/deposits/crypto",
-                ["parts"] = {
-                  "deposits",
-                  "crypto",
+                ["segments"] = {
+                  {
+                    ["lit"] = "deposits",
+                  },
+                  {
+                    ["lit"] = "crypto",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -248,6 +272,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "deposits",
+                  "crypto",
                 },
               },
             },
@@ -329,6 +357,10 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "order",
         ["op"] = {
           ["create"] = {
@@ -340,13 +372,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/orders",
-                ["parts"] = {
-                  "orders",
+                ["segments"] = {
+                  {
+                    ["lit"] = "orders",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "orders",
                 },
               },
             },
@@ -375,8 +412,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/orders",
-                ["parts"] = {
-                  "orders",
+                ["segments"] = {
+                  {
+                    ["lit"] = "orders",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -387,6 +426,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "orders",
                 },
               },
             },
@@ -410,13 +452,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/orders/{orderId}",
-                ["parts"] = {
-                  "orders",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["orderId"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "orders",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -427,6 +473,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "orders",
+                  "{id}",
                 },
               },
             },
@@ -450,13 +500,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "DELETE",
                 ["orig"] = "/orders/{orderId}",
-                ["parts"] = {
-                  "orders",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["orderId"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "orders",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -467,6 +521,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "orders",
+                  "{id}",
                 },
               },
             },
@@ -524,9 +582,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/orderbook/{symbol}",
-                ["parts"] = {
-                  "orderbook",
-                  "{symbol}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "orderbook",
+                  },
+                  {
+                    ["var"] = "symbol",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -537,6 +599,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "orderbook",
+                  "{symbol}",
                 },
               },
             },
@@ -597,6 +663,10 @@ local function make_config()
             ["type"] = "`$NUMBER`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "ticker",
         ["op"] = {
           ["list"] = {
@@ -608,13 +678,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tickers",
-                ["parts"] = {
-                  "tickers",
+                ["segments"] = {
+                  {
+                    ["lit"] = "tickers",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "tickers",
                 },
               },
             },
@@ -638,13 +713,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tickers/{symbol}",
-                ["parts"] = {
-                  "tickers",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["symbol"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "tickers",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -655,6 +734,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "tickers",
+                  "{id}",
                 },
               },
             },
@@ -692,6 +775,10 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "trade",
         ["op"] = {
           ["load"] = {
@@ -722,13 +809,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/trades/{symbol}",
-                ["parts"] = {
-                  "trades",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["symbol"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "trades",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -740,6 +831,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "trades",
+                  "{id}",
                 },
               },
             },
@@ -809,9 +904,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/withdrawals/brl",
-                ["parts"] = {
-                  "withdrawals",
-                  "brl",
+                ["segments"] = {
+                  {
+                    ["lit"] = "withdrawals",
+                  },
+                  {
+                    ["lit"] = "brl",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "brl",
@@ -820,15 +919,23 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "withdrawals",
+                  "brl",
+                },
               },
               {
                 ["args"] = {},
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/withdrawals/crypto",
-                ["parts"] = {
-                  "withdrawals",
-                  "crypto",
+                ["segments"] = {
+                  {
+                    ["lit"] = "withdrawals",
+                  },
+                  {
+                    ["lit"] = "crypto",
+                  },
                 },
                 ["select"] = {
                   ["$action"] = "crypto",
@@ -836,6 +943,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "withdrawals",
+                  "crypto",
                 },
               },
             },

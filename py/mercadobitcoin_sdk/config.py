@@ -1,6 +1,14 @@
 # MercadoBitcoin SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -94,15 +102,23 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/accounts/balance",
-                "parts": [
-                  "accounts",
-                  "balance",
+                "segments": [
+                  {
+                    "lit": "accounts",
+                  },
+                  {
+                    "lit": "balance",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.balances`",
                 },
+                "parts": [
+                  "accounts",
+                  "balance",
+                ],
               },
             ],
           },
@@ -148,6 +164,10 @@ def make_config():
             "type": "`$NUMBER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "candle",
         "op": {
           "load": {
@@ -185,15 +205,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/candles/{symbol}",
-                "parts": [
-                  "candles",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "symbol": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "candles",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -205,6 +229,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "candles",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -257,9 +285,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/deposits/crypto",
-                "parts": [
-                  "deposits",
-                  "crypto",
+                "segments": [
+                  {
+                    "lit": "deposits",
+                  },
+                  {
+                    "lit": "crypto",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -270,6 +302,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "deposits",
+                  "crypto",
+                ],
               },
             ],
           },
@@ -350,6 +386,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "order",
         "op": {
           "create": {
@@ -361,14 +401,19 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/orders",
-                "parts": [
-                  "orders",
+                "segments": [
+                  {
+                    "lit": "orders",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "orders",
+                ],
               },
             ],
           },
@@ -396,8 +441,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/orders",
-                "parts": [
-                  "orders",
+                "segments": [
+                  {
+                    "lit": "orders",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -409,6 +456,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "orders",
+                ],
               },
             ],
           },
@@ -431,15 +481,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/orders/{orderId}",
-                "parts": [
-                  "orders",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "orderId": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "orders",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -449,6 +503,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "orders",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -471,15 +529,19 @@ def make_config():
                 "kind": "http",
                 "method": "DELETE",
                 "orig": "/orders/{orderId}",
-                "parts": [
-                  "orders",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "orderId": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "orders",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -489,6 +551,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "orders",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -545,9 +611,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/orderbook/{symbol}",
-                "parts": [
-                  "orderbook",
-                  "{symbol}",
+                "segments": [
+                  {
+                    "lit": "orderbook",
+                  },
+                  {
+                    "var": "symbol",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -559,6 +629,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "orderbook",
+                  "{symbol}",
+                ],
               },
             ],
           },
@@ -618,6 +692,10 @@ def make_config():
             "type": "`$NUMBER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "ticker",
         "op": {
           "list": {
@@ -629,14 +707,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tickers",
-                "parts": [
-                  "tickers",
+                "segments": [
+                  {
+                    "lit": "tickers",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "tickers",
+                ],
               },
             ],
           },
@@ -659,15 +742,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tickers/{symbol}",
-                "parts": [
-                  "tickers",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "symbol": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "tickers",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -677,6 +764,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "tickers",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -713,6 +804,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "trade",
         "op": {
           "load": {
@@ -743,15 +838,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/trades/{symbol}",
-                "parts": [
-                  "trades",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "symbol": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "trades",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -762,6 +861,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "trades",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -830,9 +933,13 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/withdrawals/brl",
-                "parts": [
-                  "withdrawals",
-                  "brl",
+                "segments": [
+                  {
+                    "lit": "withdrawals",
+                  },
+                  {
+                    "lit": "brl",
+                  },
                 ],
                 "select": {
                   "$action": "brl",
@@ -841,15 +948,23 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "withdrawals",
+                  "brl",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "POST",
                 "orig": "/withdrawals/crypto",
-                "parts": [
-                  "withdrawals",
-                  "crypto",
+                "segments": [
+                  {
+                    "lit": "withdrawals",
+                  },
+                  {
+                    "lit": "crypto",
+                  },
                 ],
                 "select": {
                   "$action": "crypto",
@@ -858,6 +973,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "withdrawals",
+                  "crypto",
+                ],
               },
             ],
           },

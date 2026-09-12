@@ -71,15 +71,19 @@ main: kit: entity: trade: {
           }
           method: "GET"
           orig: "/trades/{symbol}"
-          parts: [
-            "trades"
-            "{id}"
-          ]
           rename: {
             param: {
               symbol: "id"
             }
           }
+          segments: [
+            {
+              lit: "trades"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

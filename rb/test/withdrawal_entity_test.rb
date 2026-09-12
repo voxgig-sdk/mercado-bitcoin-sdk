@@ -76,7 +76,7 @@ def withdrawal_basic_setup(extra)
     "MERCADO_BITCOIN_TEST_WITHDRAWAL_ENTID" => idmap,
     "MERCADO_BITCOIN_TEST_LIVE" => "FALSE",
     "MERCADO_BITCOIN_TEST_EXPLAIN" => "FALSE",
-    "MERCADO_BITCOIN_APIKEY" => "NONE",
+    "MERCADO_BITCOIN_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -87,6 +87,9 @@ def withdrawal_basic_setup(extra)
 
   if env["MERCADO_BITCOIN_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["MERCADO_BITCOIN_APIKEY"],
       },

@@ -71,15 +71,17 @@ def candle_direct_setup(mockres)
   env = Runner.env_override({
     "MERCADO_BITCOIN_TEST_CANDLE_ENTID" => {},
     "MERCADO_BITCOIN_TEST_LIVE" => "FALSE",
-    "MERCADO_BITCOIN_APIKEY" => "NONE",
+    "MERCADO_BITCOIN_APIKEY" => "",
   })
 
   live = env["MERCADO_BITCOIN_TEST_LIVE"] == "TRUE"
 
   if live
-    merged_opts = {
+    # Merged so the generated fields win: sdk-test-control.json's
+    # test.client.options adds to the live client, it does not redirect it.
+    merged_opts = Runner.live_client_options.merge({
       "apikey" => env["MERCADO_BITCOIN_APIKEY"],
-    }
+    })
     client = MercadoBitcoinSDK.new(merged_opts)
     return {
       client: client,
