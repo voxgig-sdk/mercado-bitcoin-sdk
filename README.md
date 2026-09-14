@@ -105,7 +105,7 @@ local result, err = client:Trade():load({ id = "test01" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/mercado-bitcoin` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mercado-bitcoin-sdk/releases) |
+| TypeScript | `@voxgig-sdk/mercado-bitcoin-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mercado-bitcoin-sdk/releases) |
 | Python | `voxgig-sdk-mercado-bitcoin` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mercado-bitcoin-sdk/releases) |
 | PHP | `voxgig-sdk/mercado-bitcoin` | publish pending — [install from git tag](https://github.com/voxgig-sdk/mercado-bitcoin-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/mercado-bitcoin-sdk/go` | `go get github.com/voxgig-sdk/mercado-bitcoin-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Trade():load({ id = "test01" })
 ### TypeScript
 
 ```ts
-import { MercadoBitcoinSDK } from '@voxgig-sdk/mercado-bitcoin'
+import { MercadoBitcoinSDK } from '@voxgig-sdk/mercado-bitcoin-sdk'
 
 const client = new MercadoBitcoinSDK({
   apikey: process.env.MERCADO_BITCOIN_APIKEY,

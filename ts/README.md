@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MercadoBitcoinSDK } from '@voxgig-sdk/mercado-bitcoin'
+import { MercadoBitcoinSDK } from '@voxgig-sdk/mercado-bitcoin-sdk'
 
 const client = new MercadoBitcoinSDK({
   apikey: process.env.MERCADO_BITCOIN_APIKEY,
@@ -780,7 +780,7 @@ mercado-bitcoin/
 Import the SDK from the package root:
 
 ```ts
-import { MercadoBitcoinSDK } from '@voxgig-sdk/mercado-bitcoin'
+import { MercadoBitcoinSDK } from '@voxgig-sdk/mercado-bitcoin-sdk'
 ```
 
 ### Entity state

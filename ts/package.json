@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/mercado-bitcoin",
+  "name": "@voxgig-sdk/mercado-bitcoin-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Mercado Bitcoin public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [
